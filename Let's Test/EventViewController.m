@@ -61,14 +61,14 @@
     self.timeStamp.textColor = mainColorLight;
     self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
-   // self.commentLabel.textColor = mainColorLight;
-   // self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
+    // self.commentLabel.textColor = mainColorLight;
+    // self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.cornerRadius = 40.0f;
     self.profilePicture.layer.borderWidth = 2.0f;
     self.profilePicture.layer.borderColor = mainColorLight.CGColor;
-
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -76,15 +76,15 @@
         
         LetsCommentsTableViewController *commentsViewController = [segue destinationViewController];
         
-
+        
         commentsViewController.object = self.object;
     }
-     if([[segue identifier] isEqualToString:@"Map"]){
-         MapViewController *mapControll = [segue destinationViewController];
-         
-         mapControll.object = self.object;
-         
-     }
+    if([[segue identifier] isEqualToString:@"Map"]){
+        MapViewController *mapControll = [segue destinationViewController];
+        
+        mapControll.object = self.object;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
