@@ -31,6 +31,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     NSLog(@"This is a new commit message!");
+    NSLog(@"This is Jack committing it up.");
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
