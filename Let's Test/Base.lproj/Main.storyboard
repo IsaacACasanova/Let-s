@@ -606,6 +606,9 @@
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="Follow" id="po3-MI-pGa">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="followAction:" destination="mIQ-gR-wQL" id="jgg-4t-PTt"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

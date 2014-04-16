@@ -196,13 +196,15 @@
 
 
 - (IBAction)followAction:(id)sender {
-    
-    
+    PFUser *current = [PFUser currentUser];
+    NSString *objectId = current[@"objectId"];
+    //PFQuery *query = [PFUser query];
+    //[query whereKey:@"username" equalTo:username];
+    //NSString *newobjectId = query.getFirstObject[@"objectId"];
     PFObject *newFollow = [PFObject objectWithClassName:@"Follow"];
-    PFUser *theUser = [PFUser currentUser];
-    //Set the user's name field
-    [newFollow setObject:theUser[@"objectId"] forKey:@"Follower"];
-    //[newFollow setObject:[textView text] forKey:@"Following"];
+    
+    [newFollow setObject:@"ji9CEaoiBJ" forKey:@"Follower"];
+    [newFollow setObject:@"ji9CEaoiBJ" forKey:@"Following"];
     [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the viewController upon success
@@ -213,21 +215,7 @@
     
 }
 
-- (IBAction)unfollowAction:(id)sender {
-    
-    
-    PFObject *newFollow = [PFObject objectWithClassName:@"Follow"];
-    [newFollow setObject:[PFUser currentUser] forKey:@"Follower"];
-    //[newFollow setObject:[textView text] forKey:@"Following"];
-    [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the viewController upon success
-        }
-    }];
-    
-    
-    
-}
+
 
 
 -(void)addDividerToView:(UIView*)view atLocation:(CGFloat)location{
