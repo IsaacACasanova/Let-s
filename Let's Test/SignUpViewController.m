@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Alex Buck. All rights reserved.
 //
 
-#define TABBAR_HEIGHT 49.0f
-#define TEXTFIELD_HEIGHT 70.0f
 #import "SignUpViewController.h"
 #import <Parse/Parse.h>
+
+#define TABBAR_HEIGHT 49.0f
+#define TEXTFIELD_HEIGHT 55.0f
 
 @interface SignUpViewController ()
 
