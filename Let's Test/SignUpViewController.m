@@ -32,13 +32,10 @@
     self.navigationController.navigationBar.hidden = YES;
     
     NSLog(@"This is a new commit message!");
-<<<<<<< HEAD
     NSLog(@"This is Jack committing it up. And once more from within xcode.");
     NSLog(@"THIS IS SPARTA! JK it's Matt committing woop woop!");
     NSLog(@"Meep Meep - Alex");
     NSLog(@"Isaac is commenting");
-=======
->>>>>>> Profile_and_Friends
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
