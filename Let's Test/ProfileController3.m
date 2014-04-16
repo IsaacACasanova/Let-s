@@ -8,6 +8,9 @@
 
 #import "ProfileController3.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
+
+
 
 @interface ProfileController3 ()
 
@@ -24,10 +27,51 @@
     return self;
 }
 
+
+
+- (void)grabUserInfo:(PFUser *)userop{
+    
+    
+    if(userop.username == [[PFUser currentUser]username]){
+        self.editButton.hidden=NO;
+    }
+    else{
+        self.editButton.hidden=YES;
+    }
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"username" containsString:userop.username];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+        
+        //Get the user
+        PFUser *theUser = [query findObjects].firstObject;
+        //Set the user's name field
+        self.nameLabel.text = theUser[@"name"];
+        //Set the user's username field
+        self.usernameLabel.text = theUser[@"username"];
+        //Prepare the user's profile picture
+        PFFile *imageFile = theUser[@"image"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                //Set the user's profile picture
+                self.profileImageView.image = [UIImage imageWithData:imageData];
+            }}];
+        
+        
+    }];
+    
+}
+
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    
+    
     UIColor* mainColor = [UIColor colorWithRed:28.0/255 green:158.0/255 blue:121.0/255 alpha:1.0f];
     UIColor* imageBorderColor = [UIColor colorWithRed:28.0/255 green:158.0/255 blue:121.0/255 alpha:0.4f];
     
@@ -38,11 +82,16 @@
     
     self.nameLabel.textColor =  mainColor;
     self.nameLabel.font =  [UIFont fontWithName:boldItalicFontName size:18.0f];
-    self.nameLabel.text = @"Jack Gallagher";
+    
     
     self.usernameLabel.textColor =  mainColor;
+    
+    self.friendButton.titleLabel.font = [UIFont fontWithName:boldItalicFontName size:18.0f];
+    self.friendButton.titleLabel.textColor = mainColor;
+    
     self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
-    self.usernameLabel.text = @"@jgallagher24";
+    self.usernameLabel.text = @"username";
+    
     
     UIFont* countLabelFont = [UIFont fontWithName:boldItalicFontName size:20.0f];
     UIColor* countColor = mainColor;
@@ -82,7 +131,7 @@
     self.friendLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];;
     self.friendLabel.text = @"Friends";
     
-    self.profileImageView.image = [UIImage imageNamed:@"jack.jpg"];
+    //IMPORTNAT PICTURE STUFF
     self.profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
@@ -102,9 +151,9 @@
     [self styleFriendProfileImage:self.friendImageView2 withImageNamed:@"profile-2.jpg" andColor:imageBorderColor];
     [self styleFriendProfileImage:self.friendImageView3 withImageNamed:@"profile-3.jpg" andColor:imageBorderColor];
     
-    [self addDividerToView:self.scrollView atLocation:230];
-    [self addDividerToView:self.scrollView atLocation:300];
-    [self addDividerToView:self.scrollView atLocation:370];
+    //    [self addDividerToView:self.scrollView atLocation:230];
+    //    [self addDividerToView:self.scrollView atLocation:300];
+    //    [self addDividerToView:self.scrollView atLocation:370];
     
     self.scrollView.contentSize = CGSizeMake(320, 590);
     self.scrollView.backgroundColor = [UIColor whiteColor];
@@ -120,6 +169,67 @@
     imageView.layer.cornerRadius = 35.0f;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"ShowFriends"]){
+        ProfileController3 *ProfileController = [segue destinationViewController];
+        
+        PFQuery *friendsQuery = [PFQuery queryWithClassName:@"Follow"];
+        [friendsQuery whereKey:@"Following" equalTo:[PFUser currentUser]];
+        [friendsQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+            PFObject *firstFollow = [friendsQuery findObjects].firstObject;
+            PFQuery *query = [PFUser query];
+            
+            [query whereKey:@"objectId" containsString:firstFollow[@"Following"]];
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
+                PFUser *firstFriend = [query findObjects].firstObject;
+                
+                
+            }];
+            
+            
+        }];
+        
+        
+        
+    }
+}
+
+
+- (IBAction)followAction:(id)sender {
+    
+    
+    PFObject *newFollow = [PFObject objectWithClassName:@"Follow"];
+    PFUser *theUser = [PFUser currentUser];
+    //Set the user's name field
+    [newFollow setObject:theUser[@"objectId"] forKey:@"Follower"];
+    //[newFollow setObject:[textView text] forKey:@"Following"];
+    [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the viewController upon success
+        }
+    }];
+    
+    
+    
+}
+
+- (IBAction)unfollowAction:(id)sender {
+    
+    
+    PFObject *newFollow = [PFObject objectWithClassName:@"Follow"];
+    [newFollow setObject:[PFUser currentUser] forKey:@"Follower"];
+    //[newFollow setObject:[textView text] forKey:@"Following"];
+    [newFollow saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the viewController upon success
+        }
+    }];
+    
+    
+    
+}
+
+
 -(void)addDividerToView:(UIView*)view atLocation:(CGFloat)location{
     
     UIView* divider = [[UIView alloc] initWithFrame:CGRectMake(20, location, 280, 1)];
@@ -132,5 +242,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)logout:(id)sender {
+    [PFUser logOut];
+    PFUser *currentUser = [PFUser currentUser];
+    
+}
+
 
 @end

@@ -9,6 +9,7 @@
 #import "NewsFeed.h"
 #import "NewsFeedCell.h"
 #import "EventViewController.h"
+#import "ProfileController3.h"
 
 @interface NewsFeed ()
 
@@ -78,6 +79,17 @@
         
         eventViewController.DetailModal = @[@"profile-1.jpg",[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
         eventViewController.object = object;
+    }
+    else if([[segue identifier] isEqualToString:@"SelfProfileSegue"]){
+        
+        ProfileController3 *vc = [segue destinationViewController];
+        
+        // Pass any objects to the view controller here, like...
+        [vc grabUserInfo:[PFUser currentUser]];
+        
+        
+        
+        
     }
 }
 
