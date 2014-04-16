@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+>>>>>>> Profile_and_Friends
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -1075,9 +1078,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="DWn-gy-fqD"/>
         <segue reference="QyB-KD-A8c"/>
+=======
         <segue reference="Hex-OU-VN6"/>
         <segue reference="mLz-Yr-6E4"/>
+>>>>>>> Profile_and_Friends
     </inferredMetricsTieBreakers>
 </document>
