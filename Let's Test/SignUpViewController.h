@@ -10,6 +10,7 @@
 
 @interface SignUpViewController : UIViewController<UITextFieldDelegate>
 {
+    
  IBOutlet UITextField *usernameField;
  IBOutlet UITextField *emailField;
  IBOutlet UITextField *passwordField;
@@ -23,6 +24,8 @@
 -(void) freeKeyboardNotifications;
 -(void) keyboardWasShown:(NSNotification *)aNotification;
 -(void) keyboardWillHide:(NSNotification *)aNotification;
+
+
 
 
 @end

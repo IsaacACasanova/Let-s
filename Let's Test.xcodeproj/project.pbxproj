@@ -7,20 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044B959718FE0BF000F3308D /* FriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B959618FE0BF000F3308D /* FriendsListCell.m */; };
-		044B959D18FE0FEF00F3308D /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B959C18FE0FEF00F3308D /* FriendsList.m */; };
 		1247A66018B6D2DE00A7547E /* ProfileController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1247A65F18B6D2DE00A7547E /* ProfileController3.m */; };
 		1247A66218B6D5C400A7547E /* jack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1247A66118B6D5C400A7547E /* jack.jpg */; };
 		1247A66518B6DB6400A7547E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1247A66418B6DB6400A7547E /* MapViewController.m */; };
 		1247A66918B6DE2D00A7547E /* AddCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1247A66818B6DE2D00A7547E /* AddCommentViewController.m */; };
 		1247A69518B6EBEE00A7547E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1247A69418B6EBEE00A7547E /* MapKit.framework */; };
-		1255AD4A18FE43B600172227 /* initialbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD4618FE43B600172227 /* initialbackground.png */; };
-		1255AD4B18FE43B600172227 /* initialbackgroundtwo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD4718FE43B600172227 /* initialbackgroundtwo.png */; };
-		1255AD4C18FE43B600172227 /* joinlets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD4818FE43B600172227 /* joinlets.png */; };
-		1255AD4D18FE43B600172227 /* signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD4918FE43B600172227 /* signin.png */; };
-		1255AD5218FE451800172227 /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD4F18FE451800172227 /* backbutton.png */; };
-		1255AD5318FE451800172227 /* signinbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD5018FE451800172227 /* signinbutton.png */; };
-		1255AD5418FE451800172227 /* signinfields.png in Resources */ = {isa = PBXBuildFile; fileRef = 1255AD5118FE451800172227 /* signinfields.png */; };
 		1295071D18B1467300B0AB7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1295071C18B1467300B0AB7B /* Foundation.framework */; };
 		1295071F18B1467300B0AB7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1295071E18B1467300B0AB7B /* CoreGraphics.framework */; };
 		1295072118B1467300B0AB7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1295072018B1467300B0AB7B /* UIKit.framework */; };
@@ -111,10 +102,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		044B959518FE0BF000F3308D /* FriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListCell.h; sourceTree = "<group>"; };
-		044B959618FE0BF000F3308D /* FriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListCell.m; sourceTree = "<group>"; };
-		044B959B18FE0FEF00F3308D /* FriendsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsList.h; sourceTree = "<group>"; };
-		044B959C18FE0FEF00F3308D /* FriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
 		1247A65E18B6D2DE00A7547E /* ProfileController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController3.h; sourceTree = "<group>"; };
 		1247A65F18B6D2DE00A7547E /* ProfileController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController3.m; sourceTree = "<group>"; };
 		1247A66118B6D5C400A7547E /* jack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jack.jpg; sourceTree = "<group>"; };
@@ -123,13 +110,6 @@
 		1247A66718B6DE2D00A7547E /* AddCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentViewController.h; sourceTree = "<group>"; };
 		1247A66818B6DE2D00A7547E /* AddCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentViewController.m; sourceTree = "<group>"; };
 		1247A69418B6EBEE00A7547E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		1255AD4618FE43B600172227 /* initialbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initialbackground.png; sourceTree = "<group>"; };
-		1255AD4718FE43B600172227 /* initialbackgroundtwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initialbackgroundtwo.png; sourceTree = "<group>"; };
-		1255AD4818FE43B600172227 /* joinlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joinlets.png; sourceTree = "<group>"; };
-		1255AD4918FE43B600172227 /* signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signin.png; sourceTree = "<group>"; };
-		1255AD4F18FE451800172227 /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
-		1255AD5018FE451800172227 /* signinbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signinbutton.png; sourceTree = "<group>"; };
-		1255AD5118FE451800172227 /* signinfields.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signinfields.png; sourceTree = "<group>"; };
 		1295071918B1467300B0AB7B /* Let's Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Let's Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1295071C18B1467300B0AB7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1295071E18B1467300B0AB7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -268,36 +248,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1255AD4418FE437B00172227 /* Login/Signup UI Components */ = {
-			isa = PBXGroup;
-			children = (
-				1255AD4E18FE44FF00172227 /* SignIn Components */,
-				1255AD4518FE438D00172227 /* Splash Screen Components */,
-			);
-			name = "Login/Signup UI Components";
-			sourceTree = "<group>";
-		};
-		1255AD4518FE438D00172227 /* Splash Screen Components */ = {
-			isa = PBXGroup;
-			children = (
-				1255AD4618FE43B600172227 /* initialbackground.png */,
-				1255AD4718FE43B600172227 /* initialbackgroundtwo.png */,
-				1255AD4818FE43B600172227 /* joinlets.png */,
-				1255AD4918FE43B600172227 /* signin.png */,
-			);
-			name = "Splash Screen Components";
-			sourceTree = "<group>";
-		};
-		1255AD4E18FE44FF00172227 /* SignIn Components */ = {
-			isa = PBXGroup;
-			children = (
-				1255AD4F18FE451800172227 /* backbutton.png */,
-				1255AD5018FE451800172227 /* signinbutton.png */,
-				1255AD5118FE451800172227 /* signinfields.png */,
-			);
-			name = "SignIn Components";
-			sourceTree = "<group>";
-		};
 		1295071018B1467300B0AB7B = {
 			isa = PBXGroup;
 			children = (
@@ -342,7 +292,6 @@
 		1295072218B1467300B0AB7B /* Let's Test */ = {
 			isa = PBXGroup;
 			children = (
-				1255AD4418FE437B00172227 /* Login/Signup UI Components */,
 				1295072B18B1467300B0AB7B /* AppDelegate.h */,
 				1295072C18B1467300B0AB7B /* AppDelegate.m */,
 				ED6A071D18F327FC000CD151 /* MBProgressHUD.h */,
@@ -363,10 +312,6 @@
 				12F93D5A18B15CCE00730E7B /* EventViewController.m */,
 				1247A65E18B6D2DE00A7547E /* ProfileController3.h */,
 				1247A65F18B6D2DE00A7547E /* ProfileController3.m */,
-				044B959B18FE0FEF00F3308D /* FriendsList.h */,
-				044B959C18FE0FEF00F3308D /* FriendsList.m */,
-				044B959518FE0BF000F3308D /* FriendsListCell.h */,
-				044B959618FE0BF000F3308D /* FriendsListCell.m */,
 				1C76C0DD18E76A5300FB7DC7 /* CreateEvent.h */,
 				1C76C0DE18E76A5300FB7DC7 /* CreateEvent.m */,
 				ED70EF5218EC653C00C29850 /* LetsCommentsTableViewController.h */,
@@ -592,29 +537,22 @@
 				1247A66218B6D5C400A7547E /* jack.jpg in Resources */,
 				1295079418B1507600B0AB7B /* arrow@2x.png in Resources */,
 				1295079718B1507600B0AB7B /* check@2x.png in Resources */,
-				1255AD5418FE451800172227 /* signinfields.png in Resources */,
 				1295079F18B1507600B0AB7B /* feed-bridge.jpg in Resources */,
 				1295079618B1507600B0AB7B /* check.png in Resources */,
 				129507A018B1507600B0AB7B /* heart.png in Resources */,
 				1295079D18B1507600B0AB7B /* envelope@2x.png in Resources */,
 				1295079B18B1507600B0AB7B /* compose@2x.png in Resources */,
 				1295079918B1507600B0AB7B /* comment@2x.png in Resources */,
-				1255AD4C18FE43B600172227 /* joinlets.png in Resources */,
 				129507B118B1507600B0AB7B /* settings@2x.png in Resources */,
-				1255AD5218FE451800172227 /* backbutton.png in Resources */,
 				129507A618B1507600B0AB7B /* mail@2x.png in Resources */,
 				129507B018B1507600B0AB7B /* settings.png in Resources */,
 				129507AB18B1507600B0AB7B /* profile-3.jpg in Resources */,
 				129507A218B1507600B0AB7B /* lock.png in Resources */,
 				1295079218B1507600B0AB7B /* account@2x.png in Resources */,
-				1255AD4D18FE43B600172227 /* signin.png in Resources */,
 				1295079C18B1507600B0AB7B /* envelope.png in Resources */,
-				1255AD4B18FE43B600172227 /* initialbackgroundtwo.png in Resources */,
 				129507AA18B1507600B0AB7B /* profile-2.jpg in Resources */,
 				129507A118B1507600B0AB7B /* heart@2x.png in Resources */,
-				1255AD4A18FE43B600172227 /* initialbackground.png in Resources */,
 				129507A518B1507600B0AB7B /* mail.png in Resources */,
-				1255AD5318FE451800172227 /* signinbutton.png in Resources */,
 				1295079318B1507600B0AB7B /* arrow.png in Resources */,
 				129507AD18B1507600B0AB7B /* running.jpg in Resources */,
 				1295073018B1467300B0AB7B /* Main.storyboard in Resources */,
@@ -647,10 +585,8 @@
 				12F93D5B18B15CCE00730E7B /* EventViewController.m in Sources */,
 				ED6A071F18F32804000CD151 /* MBProgressHUD.m in Sources */,
 				1295076B18B1479600B0AB7B /* FeedController4.m in Sources */,
-				044B959718FE0BF000F3308D /* FriendsListCell.m in Sources */,
 				12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */,
 				1295072918B1467300B0AB7B /* main.m in Sources */,
-				044B959D18FE0FEF00F3308D /* FriendsList.m in Sources */,
 				1295076918B1479600B0AB7B /* FeedController2.m in Sources */,
 				12AD929418E779B40030C547 /* InitialViewController.m in Sources */,
 				1295076618B1479600B0AB7B /* FeedCell3.m in Sources */,

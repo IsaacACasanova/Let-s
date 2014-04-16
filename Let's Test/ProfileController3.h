@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
 
 @interface ProfileController3 : UIViewController
 
@@ -43,20 +42,11 @@
 
 @property (nonatomic, weak) IBOutlet UILabel* friendLabel;
 
-@property (nonatomic, weak) IBOutlet UIButton* friendButton;
-
-@property (nonatomic, weak) IBOutlet UIButton* editButton;
-
 @property (nonatomic, weak) IBOutlet UIView* bioContainer;
 
 @property (nonatomic, weak) IBOutlet UIView* friendContainer;
 
 @property (nonatomic, weak) IBOutlet UIScrollView* scrollView;
 
-@property (nonatomic, strong) NSArray *postArray;
-
-- (IBAction)logout:(id)sender;
-
--(IBAction)grabUserInfo:(id)sender;
 
 @end
