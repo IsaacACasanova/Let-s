@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AC1907F2FE00D056E6 /* FriendsList.m */; };
+		04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AE1907F2FE00D056E6 /* FriendsListCell.m */; };
 		1247A66018B6D2DE00A7547E /* ProfileController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1247A65F18B6D2DE00A7547E /* ProfileController3.m */; };
 		1247A66218B6D5C400A7547E /* jack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1247A66118B6D5C400A7547E /* jack.jpg */; };
 		1247A66518B6DB6400A7547E /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1247A66418B6DB6400A7547E /* MapViewController.m */; };
@@ -102,6 +104,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04A690AB1907F2FE00D056E6 /* FriendsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsList.h; sourceTree = "<group>"; };
+		04A690AC1907F2FE00D056E6 /* FriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
+		04A690AD1907F2FE00D056E6 /* FriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListCell.h; sourceTree = "<group>"; };
+		04A690AE1907F2FE00D056E6 /* FriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListCell.m; sourceTree = "<group>"; };
 		1247A65E18B6D2DE00A7547E /* ProfileController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController3.h; sourceTree = "<group>"; };
 		1247A65F18B6D2DE00A7547E /* ProfileController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController3.m; sourceTree = "<group>"; };
 		1247A66118B6D5C400A7547E /* jack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jack.jpg; sourceTree = "<group>"; };
@@ -308,6 +314,10 @@
 				12F93D5418B152AD00730E7B /* NewsFeed.m */,
 				12F93D5618B1556800730E7B /* NewsFeedCell.h */,
 				12F93D5718B1556800730E7B /* NewsFeedCell.m */,
+				04A690AB1907F2FE00D056E6 /* FriendsList.h */,
+				04A690AC1907F2FE00D056E6 /* FriendsList.m */,
+				04A690AD1907F2FE00D056E6 /* FriendsListCell.h */,
+				04A690AE1907F2FE00D056E6 /* FriendsListCell.m */,
 				12F93D5918B15CCE00730E7B /* EventViewController.h */,
 				12F93D5A18B15CCE00730E7B /* EventViewController.m */,
 				1247A65E18B6D2DE00A7547E /* ProfileController3.h */,
@@ -586,6 +596,8 @@
 				ED6A071F18F32804000CD151 /* MBProgressHUD.m in Sources */,
 				1295076B18B1479600B0AB7B /* FeedController4.m in Sources */,
 				12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */,
+				04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */,
+				04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */,
 				1295072918B1467300B0AB7B /* main.m in Sources */,
 				1295076918B1479600B0AB7B /* FeedController2.m in Sources */,
 				12AD929418E779B40030C547 /* InitialViewController.m in Sources */,
