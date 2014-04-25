@@ -13,6 +13,7 @@
 //@property (strong, nonatomic) PFObject *object;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property int follower;
 @property (strong, nonatomic) NSMutableArray* allTableData;
 @property (strong, nonatomic) NSMutableArray* filteredTableData;
 @property bool *isFiltered;

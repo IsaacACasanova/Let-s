@@ -20,6 +20,7 @@
 @synthesize filteredTableData;
 @synthesize allTableData;
 @synthesize isFiltered;
+@synthesize follower;
 
 - (id)initWithCoder:(NSCoder *)aCoder
 {
@@ -44,15 +45,22 @@
 
 
 - (PFQuery *)queryForTable {
+    
     PFUser *current = [PFUser currentUser];
     NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
     [query2 whereKey:@"username" equalTo:username];
-    [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
     PFQuery *userQuery = [PFUser query];
+    if(follower==1){
+    [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
     [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
-  
+    }
+    else{
+        [query whereKey:@"Following" matchesKey:@"username" inQuery:query2];
+        [userQuery whereKey:@"username" matchesKey:@"Follower" inQuery:query];
+    }
+    
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query
     // against the network.

@@ -9,6 +9,7 @@
 #import "ProfileController3.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
+#import "FriendsList.h"
 
 
 
@@ -118,7 +119,7 @@
     
     
     if(amIFollowingQuery.countObjects>0){
-        self.followButton.title = @"Following";
+        self.followButton.title = @"Unfollow";
     }
     
 }
@@ -286,7 +287,21 @@
     
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"ShowFollowers"]){
+        
+        FriendsList *FL = [segue destinationViewController];
+        FL.follower=2;
+        
+    }
+    else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
+        
+        FriendsList *FL = [segue destinationViewController];
+        FL.follower=1;
+    
+    
+    }
+}
 
 
 -(void)addDividerToView:(UIView*)view atLocation:(CGFloat)location{

@@ -461,7 +461,6 @@
         <!--Profile Controller3-->
         <scene sceneID="c5G-X9-FPO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tfH-a3-LeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ProfileController3" id="mIQ-gR-wQL" customClass="ProfileController3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eVf-xR-DoN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -515,13 +514,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Ur-i8-cF9">
-                                                <rect key="frame" x="105" y="0.0" width="70" height="30"/>
+                                                <rect key="frame" x="20" y="0.0" width="120" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Friends">
+                                                <state key="normal" title="Following">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="97K-tY-2fH" kind="push" id="0OZ-eo-ady"/>
+                                                    <segue destination="97K-tY-2fH" kind="push" identifier="ShowFollowing" id="0OZ-eo-ady"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="jne-qf-m0b">
@@ -536,6 +535,16 @@
                                                 <rect key="frame" x="20" y="39" width="70" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="00c-Di-zlA">
+                                                <rect key="frame" x="148" y="1" width="122" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Followers">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="97K-tY-2fH" kind="push" identifier="ShowFollowers" id="rph-1h-Ach"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -613,6 +622,7 @@
                         <outlet property="usernameLabel" destination="7NO-rY-upr" id="M5J-qS-Fy5"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfH-a3-LeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2121" y="-1682"/>
         </scene>
@@ -1063,6 +1073,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="5gH-Uk-IOd"/>
+        <segue reference="rph-1h-Ach"/>
         <segue reference="v3F-nY-QhG"/>
     </inferredMetricsTieBreakers>
 </document>
