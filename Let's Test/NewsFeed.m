@@ -49,6 +49,14 @@
                         object:(PFObject *)object {
     
     static NSString *CellIdentifier = @"NewsFeedCell";
+    PFObject *obd = [object objectForKey:@"CreatedBy"];
+    NSLog(@"%@",obd);
+    NSLog(@"%@",obd.objectId);
+    PFQuery *q = [PFQuery queryWithClassName:@"_User"];
+    [q whereKey:@"objectId" equalTo:obd.objectId];
+    PFObject *o = q.getFirstObject;
+    PFFile *blah = [o objectForKey:@"image"];
+    NSData *imageData = [blah getData];
     
     NewsFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     //    if (cell == nil) {
@@ -61,7 +69,7 @@
     // cell.textLabel.text = [object objectForKey:@"Address"];
     cell.EventLabel.text = [object objectForKey:@"EventName"];
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
-    cell.ProfileImage.image = [UIImage imageNamed:@"profile-1.jpg"];
+    cell.ProfileImage.image = [UIImage imageWithData:imageData];
     cell.commentLabel.text = @"comment";
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
@@ -76,8 +84,14 @@
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        PFObject *obd = [object objectForKey:@"CreatedBy"];
+        PFQuery *q = [PFQuery queryWithClassName:@"_User"];
+        [q whereKey:@"objectId" equalTo:obd.objectId];
+        PFObject *o = q.getFirstObject;
+        PFFile *blah = [o objectForKey:@"image"];
+        NSData *imageData = [blah getData];
         
-        eventViewController.DetailModal = @[@"profile-1.jpg",[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
+        eventViewController.DetailModal = @[[UIImage imageWithData:imageData],[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
         eventViewController.object = object;
     }
     else if([[segue identifier] isEqualToString:@"SelfProfileSegue"]){

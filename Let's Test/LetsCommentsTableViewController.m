@@ -109,23 +109,21 @@
     // Configure the cell...
     
     // Adding to the TableView!
-    
+    PFObject *obd = [object objectForKey:@"username"];
     cell.userName.text = [object objectForKey:@"username"];
     cell.comment.lineBreakMode = NSLineBreakByWordWrapping;
     cell.comment.text = [object objectForKey:@"comment"];
     cell.time.text = [object objectForKey:@"time"];
     
-    PFUser *currentUser = [PFUser currentUser];
-    PFFile *userImageFile = [currentUser objectForKey:@"image"];
-    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-        if (!error) {
-            UIImage *image = [UIImage imageWithData:imageData];
-            cell.thumbNailImage.image = image;
-        }
-        else {
-            cell.thumbNailImage.image = [UIImage imageNamed:@"placeholder.jpg"];
-       }
-    }];
+    PFQuery *q = [PFQuery queryWithClassName:@"_User"];
+    [q whereKey:@"username" equalTo:obd];
+    PFObject *o = q.getFirstObject;
+    PFFile *blah = [o objectForKey:@"image"];
+    NSData *imageData = [blah getData];
+    
+
+    cell.thumbNailImage.image = [UIImage imageWithData:imageData];
+
 
     return cell;
     

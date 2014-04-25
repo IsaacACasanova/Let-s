@@ -32,7 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    _profilePicture.image = [UIImage imageNamed:_DetailModal[0]];
+    _profilePicture.image = _DetailModal[0];
     _eventTitle.text = _DetailModal[1];
     _eventDate.text = _DetailModal[2];
     _eventDescription.text = _DetailModal[3];
