@@ -39,6 +39,17 @@
         NSObject *o = person.getFirstObject;
         NSLog(@"check: %@",o);
         [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+    }else{
+        PFUser *user = [PFUser currentUser];
+        PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
+        [findifIntable whereKey:@"Attendee" equalTo:user];
+        if(findifIntable.getFirstObject!=NULL){
+            NSArray *objects = findifIntable.findObjects;
+            for (PFObject *object in objects) {
+                PFObject *event = [object objectForKey:@"Event"];
+                [query whereKey:@"objectId" notEqualTo:event.objectId];
+            }
+        }
     }
     
     // If no objects are loaded in memory, we look to the cache

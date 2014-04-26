@@ -61,6 +61,13 @@ CLLocationCoordinate2D pincoordinate;
         _LetsButton.enabled = NO;
     }
     
+    PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable2 whereKey:@"Attendee" equalTo:user];
+    [findifIntable2 whereKey:@"Event" equalTo:self.object];
+    if(findifIntable2.getFirstObject!=NULL){
+        _PassButton.enabled = NO;
+    }
+    
     //Mini map stuff
     locationManager = [[CLLocationManager alloc] init];
     miniMap.delegate = self;
@@ -261,11 +268,19 @@ CLLocationCoordinate2D pincoordinate;
 }
 
 - (IBAction)LetsPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
     PFObject *attend = [PFObject objectWithClassName:@"Attending"];
     attend[@"Attendee"]=[PFUser currentUser];
     attend[@"Event"]= self.object;
     [attend save];
     self.LetsButton.Enabled = NO;
+    self.PassButton.enabled = YES;
 }
 
 - (IBAction)PassPressed:(id)sender {
@@ -282,6 +297,7 @@ CLLocationCoordinate2D pincoordinate;
    [pass save];
 
     self.LetsButton.Enabled = YES;
+    self.PassButton.enabled =NO;
 }
 
 - (IBAction)EditPressed:(id)sender {
