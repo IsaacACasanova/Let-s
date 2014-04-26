@@ -40,16 +40,16 @@ CLLocationCoordinate2D pincoordinate;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-     PFObject *obd = [_object objectForKey:@"CreatedBy"];
+
     PFUser *user = [PFUser currentUser];
-    NSLog(@"me: %@ you: %@",obd,user);
-    if(obd.objectId==user.objectId){
+    NSLog(@"me: %@ you: %@ them:%@",self.creator,user,self.object);
+    if([self.creator.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
         _Edit.hidden=NO;
     }
-//    else{
-//        _Edit.hidden = YES;
-//    }
+    else{
+        _Edit.hidden = YES;
+    }
     
     //Mini map stuff
     locationManager = [[CLLocationManager alloc] init];
