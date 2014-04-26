@@ -46,6 +46,7 @@
 
 - (PFQuery *)queryForTable {
     
+    
     PFUser *current = [PFUser currentUser];
     NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
@@ -56,10 +57,12 @@
     [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
     [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
     }
-    else{
+    else if(follower==2){
         [query whereKey:@"Following" matchesKey:@"username" inQuery:query2];
         [userQuery whereKey:@"username" matchesKey:@"Follower" inQuery:query];
     }
+    
+    
     
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query

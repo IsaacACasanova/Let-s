@@ -10,6 +10,7 @@
 #import "LetsCommentsTableViewController.h"
 #import "MapViewController.h"
 #import "CustomAnnotationView.h"
+#import "AttendingController.h"
 
 
 @interface EventViewController ()
@@ -46,6 +47,8 @@ CLLocationCoordinate2D pincoordinate;
     if([self.creator.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
         _Edit.hidden=NO;
+        _LetsButton.hidden = YES;
+        _PassButton.hidden = YES;
     }
     else{
         _Edit.hidden = YES;
@@ -111,6 +114,10 @@ CLLocationCoordinate2D pincoordinate;
         
         mapControll.object = self.object;
         
+    }
+    if([[segue identifier] isEqualToString:@"Attending"]){
+        AttendingController *attend = [segue destinationViewController];
+        attend.event = self.object;
     }
 }
 
@@ -255,4 +262,17 @@ CLLocationCoordinate2D pincoordinate;
     return renderer;
 }
 
+- (IBAction)LetsPressed:(id)sender {
+    PFObject *attend = [PFObject objectWithClassName:@"Attending"];
+    attend[@"Attendee"]=[PFUser currentUser];
+    attend[@"Event"]= self.object;
+    [attend save];
+    self.LetsButton.Enabled = NO;
+}
+
+- (IBAction)PassPressed:(id)sender {
+}
+
+- (IBAction)EditPressed:(id)sender {
+}
 @end
