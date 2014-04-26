@@ -40,6 +40,17 @@ CLLocationCoordinate2D pincoordinate;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+     PFObject *obd = [_object objectForKey:@"CreatedBy"];
+    PFUser *user = [PFUser currentUser];
+    NSLog(@"me: %@ you: %@",obd,user);
+    if(obd.objectId==user.objectId){
+        NSLog(@"WHATTTTTTT");
+        _Edit.hidden=NO;
+    }
+//    else{
+//        _Edit.hidden = YES;
+//    }
+    
     //Mini map stuff
     locationManager = [[CLLocationManager alloc] init];
     miniMap.delegate = self;
@@ -123,7 +134,7 @@ CLLocationCoordinate2D pincoordinate;
     // Run the query
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"%@", objects[0]);
+           // NSLog(@"%@", objects[0]);
             
             PFObject *object = objects[0];
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {

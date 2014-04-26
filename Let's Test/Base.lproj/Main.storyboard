@@ -116,6 +116,13 @@
                                     <segue destination="LUd-Vu-E9N" kind="push" identifier="Map" id="l6z-c4-0g3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iPj-Wk-nZa" userLabel="PassButton">
+                                <rect key="frame" x="93" y="243" width="67" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="deselectedpass.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pg1-GW-c4J" userLabel="LetsButton">
                                 <rect key="frame" x="17" y="243" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,8 +130,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iPj-Wk-nZa" userLabel="PassButton">
-                                <rect key="frame" x="93" y="243" width="67" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
+                                <rect key="frame" x="168" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="deselectedpass.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,6 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="vGI-5z-ZS0"/>
                     <connections>
+                        <outlet property="Edit" destination="5WC-Z7-VwJ" id="8AJ-wn-7PE"/>
                         <outlet property="eventDate" destination="SOG-ww-4b5" id="m6z-Cr-H5q"/>
                         <outlet property="eventDescription" destination="DYL-bT-Aay" id="Of5-aj-NRs"/>
                         <outlet property="eventTitle" destination="bu2-Kf-WPm" id="WKO-CV-b24"/>

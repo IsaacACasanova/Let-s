@@ -23,8 +23,7 @@
 @property (strong, nonatomic) PFObject *object;
 @property (weak, nonatomic) IBOutlet MKMapView *miniMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
-
+@property (strong, nonatomic) IBOutlet UIButton *Edit;
 
 @property (strong,nonatomic) NSArray *DetailModal;
 
