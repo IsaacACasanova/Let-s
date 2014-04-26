@@ -103,6 +103,8 @@
         
         eventViewController.DetailModal = @[[UIImage imageWithData:imageData],[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
         eventViewController.object = object;
+        eventViewController.creator = o;
+        
     }
     else if([[segue identifier] isEqualToString:@"SelfProfileSegue"]){
         

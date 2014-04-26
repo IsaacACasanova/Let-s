@@ -22,6 +22,8 @@
         
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    self.window.tintColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
+    
     return YES;
 }
 							

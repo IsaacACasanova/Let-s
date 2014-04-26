@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "AppDelegate.h"
 
-@interface EventViewController : UIViewController {
+@interface EventViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate> {
     
 }
 
@@ -19,8 +21,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *eventDate;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) PFObject *object;
-
-
+@property (strong, nonatomic) PFObject *creator;
+@property (weak, nonatomic) IBOutlet MKMapView *miniMap;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet UIButton *Edit;
 
 @property (strong,nonatomic) NSArray *DetailModal;
 
