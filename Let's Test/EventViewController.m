@@ -9,6 +9,7 @@
 #import "EventViewController.h"
 #import "LetsCommentsTableViewController.h"
 #import "MapViewController.h"
+#import "CustomAnnotationView.h"
 
 @interface EventViewController ()
 
@@ -16,6 +17,12 @@
 @end
 
 @implementation EventViewController
+@synthesize locationManager;
+@synthesize miniMap;
+
+MKRoute *currentRoute;
+MKPolyline *routeOverlay;
+CLLocationCoordinate2D pincoordinate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -69,6 +76,13 @@
     self.profilePicture.layer.borderWidth = 2.0f;
     self.profilePicture.layer.borderColor = mainColorLight.CGColor;
     
+    // Mini map stuff
+    locationManager = [[CLLocationManager alloc] init];
+    miniMap.delegate = self;
+    locationManager.delegate = self;
+    
+    [self getEventLocation];
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -96,6 +110,114 @@
 -(IBAction)unwindToTableViewController:(UIStoryboardSegue *)sender
 {
     LetsCommentsTableViewController *letsCommentsTableViewController = (LetsCommentsTableViewController *)sender.sourceViewController;
+}
+
+- (void)getEventLocation {
+    
+    // Create a Parse query
+    PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
+    [query whereKey:@"objectId" equalTo:self.object.objectId];
+    
+    // Run the query
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"%@", objects[0]);
+            
+            PFObject *object = objects[0];
+            [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
+                NSLog(@"WANT: %@", want[@"Address"]);
+                
+                NSString *eventName = want[@"EventName"];
+                PFGeoPoint *eventAddress = want[@"Coordinates"];
+                
+                pincoordinate.latitude  = eventAddress.latitude;
+                pincoordinate.longitude = eventAddress.longitude;
+                
+                // Set the region to display and have it zoom in
+                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pincoordinate, 800, 800);
+                [self.miniMap setRegion:[self.miniMap regionThatFits:region] animated: YES];
+                
+                // Add annotation
+                MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                point.coordinate = pincoordinate;
+                point.title      = eventName;
+                point.subtitle   = want[@"Address"];
+                
+                [self.miniMap addAnnotation:point];
+                [self.miniMap selectAnnotation:point animated:YES];
+            }];
+        }
+    }];
+}
+
+- (MKPinAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    
+    NSString *annotationIdentifier = @"CustomViewAnnotation";
+    
+    CustomAnnotationView *customAnnotationView = (CustomAnnotationView *) [self.miniMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    
+    if (!customAnnotationView) {
+        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
+        
+        customAnnotationView.canShowCallout = YES;
+    }
+    
+    return customAnnotationView;
+    
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    // Make a directions request
+    MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
+    
+    directionsRequest.requestsAlternateRoutes = YES;
+    
+    // Start at our current location
+    MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
+    [directionsRequest setSource:source];
+    // Make the destination
+    CLLocationCoordinate2D destinationCoords = pincoordinate;
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    [directionsRequest setDestination:destination];
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        
+        // Now handle the result
+        if (error) {
+            NSLog(@"There was an error getting your directions");
+            return;
+        }
+        
+        currentRoute = [response.routes firstObject];
+        [self plotRouteOnMap:currentRoute];
+    }];
+    
+}
+
+- (void)plotRouteOnMap:(MKRoute *)route
+{
+    if(routeOverlay) {
+        [self.miniMap removeOverlay:routeOverlay];
+    }
+    
+    // Update the ivar
+    routeOverlay = route.polyline;
+    
+    // Add it to the map
+    [self.miniMap addOverlay:routeOverlay];
+    
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.lineWidth = 4.0;
+    return renderer;
 }
 
 
