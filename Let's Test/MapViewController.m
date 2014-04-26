@@ -74,6 +74,7 @@ MKPolyline *routeOverlay;
                 point.subtitle   = want[@"Address"];
                 
                 [self.mapView addAnnotation:point];
+                [self.mapView selectAnnotation:point animated:YES];
             }];
         }
     }];
