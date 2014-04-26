@@ -46,6 +46,8 @@ CLLocationCoordinate2D pincoordinate;
     if([self.creator.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
         _Edit.hidden=NO;
+        _LetsButton.hidden = YES;
+        _PassButton.hidden = YES;
     }
     else{
         _Edit.hidden = YES;
@@ -261,5 +263,11 @@ CLLocationCoordinate2D pincoordinate;
     attend[@"Event"]= self.object;
     [attend save];
     self.LetsButton.Enabled = NO;
+}
+
+- (IBAction)PassPressed:(id)sender {
+}
+
+- (IBAction)EditPressed:(id)sender {
 }
 @end

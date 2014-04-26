@@ -122,6 +122,9 @@
                                 <state key="normal" image="deselectedpass.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="PassPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="4mW-5E-y4D"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pg1-GW-c4J" userLabel="LetsButton">
                                 <rect key="frame" x="17" y="243" width="68" height="30"/>
@@ -134,11 +137,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
-                                <rect key="frame" x="168" y="243" width="67" height="29"/>
+                                <rect key="frame" x="233" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="deselectedpass.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="EditPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="Jph-UF-Jx6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -147,6 +153,7 @@
                     <connections>
                         <outlet property="Edit" destination="5WC-Z7-VwJ" id="8AJ-wn-7PE"/>
                         <outlet property="LetsButton" destination="Pg1-GW-c4J" id="KgX-Cg-tx1"/>
+                        <outlet property="PassButton" destination="iPj-Wk-nZa" id="6PP-La-w9J"/>
                         <outlet property="eventDate" destination="SOG-ww-4b5" id="m6z-Cr-H5q"/>
                         <outlet property="eventDescription" destination="DYL-bT-Aay" id="Of5-aj-NRs"/>
                         <outlet property="eventTitle" destination="bu2-Kf-WPm" id="WKO-CV-b24"/>
