@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
@@ -150,7 +150,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsFeedCell" rowHeight="95" id="JBV-i9-l8Y" customClass="NewsFeedCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="95"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JBV-i9-l8Y" id="nty-Gm-81p">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="94"/>
@@ -215,9 +215,6 @@
                     <navigationItem key="navigationItem" title="Events" id="XFX-IZ-4DX">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="1Vd-F7-glO">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="mIQ-gR-wQL" kind="push" identifier="SelfProfileSegue" id="fnb-W9-Lom"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3b8-l7-H1X">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -226,8 +223,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="Proback" destination="1Vd-F7-glO" id="acq-De-jE8"/>
+                        <segue destination="yT4-x6-7jm" kind="unwind" identifier="Return" unwindAction="unwindToProfile:" id="iVh-kY-dDe"/>
+                        <segue destination="mIQ-gR-wQL" kind="push" identifier="SelfProfileSegue" id="ezy-lg-dHa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siU-2t-Fsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yT4-x6-7jm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1676" y="-922"/>
         </scene>
@@ -565,6 +568,16 @@
                                                 </state>
                                                 <connections>
                                                     <segue destination="97K-tY-2fH" kind="push" identifier="ShowFollowers" id="rph-1h-Ach"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xZI-8X-p4V">
+                                                <rect key="frame" x="105" y="105" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="My Events">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="bYJ-XE-jRs" kind="push" identifier="MyEvents" id="jJE-LI-DUu"/>
                                                 </connections>
                                             </button>
                                         </subviews>
