@@ -25,7 +25,9 @@
 @property (weak, nonatomic) IBOutlet MKMapView *miniMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIButton *Edit;
+@property (strong, nonatomic) IBOutlet UIButton *LetsButton;
 
 @property (strong,nonatomic) NSArray *DetailModal;
+- (IBAction)LetsPressed:(id)sender;
 
 @end

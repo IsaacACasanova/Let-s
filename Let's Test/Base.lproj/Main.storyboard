@@ -129,6 +129,9 @@
                                 <state key="normal" image="deselectedlets.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="LetsPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="6DI-Du-DXj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
                                 <rect key="frame" x="168" y="243" width="67" height="29"/>
@@ -143,6 +146,7 @@
                     <navigationItem key="navigationItem" title="Events" id="vGI-5z-ZS0"/>
                     <connections>
                         <outlet property="Edit" destination="5WC-Z7-VwJ" id="8AJ-wn-7PE"/>
+                        <outlet property="LetsButton" destination="Pg1-GW-c4J" id="KgX-Cg-tx1"/>
                         <outlet property="eventDate" destination="SOG-ww-4b5" id="m6z-Cr-H5q"/>
                         <outlet property="eventDescription" destination="DYL-bT-Aay" id="Of5-aj-NRs"/>
                         <outlet property="eventTitle" destination="bu2-Kf-WPm" id="WKO-CV-b24"/>
@@ -1144,7 +1148,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jJE-LI-DUu"/>
+        <segue reference="Hex-OU-VN6"/>
         <segue reference="Oy6-9c-L9v"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>

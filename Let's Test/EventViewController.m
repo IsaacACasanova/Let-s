@@ -255,4 +255,11 @@ CLLocationCoordinate2D pincoordinate;
     return renderer;
 }
 
+- (IBAction)LetsPressed:(id)sender {
+    PFObject *attend = [PFObject objectWithClassName:@"Atennding"];
+    attend[@"Attendee"]=[PFUser currentUser];
+    attend[@"Event"]= self.object;
+    [attend save];
+    self.LetsButton.Enabled = NO;
+}
 @end
