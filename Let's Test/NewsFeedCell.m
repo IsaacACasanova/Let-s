@@ -49,8 +49,8 @@
     self.timeStamp.textColor = mainColorLight;
     self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
-    self.commentLabel.textColor = mainColorLight;
-    self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
+    //self.commentLabel.textColor = mainColorLight;
+    //self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
     self.ProfileImage.clipsToBounds = YES;
     self.ProfileImage.layer.cornerRadius = 25.0f;
