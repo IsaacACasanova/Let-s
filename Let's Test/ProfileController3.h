@@ -37,7 +37,9 @@
 
 @property (nonatomic, weak) IBOutlet UILabel* followingCountLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel* updateCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel* eventCountLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *attendingCountLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel* bioLabel;
 

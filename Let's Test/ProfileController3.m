@@ -107,6 +107,7 @@
     //test if profile is current user to hide follow button
     if(username == currentUsername){
         self.followButton.enabled=NO;
+        self.navigationItem.rightBarButtonItem = nil;
     }
     //Returns people I follow
     PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
@@ -133,7 +134,30 @@
 {
     [super viewDidLoad];
     
+    PFQuery *followers = [PFQuery queryWithClassName:@"Follow"];
+    [followers whereKey:@"Following" equalTo:self.username];
+    NSInteger numfollowers = followers.countObjects;
+    self.followerCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowers];
     
+    PFQuery *followering = [PFQuery queryWithClassName:@"Follow"];
+    [followering whereKey:@"Follower" equalTo:self.username];
+    NSInteger numfollowering = followering.countObjects;
+    self.followingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowering];
+    
+    PFQuery *events= [PFQuery queryWithClassName:@"EventList"];
+    PFQuery *user = [PFQuery queryWithClassName:@"_User"];
+    [user whereKey:@"username" equalTo:self.username];
+    PFObject *userinfo = user.getFirstObject;
+    NSLog(@"%@",userinfo);
+    [events whereKey:@"CreatedBy" equalTo:userinfo];
+    NSInteger numevents = events.countObjects;
+    self.eventCountLabel.text = [NSString stringWithFormat: @"%d", (int)numevents];
+    
+    
+    PFQuery *attendance= [PFQuery queryWithClassName:@"Attending"];
+    [attendance whereKey:@"Attendee" equalTo:userinfo];
+    NSInteger numattend = attendance.countObjects;
+    self.attendingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numattend];
     
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* imageBorderColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
@@ -161,15 +185,16 @@
     
     self.followerCountLabel.textColor =  countColor;
     self.followerCountLabel.font =  countLabelFont;
-    self.followerCountLabel.text = @"13";
     
     self.followingCountLabel.textColor =  countColor;
     self.followingCountLabel.font =  countLabelFont;
-    self.followingCountLabel.text = @"12";
+
     
-    self.updateCountLabel.textColor =  countColor;
-    self.updateCountLabel.font =  countLabelFont;
-    self.updateCountLabel.text = @"4";
+    self.eventCountLabel.textColor =  countColor;
+    self.eventCountLabel.font =  countLabelFont;
+    
+    self.attendingCountLabel.textColor =  countColor;
+    self.attendingCountLabel.font =  countLabelFont;
     
     UIFont* socialFont = [UIFont fontWithName:boldItalicFontName size:10.0f];
     
