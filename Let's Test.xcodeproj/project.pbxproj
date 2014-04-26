@@ -86,6 +86,7 @@
 		1CC7901018E7732C00251C49 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900818E7732C00251C49 /* Security.framework */; };
 		1CC7901118E7732C00251C49 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900918E7732C00251C49 /* StoreKit.framework */; };
 		1CC7901218E7732C00251C49 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900A18E7732C00251C49 /* SystemConfiguration.framework */; };
+		C9D5D29A190AF28A008A94F3 /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D5D299190AF28A008A94F3 /* DirectionsViewController.m */; };
 		ED09E50218F59C21000BFCBB /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */; };
 		ED6A071F18F32804000CD151 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6A071E18F32804000CD151 /* MBProgressHUD.m */; };
 		ED70EF5418EC653C00C29850 /* LetsCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED70EF5318EC653C00C29850 /* LetsCommentsTableViewController.m */; };
@@ -207,6 +208,8 @@
 		1CC7900818E7732C00251C49 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1CC7900918E7732C00251C49 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1CC7900A18E7732C00251C49 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C9D5D298190AF28A008A94F3 /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
+		C9D5D299190AF28A008A94F3 /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		ED09E50018F59C21000BFCBB /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
 		ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		ED6A071D18F327FC000CD151 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../MBProgressHUD.h; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				1247A66318B6DB6400A7547E /* MapViewController.h */,
 				1247A66418B6DB6400A7547E /* MapViewController.m */,
 				1295072E18B1467300B0AB7B /* Main.storyboard */,
+				C9D5D298190AF28A008A94F3 /* DirectionsViewController.h */,
+				C9D5D299190AF28A008A94F3 /* DirectionsViewController.m */,
 				ED09E50018F59C21000BFCBB /* CustomAnnotationView.h */,
 				ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */,
 				1295073418B1467300B0AB7B /* Images.xcassets */,
@@ -593,6 +598,7 @@
 				12F93D5818B1556800730E7B /* NewsFeedCell.m in Sources */,
 				12AD929318E779B40030C547 /* SignUpViewController.m in Sources */,
 				12F93D5B18B15CCE00730E7B /* EventViewController.m in Sources */,
+				C9D5D29A190AF28A008A94F3 /* DirectionsViewController.m in Sources */,
 				ED6A071F18F32804000CD151 /* MBProgressHUD.m in Sources */,
 				1295076B18B1479600B0AB7B /* FeedController4.m in Sources */,
 				12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */,

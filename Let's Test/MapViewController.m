@@ -8,6 +8,7 @@
 
 #import "MapViewController.h"
 #import "CustomAnnotationView.h"
+#import "DirectionsViewController.h"
 #include <stdlib.h>
 
 @interface MapViewController ()
@@ -18,9 +19,14 @@
 
 @synthesize locationManager;
 @synthesize mapView;
+@synthesize directions;
 
 MKRoute *currentRoute;
 MKPolyline *routeOverlay;
+CLLocationCoordinate2D pincoordinate;
+NSString *destAddress;
+NSString *sourceAddress;
+
 
 - (void)viewDidLoad
 {
@@ -30,6 +36,8 @@ MKPolyline *routeOverlay;
     
     mapView.delegate = self;
     locationManager.delegate = self;
+    
+    directions = [NSMutableArray arrayWithObjects:nil];
     
     [self getEventLocation];
 }
@@ -55,10 +63,10 @@ MKPolyline *routeOverlay;
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
                 NSLog(@"WANT: %@", want[@"Address"]);
                 
+                destAddress = want[@"Address"];
+                
                 NSString *eventName = want[@"EventName"];
                 PFGeoPoint *eventAddress = want[@"Coordinates"];
-                
-                CLLocationCoordinate2D pincoordinate;
                 
                 pincoordinate.latitude  = eventAddress.latitude;
                 pincoordinate.longitude = eventAddress.longitude;
@@ -74,6 +82,7 @@ MKPolyline *routeOverlay;
                 point.subtitle   = want[@"Address"];
                 
                 [self.mapView addAnnotation:point];
+                [self.mapView selectAnnotation:point animated:YES];
             }];
         }
     }];
@@ -89,6 +98,8 @@ MKPolyline *routeOverlay;
     if (!customAnnotationView) {
         customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
         
+        //customAnnotationView.pinColor = MKPinAnnotationColorGreen;
+        customAnnotationView.animatesDrop = YES;
         customAnnotationView.canShowCallout = YES;
     }
     
@@ -113,7 +124,7 @@ MKPolyline *routeOverlay;
     MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
     [directionsRequest setSource:source];
     // Make the destination
-    CLLocationCoordinate2D destinationCoords = CLLocationCoordinate2DMake(37.7916, -122.4276);
+    CLLocationCoordinate2D destinationCoords = pincoordinate;//CLLocationCoordinate2DMake(37.7916, -122.4276);
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     [directionsRequest setDestination:destination];
@@ -132,9 +143,9 @@ MKPolyline *routeOverlay;
     }];
     
     
-    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?q=%@", @"Lafayette Park"];
-    NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
+//    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%@&daddr=%@", sourceAddress,destAddress];
+//    NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
     
 }
 
@@ -149,6 +160,15 @@ MKPolyline *routeOverlay;
     
     // Add it to the map
     [self.mapView addOverlay:routeOverlay];
+    
+    NSInteger i = 0;
+    for (MKRouteStep *step in route.steps)
+    {
+        [directions insertObject:step.instructions atIndex:i];
+        NSLog(@"%@", directions);
+        i++;
+    }
+    [self performSegueWithIdentifier:@"Directions" sender:self];
     
 }
 
@@ -168,5 +188,24 @@ MKPolyline *routeOverlay;
 //    }
 //    return self;
 //}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"Directions"])
+    {
+        DirectionsViewController *directionsVc = [segue destinationViewController];;
+    
+        //directionsVc.directions = [NSMutableArray arrayWithObjects:nil];
+        NSInteger i = 0;
+        for(NSString *step in directions) {
+            [directionsVc.directions insertObject:step atIndex:i];
+        }
+        
+    }
+}
+
 
 @end
