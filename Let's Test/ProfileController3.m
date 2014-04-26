@@ -10,11 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 #import "FriendsList.h"
+#import "NewsFeed.h"
 
 
 
 @interface ProfileController3 ()
-
+@property NSString *username;
 @end
 
 @implementation ProfileController3
@@ -57,6 +58,7 @@
             if (!error) {
                 //Set the user's profile picture
                 self.profileImageView.image = [UIImage imageWithData:imageData];
+                _image = [UIImage imageWithData:imageData];
             }}];
         
         
@@ -122,6 +124,7 @@
         self.followButton.title = @"Unfollow";
     }
     
+    _username = username;
 }
 
 
@@ -289,17 +292,23 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"ShowFollowers"]){
-        
+        NSLog(@"show");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=2;
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
-        
+        NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
     
     
+    }else if([[segue identifier] isEqualToString:@"MyEvents"]){
+        NSLog(@"ASSSSS");
+        NewsFeed *newsfeed = [segue destinationViewController];
+        newsfeed.userinfo = _username;
+        NSLog(@"HEYYYYYYY: %@",_username);
+        
     }
 }
 
@@ -323,5 +332,8 @@
     
 }
 
+- (IBAction)unwindToProfile:(UIStoryboardSegue *)unwindSegue
+{
+}
 
 @end

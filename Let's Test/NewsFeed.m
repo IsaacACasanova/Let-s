@@ -30,6 +30,16 @@
 
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
+    NSLog(@"WHEREFROM %@",self.userinfo);
+    if (self.userinfo!=NULL) {
+        _Proback.title = @"Back";
+        NSLog(@"CHEKC");
+        PFQuery *person = [PFQuery queryWithClassName:@"_User"];
+        [person whereKey:@"username" equalTo:_userinfo];
+        NSObject *o = person.getFirstObject;
+        NSLog(@"check: %@",o);
+        [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+    }
     
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query
@@ -112,6 +122,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_Proback setTarget:self];
+    [_Proback setAction:@selector(probackmeth:)];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -121,6 +133,15 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
     
+}
+
+-(void)probackmeth:(UIStoryboardSegue *)sender{
+    if(self.userinfo==NULL){
+        [self performSegueWithIdentifier:@"SelfProfileSegue" sender:sender];
+    }else{
+        //go back to profile
+        [self performSegueWithIdentifier:@"Return" sender:sender];
+    }
 }
 
 
