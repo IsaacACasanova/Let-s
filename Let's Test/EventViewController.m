@@ -54,6 +54,13 @@ CLLocationCoordinate2D pincoordinate;
         _Edit.hidden = YES;
     }
     
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        _LetsButton.enabled = NO;
+    }
+    
     //Mini map stuff
     locationManager = [[CLLocationManager alloc] init];
     miniMap.delegate = self;
@@ -271,6 +278,14 @@ CLLocationCoordinate2D pincoordinate;
 }
 
 - (IBAction)PassPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
+    self.LetsButton.Enabled = YES;
 }
 
 - (IBAction)EditPressed:(id)sender {
