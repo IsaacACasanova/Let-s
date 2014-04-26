@@ -73,11 +73,10 @@ CLLocationCoordinate2D pincoordinate;
     _timeStamp.text = _DetailModal[4];
     
     
-    UIColor* mainColor = [UIColor colorWithRed:28.0/255 green:158.0/255 blue:121.0/255 alpha:1.0f];
+    UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* neutralColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     
-    UIColor* mainColorLight = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
-    //UIColor* lightColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    UIColor* mainColorLight = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldItalicFontName = @"Avenir-BlackOblique";
@@ -94,9 +93,6 @@ CLLocationCoordinate2D pincoordinate;
     
     self.timeStamp.textColor = mainColorLight;
     self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
-    
-    // self.commentLabel.textColor = mainColorLight;
-    // self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.cornerRadius = 40.0f;
@@ -132,11 +128,6 @@ CLLocationCoordinate2D pincoordinate;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(IBAction)unwindToTableViewController:(UIStoryboardSegue *)sender
-{
-    LetsCommentsTableViewController *letsCommentsTableViewController = (LetsCommentsTableViewController *)sender.sourceViewController;
 }
 
 - (void)getEventLocation {
