@@ -80,7 +80,7 @@
     cell.EventLabel.text = [object objectForKey:@"EventName"];
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
     cell.ProfileImage.image = [UIImage imageWithData:imageData];
-    cell.commentLabel.text = @"comment";
+    //cell.commentLabel.text = @"comment";
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
     
