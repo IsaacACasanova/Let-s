@@ -8,7 +8,7 @@
 
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
-#define TEXTFIELD_HEIGHT 70.0f
+#define TEXTFIELD_HEIGHT 30.0f
 
 @interface LogInViewController ()
 
@@ -28,7 +28,12 @@
 - (void)viewDidLoad
 {
     self.navigationController.navigationBar.hidden = YES;
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
+    self.usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [super viewDidLoad];
+    [self registerforKeyboardNotifications];
     // Do any additional setup after loading the view.
 }
 

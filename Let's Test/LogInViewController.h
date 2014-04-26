@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface LogInViewController : UIViewController
+@interface LogInViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 
@@ -17,6 +17,7 @@
 
 - (IBAction)signInAction:(id)sender;
 - (IBAction)forgotPassword:(id)sender;
+
 -(void) registerforKeyboardNotifications;
 -(void) freeKeyboardNotifications;
 -(void) keyboardWasShown:(NSNotification *)aNotification;
