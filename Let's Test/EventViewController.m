@@ -10,6 +10,7 @@
 #import "LetsCommentsTableViewController.h"
 #import "MapViewController.h"
 #import "CustomAnnotationView.h"
+#import "AttendingController.h"
 
 
 @interface EventViewController ()
@@ -113,6 +114,10 @@ CLLocationCoordinate2D pincoordinate;
         
         mapControll.object = self.object;
         
+    }
+    if([[segue identifier] isEqualToString:@"Attending"]){
+        AttendingController *attend = [segue destinationViewController];
+        attend.event = self.object;
     }
 }
 
@@ -258,7 +263,7 @@ CLLocationCoordinate2D pincoordinate;
 }
 
 - (IBAction)LetsPressed:(id)sender {
-    PFObject *attend = [PFObject objectWithClassName:@"Atennding"];
+    PFObject *attend = [PFObject objectWithClassName:@"Attending"];
     attend[@"Attendee"]=[PFUser currentUser];
     attend[@"Event"]= self.object;
     [attend save];

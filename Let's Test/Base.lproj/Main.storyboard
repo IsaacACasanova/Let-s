@@ -28,6 +28,61 @@
             </objects>
             <point key="canvasLocation" x="2151" y="-219"/>
         </scene>
+        <!--Attending Controller-->
+        <scene sceneID="e3o-Np-Kwg">
+            <objects>
+                <tableViewController id="cCK-Sw-PFa" customClass="AttendingController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="5un-hR-hUg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AttendingCell" rowHeight="84" id="0gB-cF-iaZ" customClass="AttendingCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gB-cF-iaZ" id="dFj-iv-VyC">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="83"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="imt-zX-Ta5">
+                                            <rect key="frame" x="0.0" y="8" width="52" height="55"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B5k-rR-xCb">
+                                            <rect key="frame" x="68" y="20" width="232" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72C-hk-gfK">
+                                            <rect key="frame" x="68" y="37" width="232" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="NameLabel" destination="B5k-rR-xCb" id="GVq-G0-5DJ"/>
+                                    <outlet property="ProfileImage" destination="imt-zX-Ta5" id="aes-dJ-ctH"/>
+                                    <outlet property="UsernameLabel" destination="72C-hk-gfK" id="K4P-fY-pwh"/>
+                                    <segue destination="mIQ-gR-wQL" kind="push" identifier="Attendee" id="6mK-DT-yhR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cCK-Sw-PFa" id="gH0-I4-TrW"/>
+                            <outlet property="delegate" destination="cCK-Sw-PFa" id="dKo-bN-NOg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Jy3-lO-WOH"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cZ7-BC-6PI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2672" y="-249"/>
+        </scene>
         <!--Event View Controller - Events-->
         <scene sceneID="tBG-GL-16T">
             <objects>
@@ -99,6 +154,9 @@
                                 <state key="normal" image="attending.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cCK-Sw-PFa" kind="push" identifier="Attending" id="iGW-MT-lwU"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsUserLocation="YES" id="shN-TM-hAs">
                                 <rect key="frame" x="8" y="281" width="298" height="163"/>
@@ -711,7 +769,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LetsCommentsCell" rowHeight="79" id="wps-bb-u5b" customClass="LetsCommentsCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wps-bb-u5b" id="15u-Wx-3KF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
@@ -1099,7 +1157,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IC0-IH-uN1">
-                                            <rect key="frame" x="8" y="13" width="52" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G1F-6R-Uvr">
@@ -1155,8 +1213,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hex-OU-VN6"/>
-        <segue reference="Oy6-9c-L9v"/>
+        <segue reference="jJE-LI-DUu"/>
+        <segue reference="v3F-nY-QhG"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>
