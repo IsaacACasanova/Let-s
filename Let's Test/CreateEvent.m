@@ -336,6 +336,7 @@
     Event[@"LocationName"]=nametxt.text;
     Event[@"Address"]=_cleanaddress;
     Event[@"DateTime"]=_date;
+    Event[@"CreatedBy"] = [PFUser currentUser];
     Event[@"Coordinates"] = _point;
     if ([puborpri.text isEqual:(@"Public")]) {
         Event[@"public"]=@"yes";

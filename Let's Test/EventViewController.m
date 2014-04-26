@@ -285,6 +285,11 @@ CLLocationCoordinate2D pincoordinate;
     if(findifIntable.getFirstObject!=NULL){
         [findifIntable.getFirstObject deleteInBackground];
     }
+    PFObject *pass = [PFObject objectWithClassName:@"Pass"];
+    pass[@"Attendee"]=[PFUser currentUser];
+    pass[@"Event"]= self.object;
+   [pass save];
+
     self.LetsButton.Enabled = YES;
 }
 
