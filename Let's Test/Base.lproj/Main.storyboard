@@ -1100,6 +1100,11 @@
             <point key="canvasLocation" x="2541" y="-1673"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="attending.png" width="587" height="88"/>
+        <image name="comments.png" width="587" height="88"/>
+        <image name="eventphoto.png" width="640" height="183"/>
+    </resources>
     <color key="tintColor" red="0.011764707043766975" green="0.76078438758850098" blue="0.98431378602981567" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
