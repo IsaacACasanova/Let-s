@@ -9,6 +9,7 @@
 #import "EventViewController.h"
 #import "LetsCommentsTableViewController.h"
 #import "MapViewController.h"
+#import "CustomAnnotationView.h"
 
 @interface EventViewController ()
 
@@ -16,6 +17,12 @@
 @end
 
 @implementation EventViewController
+@synthesize locationManager;
+@synthesize miniMap;
+
+MKRoute *currentRoute;
+MKPolyline *routeOverlay;
+CLLocationCoordinate2D pincoordinate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -64,6 +71,13 @@
     self.profilePicture.layer.cornerRadius = 40.0f;
     self.profilePicture.layer.borderWidth = 2.0f;
     self.profilePicture.layer.borderColor = mainColorLight.CGColor;
+    
+    // Mini map stuff
+    locationManager = [[CLLocationManager alloc] init];
+    miniMap.delegate = self;
+    locationManager.delegate = self;
+    
+    [self getEventLocation];
     
 }
 
