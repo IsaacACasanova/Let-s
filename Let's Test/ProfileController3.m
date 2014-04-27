@@ -219,7 +219,7 @@
     self.friendLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];;
     self.friendLabel.text = @"Friends";
     
-    //IMPORTNAT PICTURE STUFF
+    
     self.profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
@@ -354,6 +354,7 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     PFUser *currentUser = [PFUser currentUser];
+    [self performSegueWithIdentifier:@"logOut" sender:self];
     
 }
 
