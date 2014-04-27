@@ -30,6 +30,40 @@
 
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
+    if (self.userinfo!=NULL) {
+        _Proback.title = @"Back";
+        PFQuery *person = [PFQuery queryWithClassName:@"_User"];
+        [person whereKey:@"username" equalTo:_userinfo];
+        NSObject *o = person.getFirstObject;
+        NSLog(@"check: %@",o);
+        [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+    }else if(self.person!=NULL){
+        _Proback.title = @"Back";
+        PFQuery *events = [PFQuery queryWithClassName:@"Attending"];
+        [events whereKey:@"Attendee" equalTo:self.person];
+        NSArray *eventarray = events.findObjects;
+        NSMutableArray *myarray = [[NSMutableArray alloc] init];
+        for(PFObject *object in eventarray){
+            PFObject *event = [object objectForKey:@"Event"];
+            [myarray addObject:event.objectId];
+        }
+        NSLog(@"ARRAY %@",myarray);
+        [query whereKey:@"objectId" containedIn:myarray];
+        
+    }else{
+        PFUser *user = [PFUser currentUser];
+        PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
+        [findifIntable whereKey:@"Attendee" equalTo:user];
+        if(findifIntable.getFirstObject!=NULL){
+            NSArray *objects = findifIntable.findObjects;
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for (PFObject *object in objects) {
+                PFObject *event = [object objectForKey:@"Event"];
+                [myarray addObject:event.objectId];
+            }
+            [query whereKey:@"objectId" notContainedIn:myarray];
+        }
+    }
     
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query
@@ -70,7 +104,7 @@
     cell.EventLabel.text = [object objectForKey:@"EventName"];
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
     cell.ProfileImage.image = [UIImage imageWithData:imageData];
-    cell.commentLabel.text = @"comment";
+    //cell.commentLabel.text = @"comment";
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
     
@@ -93,6 +127,8 @@
         
         eventViewController.DetailModal = @[[UIImage imageWithData:imageData],[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
         eventViewController.object = object;
+        eventViewController.creator = o;
+        
     }
     else if([[segue identifier] isEqualToString:@"SelfProfileSegue"]){
         
@@ -112,6 +148,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_Proback setTarget:self];
+    [_Proback setAction:@selector(probackmeth:)];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -121,6 +159,15 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
     
+}
+
+-(void)probackmeth:(UIStoryboardSegue *)sender{
+    if(self.userinfo==NULL&&self.person==NULL){
+        [self performSegueWithIdentifier:@"SelfProfileSegue" sender:sender];
+    }else{
+        //go back to profile
+        [self performSegueWithIdentifier:@"Return" sender:sender];
+    }
 }
 
 

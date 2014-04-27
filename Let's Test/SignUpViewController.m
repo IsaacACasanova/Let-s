@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Alex Buck. All rights reserved.
 //
 
-#define TABBAR_HEIGHT 49.0f
-#define TEXTFIELD_HEIGHT 70.0f
 #import "SignUpViewController.h"
 #import <Parse/Parse.h>
+#define TEXTFIELD_HEIGHT 70.0f
 
 @interface SignUpViewController ()
 
@@ -28,13 +27,10 @@
 
 - (void)viewDidLoad
 {
-    self.navigationController.navigationBar.hidden = YES;
-    
-    NSLog(@"This is a new commit message!");
-    NSLog(@"This is Jack committing it up. And once more from within xcode.");
-    NSLog(@"THIS IS SPARTA! JK it's Matt committing woop woop!");
     
     [super viewDidLoad];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -116,10 +112,35 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField*)TextField
+# pragma mark - Comment textfield
+
+-(IBAction) textFieldDoneEditing: (id) sender
 {
-    [TextField resignFirstResponder];
-    return YES;
+    [sender resignFirstResponder];
+    [usernameField resignFirstResponder];
+    [emailField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [reEnterPasswordField resignFirstResponder];
+    [nameField resignFirstResponder];
+}
+
+-(IBAction)backgroundTap:(id) sender
+{
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [reEnterPasswordField resignFirstResponder];
+    [nameField resignFirstResponder];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+    if (usernameField.text.length>0){
+    }
+    return NO;
 }
 
 -(void) registerforKeyboardNotifications
@@ -168,7 +189,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height-TABBAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height-TEXTFIELD_HEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
     
     [UIView commitAnimations];
 }

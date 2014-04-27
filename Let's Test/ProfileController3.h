@@ -37,7 +37,9 @@
 
 @property (nonatomic, weak) IBOutlet UILabel* followingCountLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel* updateCountLabel;
+@property (nonatomic, weak) IBOutlet UILabel* eventCountLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *attendingCountLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel* bioLabel;
 
@@ -57,6 +59,10 @@
 
 @property (nonatomic, strong) NSArray *postArray;
 
+
+
+
+@property (nonatomic, strong) UIImage *image;
 - (IBAction)logout:(id)sender;
 
 -(IBAction)grabUserInfo:(id)sender;

@@ -52,11 +52,10 @@ CLLocationCoordinate2D pincoordinate;
     _timeStamp.text = _DetailModal[4];
     
     
-    UIColor* mainColor = [UIColor colorWithRed:28.0/255 green:158.0/255 blue:121.0/255 alpha:1.0f];
+    UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* neutralColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     
-    UIColor* mainColorLight = [UIColor colorWithRed:28.0/255 green:158.0/255 blue:121.0/255 alpha:0.4f];
-    //UIColor* lightColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+    UIColor* mainColorLight = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldItalicFontName = @"Avenir-BlackOblique";
@@ -73,9 +72,6 @@ CLLocationCoordinate2D pincoordinate;
     
     self.timeStamp.textColor = mainColorLight;
     self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
-    
-    // self.commentLabel.textColor = mainColorLight;
-    // self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.cornerRadius = 40.0f;
@@ -101,6 +97,16 @@ CLLocationCoordinate2D pincoordinate;
         mapControll.object = self.object;
         
     }
+    if([[segue identifier] isEqualToString:@"Attending"]){
+        AttendingController *attend = [segue destinationViewController];
+        attend.event = self.object;
+    }
+    if([[segue identifier] isEqualToString:@"ProButton"]){
+        ProfileController3 *vc = [segue destinationViewController];
+        NSString *username = [self.creator objectForKey:@"username"];
+        [vc grabOtherUserInfo:username];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,9 +115,67 @@ CLLocationCoordinate2D pincoordinate;
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)unwindToTableViewController:(UIStoryboardSegue *)sender
+- (void)getEventLocation {
+    
+    // Create a Parse query
+    PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
+    [query whereKey:@"objectId" equalTo:self.object.objectId];
+    
+    // Run the query
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+           // NSLog(@"%@", objects[0]);
+            
+            PFObject *object = objects[0];
+            [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
+                NSLog(@"WANT: %@", want[@"Address"]);
+                
+                //destAddress = want[@"Address"];
+                
+                NSString *eventName = want[@"EventName"];
+                PFGeoPoint *eventAddress = want[@"Coordinates"];
+                
+                pincoordinate.latitude  = eventAddress.latitude;
+                pincoordinate.longitude = eventAddress.longitude;
+                
+                // Set the region to display and have it zoom in
+                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pincoordinate, 800, 800);
+                [self.miniMap setRegion:[self.miniMap regionThatFits:region] animated: YES];
+                
+                // Add annotation
+                MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+                point.coordinate = pincoordinate;
+                point.title      = eventName;
+                point.subtitle   = want[@"Address"];
+                
+                [self.miniMap addAnnotation:point];
+                [self.miniMap selectAnnotation:point animated:YES];
+            }];
+        }
+    }];
+}
+
+- (MKPinAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    LetsCommentsTableViewController *letsCommentsTableViewController = (LetsCommentsTableViewController *)sender.sourceViewController;
+    
+    NSString *annotationIdentifier = @"CustomViewAnnotation";
+    
+    CustomAnnotationView *customAnnotationView = (CustomAnnotationView *) [self.miniMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    
+    if (!customAnnotationView) {
+        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
+        
+        customAnnotationView.canShowCallout = YES;
+    }
+    
+    //    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jack.jpg"]];
+    //    imageView.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
+    //
+    //    customAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    //    customAnnotationView.leftCalloutAccessoryView = imageView;
+    
+    return customAnnotationView;
+    
 }
 
 - (void)getEventLocation {
@@ -244,4 +308,10 @@ CLLocationCoordinate2D pincoordinate;
     return renderer;
 }
 
+    self.LetsButton.Enabled = YES;
+    self.PassButton.enabled =NO;
+}
+
+- (IBAction)EditPressed:(id)sender {
+}
 @end

@@ -24,8 +24,11 @@
 @property (strong, nonatomic) IBOutlet MKMapView *miniMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-
-
 @property (strong,nonatomic) NSArray *DetailModal;
+
+- (IBAction)LetsPressed:(id)sender;
+- (IBAction)PassPressed:(id)sender;
+- (IBAction)EditPressed:(id)sender;
+
 
 @end
