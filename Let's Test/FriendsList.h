@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray* allTableData;
 @property (strong, nonatomic) NSMutableArray* filteredTableData;
 @property bool *isFiltered;
+@property (nonatomic,strong) NSString *username;
 
 @property (weak, nonatomic) IBOutlet UITextField *usernamesearchbar;
 

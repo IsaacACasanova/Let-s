@@ -321,13 +321,14 @@
         NSLog(@"show");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=2;
+        FL.username = self.username;
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
         NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
-    
+        FL.username = self.username;
     
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");

@@ -47,11 +47,11 @@
 - (PFQuery *)queryForTable {
     
     
-    PFUser *current = [PFUser currentUser];
-    NSString *username = current[@"username"];
+//    PFUser *current = [PFUser currentUser];
+//    NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
-    [query2 whereKey:@"username" equalTo:username];
+    [query2 whereKey:@"username" equalTo:self.username];
     PFQuery *userQuery = [PFUser query];
     if(follower==1){
     [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
