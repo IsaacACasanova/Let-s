@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface SignUpViewController : UIViewController<UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface SignUpViewController : UIViewController<UITextFieldDelegate>
 {
     
  IBOutlet UITextField *usernameField;
@@ -20,20 +20,11 @@
 
 }
 
-/* Sign up / keyboard methods */
-
 - (IBAction)signUpAction:(id)sender;
 -(void) registerforKeyboardNotifications;
 -(void) freeKeyboardNotifications;
 -(void) keyboardWasShown:(NSNotification *)aNotification;
 -(void) keyboardWillHide:(NSNotification *)aNotification;
-
-/* Profile picture methods */
-
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
-- (IBAction)cameraUpload:(id)sender;
-- (IBAction)libraryUpload:(id)sender;
-- (IBAction)uploadImage:(id)sender;
 
 
 

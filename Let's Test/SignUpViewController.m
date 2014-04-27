@@ -8,9 +8,7 @@
 
 #import "SignUpViewController.h"
 #import <Parse/Parse.h>
-#import <stdlib.h>
-#import "MBProgressHUD.h"
-#define TEXTFIELD_HEIGHT 0.0f
+#define TEXTFIELD_HEIGHT 70.0f
 
 @interface SignUpViewController ()
 
@@ -29,31 +27,9 @@
 
 - (void)viewDidLoad
 {
-    /* Setting up textfields for keyboard notifications */
-    
-    usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    emailField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    reEnterPasswordField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    
-    usernameField.delegate = self;
-    emailField.delegate = self;
-    passwordField.delegate = self;
-    reEnterPasswordField.delegate = self;
-    nameField.delegate = self;
-    
-    /* Styling the profile Picture imageView */
-    
-    UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
-    self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
-    self.profilePicture.clipsToBounds = YES;
-    self.profilePicture.layer.cornerRadius = 25.0f;
-    self.profilePicture.layer.borderWidth = 2.0f;
-    self.profilePicture.layer.borderColor = mainColor.CGColor;
     
     [super viewDidLoad];
-    [self registerforKeyboardNotifications];
+    
     
     // Do any additional setup after loading the view.
 }
@@ -65,13 +41,23 @@
 }
 
 
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 - (IBAction)signUpAction:(id)sender {
     [usernameField resignFirstResponder];
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
     [reEnterPasswordField resignFirstResponder];
     [self checkFieldsComplete];
-    [self uploadImage:self];
     
 
 }
@@ -110,7 +96,7 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(!error){
             NSLog(@"Registration success!");
-            //[self performSegueWithIdentifier:@"signup" sender:self];
+            [self performSegueWithIdentifier:@"signup" sender:self];
         }
         else{
             NSLog(@"There was an error in registration");
@@ -120,80 +106,6 @@
     
     
 }
-
-
-/* Upload photo methods */
-
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    // Remove HUD from screen when the HUD hides
-    [hud removeFromSuperview];
-    hud = nil;
-}
-
-- (IBAction)cameraUpload:(id)sender {
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.delegate = self;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:imagePickerController animated:YES completion:nil];
-    
-}
-
-- (IBAction)libraryUpload:(id)sender {
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.delegate = self;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:imagePickerController animated:YES completion:nil];
-    
-}
-
-- (IBAction)uploadImage:(id)sender {
-    
-    PFUser *user = [PFUser currentUser];
-    //NSString *username = [user username];
-    //NSString *userImage = [username stringByAppendingString:@".jpg"];
-    NSData *imageData = UIImageJPEGRepresentation(self.profilePicture.image,0.5);
-    PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
-    [user setObject:imageFile forKey:@"image"];
-    [user saveInBackground];
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"Uploading";
-    [hud show:YES];
-    
-    // Upload image to Parse
-    
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
-        [hud hide:YES];
-        
-        if(!error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved your image!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [self performSegueWithIdentifier:@"signup" sender:self];
-        }
-        else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failure" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    }];
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    self.profilePicture.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-
-/* End of uploading photo methods */
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

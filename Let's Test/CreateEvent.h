@@ -11,7 +11,7 @@
 
 @interface CreateEvent : UIViewController<UITextFieldDelegate>{
     IBOutlet UITextField *eventtxt;
-    IBOutlet UITextView *dettext;
+    IBOutlet UITextField *dettext;
     IBOutlet UITextField *nametxt;
     IBOutlet UITextField *streettxt;
     IBOutlet UITextField *citytxt;
@@ -31,9 +31,6 @@
     NSMutableArray *ampmdata;
 
 }
-@property (strong, nonatomic) IBOutlet UITextField *eventtext;
-
-@property (strong, nonatomic) IBOutlet UITextView *dettext;
 
 @property (strong, nonatomic) IBOutlet UILabel *puborpri;
 @property (strong, nonatomic) IBOutlet UIScrollView *scroller;

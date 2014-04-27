@@ -19,6 +19,4 @@
 
 @property (strong,nonatomic) PFObject *object;
 
-@property (retain, nonatomic) NSMutableArray *directions;
-
 @end

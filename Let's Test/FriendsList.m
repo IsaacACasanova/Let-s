@@ -21,7 +21,6 @@
 @synthesize allTableData;
 @synthesize isFiltered;
 @synthesize follower;
-@synthesize showBars;
 
 - (id)initWithCoder:(NSCoder *)aCoder
 {
@@ -48,11 +47,11 @@
 - (PFQuery *)queryForTable {
     
     
-//    PFUser *current = [PFUser currentUser];
-//    NSString *username = current[@"username"];
+    PFUser *current = [PFUser currentUser];
+    NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
-    [query2 whereKey:@"username" equalTo:self.username];
+    [query2 whereKey:@"username" equalTo:username];
     PFQuery *userQuery = [PFUser query];
     if(follower==1){
     [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
@@ -79,22 +78,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if(showBars == 1){
-        self.usernamesearchbar.hidden=YES;
-        self.SearchButton.hidden=YES;
-        self.SearchView.hidden=YES;
-        UIView *view = self.TView;
-        for(UIView *subview in [view subviews]) {
-            if(subview.tag==7) {
-                [subview removeFromSuperview];
-                
-            } else {
-                NSLog(@"gooby");
-            }
-        }
-        //[self.SearchView removeFromSuperview];
-    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

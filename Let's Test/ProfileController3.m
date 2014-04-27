@@ -11,7 +11,6 @@
 #import <Parse/Parse.h>
 #import "FriendsList.h"
 #import "NewsFeed.h"
-#import "AttendingController.h"
 
 
 
@@ -220,7 +219,7 @@
     self.friendLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];;
     self.friendLabel.text = @"Friends";
     
-    
+    //IMPORTNAT PICTURE STUFF
     self.profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
@@ -321,34 +320,19 @@
         NSLog(@"show");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=2;
-        FL.username = self.username;
-        FL.showBars = 1;
-        FL.FollowerTitleNavItem.title=@"Followers";
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
         NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
-        FL.username = self.username;
-        FL.showBars = 0;
-        FL.FollowerTitleNavItem.title=@"Following";
-        
+    
     
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
         NSLog(@"HEYYYYYYY: %@",_username);
-        
-    }else if([[segue identifier] isEqualToString:@"Attend"]){
-        PFQuery *user = [PFQuery queryWithClassName:@"_User"];
-        [user whereKey:@"username" equalTo:self.username];
-        PFObject *person = user.getFirstObject;
-        NSLog(@"YOOOOO %@",person);
-        NewsFeed *newsfeed = [segue destinationViewController];
-        newsfeed.person = person;
-        
         
     }
 }
@@ -370,7 +354,6 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     PFUser *currentUser = [PFUser currentUser];
-    [self performSegueWithIdentifier:@"logOut" sender:self];
     
 }
 
