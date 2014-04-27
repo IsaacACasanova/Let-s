@@ -212,6 +212,65 @@ CLLocationCoordinate2D pincoordinate;
     
     // Make a directions request
     MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
+    directionsRequest.requestsAlternateRoutes = YES;
+    
+    // Start at our current location
+    MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
+    [directionsRequest setSource:source];
+    // Make the destination
+    CLLocationCoordinate2D destinationCoords = pincoordinate;//CLLocationCoordinate2DMake(37.7916, -122.4276);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    [directionsRequest setDestination:destination];
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        
+        // Now handle the result
+        if (error) {
+            NSLog(@"There was an error getting your directions");
+            return;
+            }];
+        }
+        
+        currentRoute = [response.routes firstObject];
+        [self plotRouteOnMap:currentRoute];
+    }];
+    
+    
+    //    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%@&daddr=%@", sourceAddress,destAddress];
+    //    NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
+    
+}
+
+- (MKPinAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    
+    NSString *annotationIdentifier = @"CustomViewAnnotation";
+    
+    CustomAnnotationView *customAnnotationView = (CustomAnnotationView *) [self.miniMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    
+    if (!customAnnotationView) {
+        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
+        
+        customAnnotationView.canShowCallout = YES;
+    }
+    
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jack.jpg"]];
+//    imageView.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
+//    
+//    customAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    customAnnotationView.leftCalloutAccessoryView = imageView;
+    
+    return customAnnotationView;
+    
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    // Make a directions request
+    MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
     
     directionsRequest.requestsAlternateRoutes = YES;
     
@@ -243,19 +302,6 @@ CLLocationCoordinate2D pincoordinate;
     //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
     
 }
-
-- (void)plotRouteOnMap:(MKRoute *)route
-{
-    if(routeOverlay) {
-        [self.miniMap removeOverlay:routeOverlay];
-    }
-    
-    // Update the ivar
-    routeOverlay = route.polyline;
-    
-    // Add it to the map
-    [self.miniMap addOverlay:routeOverlay];
-    
     //    NSInteger i = 0;
     //    for (MKRouteStep *step in route.steps)
     //    {
@@ -264,6 +310,19 @@ CLLocationCoordinate2D pincoordinate;
     //        i++;
     //    }
     //    [self performSegueWithIdentifier:@"Directions" sender:self];
+    routeOverlay = route.polyline;
+    
+    // Add it to the map
+    [self.miniMap addOverlay:routeOverlay];
+    
+//    NSInteger i = 0;
+//    for (MKRouteStep *step in route.steps)
+//    {
+//        [directions insertObject:step.instructions atIndex:i];
+//        NSLog(@"%@", directions);
+//        i++;
+//    }
+//    [self performSegueWithIdentifier:@"Directions" sender:self];
     
 }
 

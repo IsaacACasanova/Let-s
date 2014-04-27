@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "FriendsList.h"
 #import "NewsFeed.h"
+#import "AttendingController.h"
 
 
 
@@ -320,19 +321,34 @@
         NSLog(@"show");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=2;
+        FL.username = self.username;
+        FL.showBars = 1;
+        FL.FollowerTitleNavItem.title=@"Followers";
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
         NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
-    
+        FL.username = self.username;
+        FL.showBars = 0;
+        FL.FollowerTitleNavItem.title=@"Following";
+        
     
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
         NSLog(@"HEYYYYYYY: %@",_username);
+        
+    }else if([[segue identifier] isEqualToString:@"Attend"]){
+        PFQuery *user = [PFQuery queryWithClassName:@"_User"];
+        [user whereKey:@"username" equalTo:self.username];
+        PFObject *person = user.getFirstObject;
+        NSLog(@"YOOOOO %@",person);
+        NewsFeed *newsfeed = [segue destinationViewController];
+        newsfeed.person = person;
+        
         
     }
 }

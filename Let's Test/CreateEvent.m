@@ -23,7 +23,7 @@
 
 
 @implementation CreateEvent
-@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata;
+@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata,dettext;
 
 
 
@@ -40,6 +40,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.dettext.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.25] CGColor]];
+    [self.dettext.layer setBorderWidth:1.0];
+    self.dettext.layer.cornerRadius = 5;
+    self.dettext.clipsToBounds = YES;
     self.scroller.scrollEnabled = YES;
     self.scroller.contentSize = self.contentview.bounds.size;
     self.month.tag = 1;
@@ -344,6 +348,11 @@
         Event[@"public"]=@"no";
     }
     [Event save];
+    PFObject *attend = [PFObject objectWithClassName:@"Attending"];
+    attend[@"Attendee"]=[PFUser currentUser];
+    attend[@"Event"]= Event;
+    [attend save];
+    
 }
 
 //                              HANDLING KEYBOARD
