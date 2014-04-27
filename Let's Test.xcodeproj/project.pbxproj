@@ -93,7 +93,8 @@
 		1CC7901018E7732C00251C49 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900818E7732C00251C49 /* Security.framework */; };
 		1CC7901118E7732C00251C49 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900918E7732C00251C49 /* StoreKit.framework */; };
 		1CC7901218E7732C00251C49 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900A18E7732C00251C49 /* SystemConfiguration.framework */; };
-		C9D5D29A190AF28A008A94F3 /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D5D299190AF28A008A94F3 /* DirectionsViewController.m */; };
+		1CF966CF190C189C0044E570 /* AttendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF966CE190C189C0044E570 /* AttendingController.m */; };
+		1CF966D8190C205B0044E570 /* AttendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF966D7190C205B0044E570 /* AttendingCell.m */; };
 		ED09E50218F59C21000BFCBB /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */; };
 		ED520FDF190C5B4900A641E2 /* deselectedlets.png in Resources */ = {isa = PBXBuildFile; fileRef = ED520FC5190C5B4900A641E2 /* deselectedlets.png */; };
 		ED520FE0190C5B4900A641E2 /* deselectedpass.png in Resources */ = {isa = PBXBuildFile; fileRef = ED520FC6190C5B4900A641E2 /* deselectedpass.png */; };
@@ -243,8 +244,10 @@
 		1CC7900818E7732C00251C49 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1CC7900918E7732C00251C49 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1CC7900A18E7732C00251C49 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		C9D5D298190AF28A008A94F3 /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
-		C9D5D299190AF28A008A94F3 /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
+		1CF966CD190C189C0044E570 /* AttendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttendingController.h; path = ../AttendingController.h; sourceTree = "<group>"; };
+		1CF966CE190C189C0044E570 /* AttendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttendingController.m; path = ../AttendingController.m; sourceTree = "<group>"; };
+		1CF966D6190C205B0044E570 /* AttendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendingCell.h; sourceTree = "<group>"; };
+		1CF966D7190C205B0044E570 /* AttendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendingCell.m; sourceTree = "<group>"; };
 		ED09E50018F59C21000BFCBB /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
 		ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		ED520FC5190C5B4900A641E2 /* deselectedlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectedlets.png; sourceTree = "<group>"; };

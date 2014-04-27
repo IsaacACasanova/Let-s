@@ -21,8 +21,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *eventDate;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) PFObject *object;
-@property (strong, nonatomic) IBOutlet MKMapView *miniMap;
+@property (strong, nonatomic) PFObject *creator;
+@property (weak, nonatomic) IBOutlet MKMapView *miniMap;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet UIButton *Edit;
+@property (strong, nonatomic) IBOutlet UIButton *LetsButton;
+@property (strong, nonatomic) IBOutlet UIButton *PassButton;
 
 @property (strong,nonatomic) NSArray *DetailModal;
 

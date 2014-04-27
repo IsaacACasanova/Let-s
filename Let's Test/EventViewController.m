@@ -10,7 +10,9 @@
 #import "LetsCommentsTableViewController.h"
 #import "MapViewController.h"
 #import "CustomAnnotationView.h"
-#include <stdlib.h>
+#import "AttendingController.h"
+#import "ProfileController3.h"
+
 
 @interface EventViewController ()
 
@@ -39,6 +41,33 @@ CLLocationCoordinate2D pincoordinate;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+
+    PFUser *user = [PFUser currentUser];
+    NSLog(@"me: %@ you: %@ them:%@",self.creator,user,self.object);
+    if([self.creator.objectId isEqualToString: user.objectId]){
+        NSLog(@"WHATTTTTTT");
+        _Edit.hidden=NO;
+        _LetsButton.hidden = YES;
+        _PassButton.hidden = YES;
+    }
+    else{
+        _Edit.hidden = YES;
+    }
+    
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        _LetsButton.enabled = NO;
+    }
+    
+    PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable2 whereKey:@"Attendee" equalTo:user];
+    [findifIntable2 whereKey:@"Event" equalTo:self.object];
+    if(findifIntable2.getFirstObject!=NULL){
+        _PassButton.enabled = NO;
+    }
     
     //Mini map stuff
     locationManager = [[CLLocationManager alloc] init];
@@ -178,44 +207,40 @@ CLLocationCoordinate2D pincoordinate;
     
 }
 
-- (void)getEventLocation {
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     
-    // Create a Parse query
-    PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
-    [query whereKey:@"objectId" equalTo:self.object.objectId];
+    // Make a directions request
+    MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
+    directionsRequest.requestsAlternateRoutes = YES;
     
-    // Run the query
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"%@", objects[0]);
-            
-            PFObject *object = objects[0];
-            [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
-                NSLog(@"WANT: %@", want[@"Address"]);
-                
-                //destAddress = want[@"Address"];
-                
-                NSString *eventName = want[@"EventName"];
-                PFGeoPoint *eventAddress = want[@"Coordinates"];
-                
-                pincoordinate.latitude  = eventAddress.latitude;
-                pincoordinate.longitude = eventAddress.longitude;
-                
-                // Set the region to display and have it zoom in
-                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pincoordinate, 800, 800);
-                [self.miniMap setRegion:[self.miniMap regionThatFits:region] animated: YES];
-                
-                // Add annotation
-                MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-                point.coordinate = pincoordinate;
-                point.title      = eventName;
-                point.subtitle   = want[@"Address"];
-                
-                [self.miniMap addAnnotation:point];
-                [self.miniMap selectAnnotation:point animated:YES];
+    // Start at our current location
+    MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
+    [directionsRequest setSource:source];
+    // Make the destination
+    CLLocationCoordinate2D destinationCoords = pincoordinate;//CLLocationCoordinate2DMake(37.7916, -122.4276);
+    MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
+    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
+    [directionsRequest setDestination:destination];
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        
+        // Now handle the result
+        if (error) {
+            NSLog(@"There was an error getting your directions");
+            return;
             }];
         }
+        
+        currentRoute = [response.routes firstObject];
+        [self plotRouteOnMap:currentRoute];
     }];
+    
+    
+    //    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%@&daddr=%@", sourceAddress,destAddress];
+    //    NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
+    
 }
 
 - (MKPinAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -276,14 +301,14 @@ CLLocationCoordinate2D pincoordinate;
     //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
     
 }
-
-- (void)plotRouteOnMap:(MKRoute *)route
-{
-    if(routeOverlay) {
-        [self.miniMap removeOverlay:routeOverlay];
-    }
-    
-    // Update the ivar
+    //    NSInteger i = 0;
+    //    for (MKRouteStep *step in route.steps)
+    //    {
+    //        [directions insertObject:step.instructions atIndex:i];
+    //        NSLog(@"%@", directions);
+    //        i++;
+    //    }
+    //    [self performSegueWithIdentifier:@"Directions" sender:self];
     routeOverlay = route.polyline;
     
     // Add it to the map
@@ -307,6 +332,35 @@ CLLocationCoordinate2D pincoordinate;
     renderer.lineWidth = 4.0;
     return renderer;
 }
+
+- (IBAction)LetsPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
+    PFObject *attend = [PFObject objectWithClassName:@"Attending"];
+    attend[@"Attendee"]=[PFUser currentUser];
+    attend[@"Event"]= self.object;
+    [attend save];
+    self.LetsButton.Enabled = NO;
+    self.PassButton.enabled = YES;
+}
+
+- (IBAction)PassPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.object];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
+    PFObject *pass = [PFObject objectWithClassName:@"Pass"];
+    pass[@"Attendee"]=[PFUser currentUser];
+    pass[@"Event"]= self.object;
+   [pass save];
 
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
