@@ -11,6 +11,7 @@
 #import "MapViewController.h"
 #import "CustomAnnotationView.h"
 #import "AttendingController.h"
+#import "ProfileController3.h"
 
 
 @interface EventViewController ()
@@ -128,6 +129,12 @@ CLLocationCoordinate2D pincoordinate;
     if([[segue identifier] isEqualToString:@"Attending"]){
         AttendingController *attend = [segue destinationViewController];
         attend.event = self.object;
+    }
+    if([[segue identifier] isEqualToString:@"ProButton"]){
+        ProfileController3 *vc = [segue destinationViewController];
+        NSString *username = [self.creator objectForKey:@"username"];
+        [vc grabOtherUserInfo:username];
+        
     }
 }
 
