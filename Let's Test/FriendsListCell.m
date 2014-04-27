@@ -34,6 +34,11 @@
     
     self.NameLabel.textColor =  mainColor;
     self.NameLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
+    UIColor* mainColorLight = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
+    self.ProfileImage.clipsToBounds = YES;
+    self.ProfileImage.layer.cornerRadius = 25.0f;
+    self.ProfileImage.layer.borderWidth = 2.0f;
+    self.ProfileImage.layer.borderColor = mainColorLight.CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

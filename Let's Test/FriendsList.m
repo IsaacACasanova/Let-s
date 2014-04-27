@@ -21,6 +21,7 @@
 @synthesize allTableData;
 @synthesize isFiltered;
 @synthesize follower;
+@synthesize showBars;
 
 - (id)initWithCoder:(NSCoder *)aCoder
 {
@@ -78,6 +79,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(showBars == 1){
+        self.usernamesearchbar.hidden=YES;
+        self.SearchButton.hidden=YES;
+        self.SearchView.hidden=YES;
+        //self.SearchView.removeFromSuperview;
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

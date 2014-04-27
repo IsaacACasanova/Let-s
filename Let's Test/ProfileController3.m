@@ -322,6 +322,7 @@
         FriendsList *FL = [segue destinationViewController];
         FL.follower=2;
         FL.username = self.username;
+        FL.showBars = 1;
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
@@ -329,6 +330,8 @@
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
         FL.username = self.username;
+        FL.showBars = 0;
+        
     
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");
