@@ -52,13 +52,11 @@
     //self.commentLabel.textColor = mainColorLight;
     //self.commentLabel.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
+    self.ProfileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.ProfileImage.clipsToBounds = YES;
     self.ProfileImage.layer.cornerRadius = 25.0f;
     self.ProfileImage.layer.borderWidth = 2.0f;
     self.ProfileImage.layer.borderColor = mainColorLight.CGColor;
-    
-    
-    
     
     //self.updateLabel.textColor =  neutralColor;
    // self.updateLabel.font =  [UIFont fontWithName:fontName size:12.0f];

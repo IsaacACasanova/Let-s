@@ -33,7 +33,7 @@
     self.usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [super viewDidLoad];
-    [self registerforKeyboardNotifications];
+    //[self registerforKeyboardNotifications];
     // Do any additional setup after loading the view.
 }
 

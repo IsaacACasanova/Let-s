@@ -30,6 +30,7 @@
     self.NameLabel.textColor =  mainColor;
     self.NameLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
     
+    self.ProfileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.ProfileImage.clipsToBounds = YES;
     self.ProfileImage.layer.cornerRadius = 25.0f;
     self.ProfileImage.layer.borderWidth = 2.0f;

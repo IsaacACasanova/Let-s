@@ -48,8 +48,8 @@
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
     self.profilePicture.clipsToBounds = YES;
-    self.profilePicture.layer.cornerRadius = 25.0f;
-    self.profilePicture.layer.borderWidth = 2.0f;
+    self.profilePicture.layer.cornerRadius = 21.0f;
+    self.profilePicture.layer.borderWidth = 1.5f;
     self.profilePicture.layer.borderColor = mainColor.CGColor;
     
     [super viewDidLoad];
