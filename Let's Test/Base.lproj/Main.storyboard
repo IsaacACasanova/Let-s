@@ -628,16 +628,6 @@
                                         <rect key="frame" x="20" y="365" width="280" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Ur-i8-cF9">
-                                                <rect key="frame" x="20" y="0.0" width="120" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Following">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="97K-tY-2fH" kind="push" identifier="ShowFollowings" id="0OZ-eo-ady"/>
-                                                </connections>
-                                            </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="jne-qf-m0b">
                                                 <rect key="frame" x="105" y="39" width="70" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -650,26 +640,6 @@
                                                 <rect key="frame" x="20" y="39" width="70" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="00c-Di-zlA">
-                                                <rect key="frame" x="148" y="1" width="122" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Followers">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="97K-tY-2fH" kind="push" identifier="ShowFollowerss" id="rph-1h-Ach"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xZI-8X-p4V">
-                                                <rect key="frame" x="105" y="105" width="72" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="My Events">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="bYJ-XE-jRs" kind="push" identifier="MyEventss" id="jJE-LI-DUu"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -803,7 +773,6 @@
                         <outlet property="followButton" destination="LJd-b4-PqX" id="k5U-DO-hUZ"/>
                         <outlet property="followerCountLabel" destination="Ojt-dW-Ri3" id="O86-J9-9Ra"/>
                         <outlet property="followingCountLabel" destination="s5V-MD-Aux" id="wVC-Fb-fuA"/>
-                        <outlet property="friendButton" destination="8Ur-i8-cF9" id="PNU-WG-yTk"/>
                         <outlet property="nameLabel" destination="pI5-fB-1Pv" id="h9e-NR-SI3"/>
                         <outlet property="profileImageView" destination="9nq-cA-aeE" id="ROh-NX-0WR"/>
                         <outlet property="usernameLabel" destination="7NO-rY-upr" id="M5J-qS-Fy5"/>
