@@ -30,7 +30,9 @@
 - (PFQuery *)queryForTable {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Attending"];
-    [query whereKey:@"Event" equalTo:self.event];
+    if(self.event !=NULL){
+        [query whereKey:@"Event" equalTo:self.event];
+    }
     
     
     // If no objects are loaded in memory, we look to the cache

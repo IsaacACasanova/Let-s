@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "FriendsList.h"
 #import "NewsFeed.h"
+#import "AttendingController.h"
 
 
 
@@ -333,6 +334,15 @@
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
         NSLog(@"HEYYYYYYY: %@",_username);
+        
+    }else if([[segue identifier] isEqualToString:@"Attend"]){
+        PFQuery *user = [PFQuery queryWithClassName:@"_User"];
+        [user whereKey:@"username" equalTo:self.username];
+        PFObject *person = user.getFirstObject;
+        NSLog(@"YOOOOO %@",person);
+        NewsFeed *newsfeed = [segue destinationViewController];
+        newsfeed.person = person;
+        
         
     }
 }
