@@ -624,25 +624,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="78S-J8-zy3">
-                                        <rect key="frame" x="20" y="365" width="280" height="155"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="jne-qf-m0b">
-                                                <rect key="frame" x="105" y="39" width="70" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="B2r-dO-KUw">
-                                                <rect key="frame" x="190" y="39" width="70" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="MKM-mq-jbO">
-                                                <rect key="frame" x="20" y="39" width="70" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    </view>
                                     <view contentMode="scaleToFill" id="r3X-0T-wYK">
                                         <rect key="frame" x="20" y="201" width="280" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1157,7 +1138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="OFV-5t-vxo">
+                        <view key="tableHeaderView" tag="7" contentMode="scaleToFill" id="OFV-5t-vxo">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1221,10 +1202,14 @@
                             <outlet property="delegate" destination="97K-tY-2fH" id="Rth-8B-GOb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="7om-sn-B5l"/>
+                    <navigationItem key="navigationItem" title="Friends" id="7om-sn-B5l">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="v5I-OP-9eY"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="FollowerTitleNavItem" destination="7om-sn-B5l" id="srA-r0-XaQ"/>
                         <outlet property="SearchButton" destination="ncO-Zw-67Q" id="zFF-eu-ml8"/>
                         <outlet property="SearchView" destination="OFV-5t-vxo" id="wgw-CU-IDg"/>
+                        <outlet property="TView" destination="dg0-Jw-5Lp" id="WE2-Nj-Tn3"/>
                         <outlet property="usernamesearchbar" destination="sju-nc-zAi" id="Nw7-47-Tk5"/>
                     </connections>
                 </tableViewController>

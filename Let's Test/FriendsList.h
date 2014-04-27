@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "FriendsListCell.h"
 
 @interface FriendsList : PFQueryTableViewController
 //@property (strong, nonatomic) PFObject *object;
@@ -23,5 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernamesearchbar;
 @property (weak, nonatomic) IBOutlet UIView *SearchView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *FollowerTitleNavItem;
+@property (strong, nonatomic) IBOutlet UITableView *TView;
 
 @end

@@ -84,7 +84,16 @@
         self.usernamesearchbar.hidden=YES;
         self.SearchButton.hidden=YES;
         self.SearchView.hidden=YES;
-        //self.SearchView.removeFromSuperview;
+        UIView *view = self.TView;
+        for(UIView *subview in [view subviews]) {
+            if(subview.tag==7) {
+                [subview removeFromSuperview];
+                
+            } else {
+                NSLog(@"gooby");
+            }
+        }
+        //[self.SearchView removeFromSuperview];
     }
     
     // Uncomment the following line to preserve selection between presentations.

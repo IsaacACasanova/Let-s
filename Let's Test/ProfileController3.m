@@ -323,6 +323,7 @@
         FL.follower=2;
         FL.username = self.username;
         FL.showBars = 1;
+        FL.FollowerTitleNavItem.title=@"Followers";
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
@@ -331,6 +332,7 @@
         FL.follower=1;
         FL.username = self.username;
         FL.showBars = 0;
+        FL.FollowerTitleNavItem.title=@"Following";
         
     
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
