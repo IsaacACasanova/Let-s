@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Map View Controller - Event Location-->
@@ -26,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9O2-ja-nGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="-219"/>
+            <point key="canvasLocation" x="1999" y="-555"/>
         </scene>
         <!--Attending Controller - Attending-->
         <scene sceneID="e3o-Np-Kwg">
@@ -81,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZ7-BC-6PI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672" y="-249"/>
+            <point key="canvasLocation" x="2520" y="-585"/>
         </scene>
         <!--Event View Controller - Event Details-->
         <scene sceneID="tBG-GL-16T">
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbp-yH-8RM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2143" y="-922"/>
+            <point key="canvasLocation" x="1991" y="-1258"/>
         </scene>
         <!--News Feed - Events-->
         <scene sceneID="ya3-E7-3NV">
@@ -322,7 +322,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siU-2t-Fsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yT4-x6-7jm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="-922"/>
+            <point key="canvasLocation" x="1550" y="-1258"/>
         </scene>
         <!--Create Event-->
         <scene sceneID="qVW-Dx-bR0">
@@ -571,7 +571,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44p-3c-gSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1615" y="-1682"/>
+            <point key="canvasLocation" x="1463" y="-2018"/>
         </scene>
         <!--Profile Controller3-->
         <scene sceneID="c5G-X9-FPO">
@@ -632,6 +632,7 @@
                                                 <rect key="frame" x="20" y="0.0" width="120" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Following">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -654,6 +655,7 @@
                                                 <rect key="frame" x="148" y="1" width="122" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Followers">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -664,10 +666,22 @@
                                                 <rect key="frame" x="105" y="105" width="72" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="My Events">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="bYJ-XE-jRs" kind="push" identifier="MyEvents" id="jJE-LI-DUu"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t8E-Se-XFO">
+                                                <rect key="frame" x="105" y="125" width="72" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Log out">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logout:" destination="mIQ-gR-wQL" eventType="touchUpInside" id="pap-rS-pWx"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -763,11 +777,12 @@
                         <outlet property="nameLabel" destination="pI5-fB-1Pv" id="h9e-NR-SI3"/>
                         <outlet property="profileImageView" destination="9nq-cA-aeE" id="ROh-NX-0WR"/>
                         <outlet property="usernameLabel" destination="7NO-rY-upr" id="M5J-qS-Fy5"/>
+                        <segue destination="p1H-RM-vmO" kind="push" identifier="logOut" id="08c-CH-pMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfH-a3-LeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121" y="-1682"/>
+            <point key="canvasLocation" x="1969" y="-2018"/>
         </scene>
         <!--Lets Comments Table View Controller - Comments-->
         <scene sceneID="KiM-Lr-cbR">
@@ -836,7 +851,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kep-ce-8lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2686" y="-922"/>
+            <point key="canvasLocation" x="2534" y="-1258"/>
         </scene>
         <!--Add Comment View Controller - Compose-->
         <scene sceneID="S7F-cJ-hBf">
@@ -871,7 +886,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZb-m3-qb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iNa-SV-PUh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3185" y="-922"/>
+            <point key="canvasLocation" x="3033" y="-1258"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="F2R-dc-xd3">
@@ -915,7 +930,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOJ-Cp-FEA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="232" y="-930"/>
+            <point key="canvasLocation" x="80" y="-1266"/>
         </scene>
         <!--Log In View Controller - Sign In-->
         <scene sceneID="mVV-YS-kpo">
@@ -926,7 +941,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EwR-xU-u89">
-                                <rect key="frame" x="20" y="348" width="280" height="41"/>
+                                <rect key="frame" x="28" y="348" width="253" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="signinbutton.png">
                                     <color key="titleColor" red="0.0" green="0.34309420619999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -937,7 +952,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signinfields.png" id="5ts-TH-LV6">
-                                <rect key="frame" x="20" y="71" width="280" height="269"/>
+                                <rect key="frame" x="28" y="80" width="253" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" id="ydj-HP-VnE">
@@ -953,8 +968,9 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JMM-h3-q40">
-                                <rect key="frame" x="59" y="397" width="203" height="30"/>
+                                <rect key="frame" x="53" y="397" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -974,7 +990,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.82634836219879515" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.93202889683734935" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="zw9-cV-2E1"/>
                     <connections>
@@ -985,7 +1001,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDk-D2-9HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="-1434"/>
+            <point key="canvasLocation" x="727" y="-1770"/>
         </scene>
         <!--Sign Up View Controller - Sign up for an Adventure.-->
         <scene sceneID="t91-yy-gWq">
@@ -995,34 +1011,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" id="LX5-VH-jUK">
-                                <rect key="frame" x="35" y="111" width="250" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signupfieldstwo.png" id="KPg-FR-Ax3">
+                                <rect key="frame" x="20" y="78" width="280" height="282"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" id="LX5-VH-jUK">
+                                <rect key="frame" x="35" y="138" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" id="Ht2-ZH-lWd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="Ht2-ZH-lWd">
+                                <rect key="frame" x="35" y="230" width="250" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="r6W-9G-zgs">
+                                <rect key="frame" x="35" y="274" width="250" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Re-Enter Password" minimumFontSize="17" id="bhG-oX-hbY">
+                                <rect key="frame" x="35" y="324" width="250" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" id="2g8-9S-zsu">
                                 <rect key="frame" x="35" y="187" width="250" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" id="r6W-9G-zgs">
-                                <rect key="frame" x="35" y="231" width="250" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-Enter Password" minimumFontSize="17" id="bhG-oX-hbY">
-                                <rect key="frame" x="35" y="278" width="250" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kBc-en-tkO">
-                                <rect key="frame" x="51" y="336" width="196" height="30"/>
+                                <rect key="frame" x="20" y="425" width="280" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Join Let's">
+                                <state key="normal" backgroundImage="joinbutton.png">
                                     <color key="titleColor" red="0.0" green="0.34309420619999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1030,28 +1056,64 @@
                                     <action selector="signUpAction:" destination="viP-Sq-uFH" eventType="touchUpInside" id="Ih2-UI-kBP"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" id="2g8-9S-zsu">
-                                <rect key="frame" x="35" y="149" width="250" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ntd-F4-VDz">
+                                <rect key="frame" x="84" y="375" width="68" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <state key="normal" backgroundImage="camerabutton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cameraUpload:" destination="viP-Sq-uFH" eventType="touchUpInside" id="VAm-fi-ogl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SiY-lG-qua">
+                                <rect key="frame" x="157" y="375" width="68" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="librarybutton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="libraryUpload:" destination="viP-Sq-uFH" eventType="touchUpInside" id="FeH-Pd-gyv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uWK-pL-XBA">
+                                <rect key="frame" x="230" y="375" width="68" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="skipbutton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="24k-6F-B3g">
+                                <rect key="frame" x="20" y="535" width="53" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="backbutton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="p1H-RM-vmO" kind="push" id="XDx-60-Qcn"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c47-6p-ZV4">
+                                <rect key="frame" x="25" y="370" width="51" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.93274661144578308" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sign up for an Adventure." id="u6M-Il-ZJU"/>
                     <connections>
                         <outlet property="emailField" destination="Ht2-ZH-lWd" id="42V-d8-RLk"/>
                         <outlet property="nameField" destination="2g8-9S-zsu" id="L7K-FD-N3t"/>
                         <outlet property="passwordField" destination="r6W-9G-zgs" id="YdZ-Ou-6PG"/>
+                        <outlet property="profilePicture" destination="c47-6p-ZV4" id="kxW-wN-Gzd"/>
                         <outlet property="reEnterPasswordField" destination="bhG-oX-hbY" id="BhZ-nt-FHH"/>
                         <outlet property="usernameField" destination="LX5-VH-jUK" id="qWB-eT-nMj"/>
-                        <segue destination="xLz-zH-3ju" kind="push" identifier="signup" id="qKC-dh-KVU"/>
+                        <segue destination="bYJ-XE-jRs" kind="push" identifier="signup" id="H38-hh-A88"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aeE-Jd-8bG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="-401"/>
+            <point key="canvasLocation" x="727" y="-737"/>
         </scene>
         <!--Profile Picture View Controller-->
         <scene sceneID="O8p-ch-eil">
@@ -1069,41 +1131,31 @@
                                 <rect key="frame" x="49" y="335" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Camera">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="cameraUpload:" destination="xLz-zH-3ju" eventType="touchUpInside" id="hol-YU-wR3"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JOU-RN-bBP">
                                 <rect key="frame" x="223" y="335" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Library">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="libraryUpload:" destination="xLz-zH-3ju" eventType="touchUpInside" id="oJN-Q6-pNE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kWp-fJ-Cpo">
                                 <rect key="frame" x="135" y="426" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="uploadImage:" destination="xLz-zH-3ju" eventType="touchUpInside" id="CCA-AW-5r1"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="o4k-ii-VQC">
-                        <barButtonItem key="rightBarButtonItem" id="tSm-F4-2Ma">
-                            <connections>
-                                <segue destination="bYJ-XE-jRs" kind="push" identifier="EventFeed" id="yoz-2s-ngH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="tSm-F4-2Ma"/>
                     </navigationItem>
                     <connections>
                         <outlet property="profilePicture" destination="l71-ln-mAB" id="AQj-6L-ve7"/>
@@ -1111,7 +1163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gI3-pR-Ut3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1312" y="-401"/>
+            <point key="canvasLocation" x="1290" y="-463"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3gm-fd-GRx">
@@ -1134,7 +1186,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptA-E2-1os" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-351" y="-930"/>
+            <point key="canvasLocation" x="-503" y="-1266"/>
         </scene>
         <!--Friends List - Friends-->
         <scene sceneID="hs8-1v-NQ0">
@@ -1215,21 +1267,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvX-4B-TI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2541" y="-1673"/>
+            <point key="canvasLocation" x="2389" y="-2009"/>
         </scene>
     </scenes>
     <resources>
         <image name="attending.png" width="587" height="88"/>
         <image name="backbutton.png" width="100" height="24"/>
+        <image name="camerabutton.png" width="149" height="81"/>
         <image name="comments.png" width="587" height="88"/>
         <image name="deselectedlets.png" width="113" height="51"/>
         <image name="deselectedpass.png" width="113" height="51"/>
         <image name="eventphoto.png" width="640" height="183"/>
         <image name="initialbackgroundtwo.png" width="640" height="1136"/>
+        <image name="joinbutton.png" width="561" height="79"/>
         <image name="joinlets.png" width="278" height="93"/>
+        <image name="librarybutton.png" width="149" height="81"/>
         <image name="signin.png" width="280" height="94"/>
         <image name="signinbutton.png" width="562" height="79"/>
         <image name="signinfields.png" width="562" height="575"/>
+        <image name="signupfieldstwo.png" width="562" height="584"/>
+        <image name="skipbutton.png" width="149" height="81"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1238,9 +1295,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jJE-LI-DUu"/>
-        <segue reference="v3F-nY-QhG"/>
-        <segue reference="rph-1h-Ach"/>
         <segue reference="J77-zp-csf"/>
+        <segue reference="DWn-gy-fqD"/>
+        <segue reference="mZo-kH-tRf"/>
+        <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -102,6 +102,7 @@ CLLocationCoordinate2D pincoordinate;
     self.timeStamp.textColor = mainColorLight;
     self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
+    self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.cornerRadius = 40.0f;
     self.profilePicture.layer.borderWidth = 2.0f;
@@ -178,7 +179,7 @@ CLLocationCoordinate2D pincoordinate;
                 point.subtitle   = want[@"Address"];
                 
                 [self.miniMap addAnnotation:point];
-                [self.miniMap selectAnnotation:point animated:YES];
+                //[self.miniMap selectAnnotation:point animated:YES];
             }];
         }
     }];
