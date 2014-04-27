@@ -1001,7 +1001,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDk-D2-9HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="-1770"/>
+            <point key="canvasLocation" x="741" y="-1780"/>
         </scene>
         <!--Sign Up View Controller - Sign up for an Adventure.-->
         <scene sceneID="t91-yy-gWq">
@@ -1295,9 +1295,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="J77-zp-csf"/>
         <segue reference="DWn-gy-fqD"/>
-        <segue reference="mZo-kH-tRf"/>
+        <segue reference="J77-zp-csf"/>
         <segue reference="rph-1h-Ach"/>
+        <segue reference="mZo-kH-tRf"/>
     </inferredMetricsTieBreakers>
 </document>
