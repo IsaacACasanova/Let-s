@@ -129,8 +129,8 @@ NSString *sourceAddress;
     MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     [directionsRequest setDestination:destination];
     
-    MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
-    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+    MKDirections *theDirections = [[MKDirections alloc] initWithRequest:directionsRequest];
+    [theDirections calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         
         // Now handle the result
         if (error) {
