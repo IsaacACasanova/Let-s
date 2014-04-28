@@ -33,6 +33,7 @@
 - (IBAction)LetsPressed:(id)sender;
 - (IBAction)PassPressed:(id)sender;
 - (IBAction)EditPressed:(id)sender;
+- (IBAction)DeletePressed:(id)sender;
 
 
 @end

@@ -175,7 +175,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iPj-Wk-nZa" userLabel="PassButton">
-                                <rect key="frame" x="93" y="243" width="67" height="29"/>
+                                <rect key="frame" x="88" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="deselectedpass.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,13 +195,24 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
-                                <rect key="frame" x="233" y="243" width="67" height="29"/>
+                                <rect key="frame" x="163" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="deselectedpass.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="EditPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="Jph-UF-Jx6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TTf-eW-xsp" userLabel="DeleteButton">
+                                <rect key="frame" x="238" y="243" width="67" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="deselectedpass.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="DeletePressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="vy5-z7-IsW"/>
+                                    <action selector="EditPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="99e-aw-hVt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -271,25 +282,55 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rpt-7P-NTS">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rpt-7P-NTS" userLabel="Lets Button">
                                             <rect key="frame" x="68" y="78" width="57" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button" image="deselectedlets.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="LetsPressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="j7N-cw-dfS"/>
+                                            </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="e9T-Za-aE4">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="e9T-Za-aE4" userLabel="Pass Button">
                                             <rect key="frame" x="133" y="79" width="57" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="deselectedpass.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="PassPressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="eGu-LM-fWM"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5jQ-po-9Ti" userLabel="Edit Button">
+                                            <rect key="frame" x="68" y="78" width="57" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button" image="deselectedlets.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="EditPressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="YZp-Oq-BxL"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hSd-jf-iWb" userLabel="Delete Button">
+                                            <rect key="frame" x="133" y="79" width="57" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="deselectedpass.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="DeletePressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="vmb-1J-f2g"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="DecriptionLabel" destination="fNL-2w-fJo" id="dtg-zK-pB7"/>
+                                    <outlet property="DeleteButton" destination="hSd-jf-iWb" id="K3i-j8-ISl"/>
+                                    <outlet property="EditButton" destination="5jQ-po-9Ti" id="Pu8-1X-bS3"/>
                                     <outlet property="EventLabel" destination="iOg-p8-Jug" id="pgF-4F-SuT"/>
+                                    <outlet property="LetsButton" destination="Rpt-7P-NTS" id="lZd-Jg-x0x"/>
+                                    <outlet property="PassButton" destination="e9T-Za-aE4" id="I3z-Is-M4i"/>
                                     <outlet property="ProfileImage" destination="Zjy-ek-Fji" id="05b-lK-Fka"/>
                                     <outlet property="dateLabel" destination="o91-Hv-gbt" id="RDR-fD-WAU"/>
                                     <outlet property="timeStamp" destination="LNk-4T-mQ1" id="VIF-6h-3L6"/>
@@ -1235,9 +1276,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="rph-1h-Ach"/>
+        <segue reference="Jnm-CY-hwf"/>
         <segue reference="Hex-OU-VN6"/>
         <segue reference="08c-CH-pMZ"/>
-        <segue reference="v3F-nY-QhG"/>
-        <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

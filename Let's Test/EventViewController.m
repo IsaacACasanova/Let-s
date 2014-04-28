@@ -310,4 +310,11 @@ CLLocationCoordinate2D pincoordinate;
 
 - (IBAction)EditPressed:(id)sender {
 }
+
+- (IBAction)DeletePressed:(id)sender {
+}
+
+- (IBAction)DeletePressed:(id)sender {
+}
+
 @end

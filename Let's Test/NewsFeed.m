@@ -29,6 +29,7 @@
 }
 
 - (PFQuery *)queryForTable {
+    
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
     if (self.userinfo!=NULL) {
         _Proback.title = @"Back";
@@ -92,6 +93,18 @@
     PFFile *blah = [o objectForKey:@"image"];
     NSData *imageData = [blah getData];
     
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:object];
+
+    
+    PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable2 whereKey:@"Attendee" equalTo:user];
+    [findifIntable2 whereKey:@"Event" equalTo:object];
+
+
     NewsFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     //    if (cell == nil) {
     //        cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -107,6 +120,24 @@
     //cell.commentLabel.text = @"comment";
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
+    if([obd.objectId isEqualToString: user.objectId]){
+        NSLog(@"WHATTTTTTT");
+        cell.LetsButton.hidden = YES;
+        cell.PassButton.hidden = YES;
+    }
+    else{
+        cell.EditButton.hidden = YES;
+        cell.DeleteButton.hidden =YES;
+    }
+    
+    if(findifIntable.getFirstObject!=NULL){
+        cell.LetsButton.enabled = NO;
+    }
+    
+    if(findifIntable2.getFirstObject!=NULL){
+        cell.PassButton.enabled = NO;
+    }
+    cell.event = object;
     
     return cell;
 }
