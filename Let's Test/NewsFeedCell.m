@@ -10,14 +10,18 @@
 
 @implementation NewsFeedCell
 
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
     }
     return self;
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -85,6 +89,46 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+
+- (IBAction)LetsPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.event];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
+    PFObject *attend = [PFObject objectWithClassName:@"Attending"];
+    attend[@"Attendee"]=[PFUser currentUser];
+    attend[@"Event"]= self.event;
+    [attend save];
+    self.LetsButton.Enabled = NO;
+    self.PassButton.enabled = YES;
+}
+
+- (IBAction)PassPressed:(id)sender {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
+    [findifIntable whereKey:@"Attendee" equalTo:user];
+    [findifIntable whereKey:@"Event" equalTo:self.event];
+    if(findifIntable.getFirstObject!=NULL){
+        [findifIntable.getFirstObject deleteInBackground];
+    }
+    PFObject *pass = [PFObject objectWithClassName:@"Pass"];
+    pass[@"Attendee"]=[PFUser currentUser];
+    pass[@"Event"]= self.event;
+    [pass save];
+    
+    self.LetsButton.Enabled = YES;
+    self.PassButton.enabled =NO;
+}
+
+- (IBAction)EditPressed:(id)sender {
+}
+
+- (IBAction)DeletePressed:(id)sender {
+}
+
 
 
 
