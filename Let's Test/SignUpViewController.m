@@ -53,7 +53,7 @@
     self.profilePicture.layer.borderColor = mainColor.CGColor;
     
     [super viewDidLoad];
-    [self registerforKeyboardNotifications];
+    //[self registerforKeyboardNotifications];
     
     // Do any additional setup after loading the view.
 }

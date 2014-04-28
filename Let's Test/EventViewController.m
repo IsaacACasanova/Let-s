@@ -42,7 +42,7 @@ CLLocationCoordinate2D pincoordinate;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-
+    
     PFUser *user = [PFUser currentUser];
     NSLog(@"me: %@ you: %@ them:%@",self.creator,user,self.object);
     if([self.creator.objectId isEqualToString: user.objectId]){
@@ -154,7 +154,7 @@ CLLocationCoordinate2D pincoordinate;
     // Run the query
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-           // NSLog(@"%@", objects[0]);
+            // NSLog(@"%@", objects[0]);
             
             PFObject *object = objects[0];
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
@@ -302,8 +302,8 @@ CLLocationCoordinate2D pincoordinate;
     PFObject *pass = [PFObject objectWithClassName:@"Pass"];
     pass[@"Attendee"]=[PFUser currentUser];
     pass[@"Event"]= self.object;
-   [pass save];
-
+    [pass save];
+    
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
 }

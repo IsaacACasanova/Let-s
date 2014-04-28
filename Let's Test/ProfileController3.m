@@ -188,7 +188,7 @@
     
     self.followingCountLabel.textColor =  countColor;
     self.followingCountLabel.font =  countLabelFont;
-
+    
     
     self.eventCountLabel.textColor =  countColor;
     self.eventCountLabel.font =  countLabelFont;
@@ -326,14 +326,20 @@
         NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
-    
-    
+        
+        
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
         NSLog(@"HEYYYYYYY: %@",_username);
         
+    }else if([[segue identifier] isEqualToString:@"Attend"]){
+        PFQuery *user = [PFQuery queryWithClassName:@"_User"];
+        [user whereKey:@"username" equalTo:self.username];
+        PFObject *person = user.getFirstObject;
+        NewsFeed *newsfeed = [segue destinationViewController];
+        newsfeed.person = person;
     }
 }
 
