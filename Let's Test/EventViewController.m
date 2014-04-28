@@ -314,7 +314,6 @@ CLLocationCoordinate2D pincoordinate;
 - (IBAction)DeletePressed:(id)sender {
 }
 
-- (IBAction)DeletePressed:(id)sender {
-}
+
 
 @end
