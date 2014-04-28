@@ -220,6 +220,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Event Details" id="vGI-5z-ZS0"/>
                     <connections>
+                        <outlet property="DeleteButton" destination="TTf-eW-xsp" id="jTQ-7y-UPC"/>
                         <outlet property="Edit" destination="5WC-Z7-VwJ" id="8AJ-wn-7PE"/>
                         <outlet property="LetsButton" destination="Pg1-GW-c4J" id="KgX-Cg-tx1"/>
                         <outlet property="PassButton" destination="iPj-Wk-nZa" id="6PP-La-w9J"/>

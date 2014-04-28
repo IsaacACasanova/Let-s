@@ -47,12 +47,12 @@ CLLocationCoordinate2D pincoordinate;
     NSLog(@"me: %@ you: %@ them:%@",self.creator,user,self.object);
     if([self.creator.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
-        _Edit.hidden=NO;
         _LetsButton.hidden = YES;
         _PassButton.hidden = YES;
     }
     else{
         _Edit.hidden = YES;
+        _DeleteButton.hidden = YES;
     }
     
     PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
