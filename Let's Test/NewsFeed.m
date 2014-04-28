@@ -30,25 +30,38 @@
 
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
-    NSLog(@"WHEREFROM %@",self.userinfo);
     if (self.userinfo!=NULL) {
         _Proback.title = @"Back";
-        NSLog(@"CHEKC");
         PFQuery *person = [PFQuery queryWithClassName:@"_User"];
         [person whereKey:@"username" equalTo:_userinfo];
         NSObject *o = person.getFirstObject;
         NSLog(@"check: %@",o);
         [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+    }else if(self.person!=NULL){
+        _Proback.title = @"Back";
+        PFQuery *events = [PFQuery queryWithClassName:@"Attending"];
+        [events whereKey:@"Attendee" equalTo:self.person];
+        NSArray *eventarray = events.findObjects;
+        NSMutableArray *myarray = [[NSMutableArray alloc] init];
+        for(PFObject *object in eventarray){
+            PFObject *event = [object objectForKey:@"Event"];
+            [myarray addObject:event.objectId];
+        }
+        NSLog(@"ARRAY %@",myarray);
+        [query whereKey:@"objectId" containedIn:myarray];
+        
     }else{
         PFUser *user = [PFUser currentUser];
         PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
         [findifIntable whereKey:@"Attendee" equalTo:user];
         if(findifIntable.getFirstObject!=NULL){
             NSArray *objects = findifIntable.findObjects;
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 PFObject *event = [object objectForKey:@"Event"];
-                [query whereKey:@"objectId" notEqualTo:event.objectId];
+                [myarray addObject:event.objectId];
             }
+            [query whereKey:@"objectId" notContainedIn:myarray];
         }
     }
     
@@ -149,7 +162,7 @@
 }
 
 -(void)probackmeth:(UIStoryboardSegue *)sender{
-    if(self.userinfo==NULL){
+    if(self.userinfo==NULL&&self.person==NULL){
         [self performSegueWithIdentifier:@"SelfProfileSegue" sender:sender];
     }else{
         //go back to profile
