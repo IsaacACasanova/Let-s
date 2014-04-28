@@ -123,7 +123,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
-    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height-TABBAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardFrame.size.height-TEXTFIELD_HEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
     
     [UIView commitAnimations];
 }
