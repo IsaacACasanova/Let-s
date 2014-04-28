@@ -29,7 +29,7 @@
     NSMutableArray *hourdata;
     NSMutableArray *mindata;
     NSMutableArray *ampmdata;
-
+    
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *puborpri;

@@ -188,7 +188,7 @@
     
     self.followingCountLabel.textColor =  countColor;
     self.followingCountLabel.font =  countLabelFont;
-
+    
     
     self.eventCountLabel.textColor =  countColor;
     self.eventCountLabel.font =  countLabelFont;
@@ -326,8 +326,8 @@
         NSLog(@"showf");
         FriendsList *FL = [segue destinationViewController];
         FL.follower=1;
-    
-    
+        
+        
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
