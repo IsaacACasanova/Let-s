@@ -44,7 +44,6 @@ CLLocationCoordinate2D pincoordinate;
     
     
     PFUser *user = [PFUser currentUser];
-    NSLog(@"me: %@ you: %@ them:%@",self.creator,user,self.object);
     if([self.creator.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
         _LetsButton.hidden = YES;
@@ -312,6 +311,47 @@ CLLocationCoordinate2D pincoordinate;
 }
 
 - (IBAction)DeletePressed:(id)sender {
+    NSLog(@"%@",self.object);
+    
+    PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
+    [attend whereKey:@"Event" equalTo:self.object];
+    [attend getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    PFQuery *pass = [PFQuery queryWithClassName:@"Attending"];
+    [pass whereKey:@"Event" equalTo:self.object];
+    [pass getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    PFQuery *comments = [PFQuery queryWithClassName:@"LetsComments"];
+    [comments whereKey:@"EventID" equalTo:self.object.objectId];
+    [comments getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    [self.object deleteInBackground];
+    
+    
 }
 
 

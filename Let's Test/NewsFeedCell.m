@@ -127,6 +127,43 @@
 }
 
 - (IBAction)DeletePressed:(id)sender {
+    PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
+    [attend whereKey:@"Event" equalTo:self.event];
+    [attend getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    PFQuery *pass = [PFQuery queryWithClassName:@"Attending"];
+    [pass whereKey:@"Event" equalTo:self.event];
+    [pass getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    PFQuery *comments = [PFQuery queryWithClassName:@"LetsComments"];
+    [comments whereKey:@"EventID" equalTo:self.event.objectId];
+    [comments getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            [object deleteInBackground];
+            NSLog(@"Successfully retrieved the object.");
+        }
+    }];
+    
+    [self.event deleteInBackground];
 }
 
 
