@@ -21,6 +21,7 @@
 
 MKRoute *currentRoute;
 MKPolyline *routeOverlay;
+CLLocationCoordinate2D pincoordinate;
 NSString *daddr;
 
 - (void)viewDidLoad
@@ -61,8 +62,6 @@ NSString *daddr;
                 NSString *eventName = want[@"EventName"];
                 PFGeoPoint *eventAddress = want[@"Coordinates"];
                 
-                CLLocationCoordinate2D pincoordinate;
-                
                 pincoordinate.latitude  = eventAddress.latitude;
                 pincoordinate.longitude = eventAddress.longitude;
                 
@@ -100,6 +99,7 @@ NSString *daddr;
     imageView.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
     
     customAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    customAnnotationView.rightCalloutAccessoryView.backgroundColor = [UIColor blueColor];
     customAnnotationView.leftCalloutAccessoryView = imageView;
     
     return customAnnotationView;
@@ -117,7 +117,7 @@ NSString *daddr;
     MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
     [directionsRequest setSource:source];
     // Make the destination
-    CLLocationCoordinate2D destinationCoords = CLLocationCoordinate2DMake(37.7916, -122.4276);
+    CLLocationCoordinate2D destinationCoords = pincoordinate;
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     [directionsRequest setDestination:destination];
