@@ -22,7 +22,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *PassButton;
 @property (strong, nonatomic) IBOutlet UIButton *EditButton;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
-@property Boolean isCreator;
 @property (strong,nonatomic) PFObject *event;
 
 @end

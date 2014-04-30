@@ -91,19 +91,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bu2-Kf-WPm" userLabel="TitleLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="bu2-Kf-WPm" userLabel="TitleLabel">
                                 <rect key="frame" x="106" y="160" width="190" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SOG-ww-4b5" userLabel="DateLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="SOG-ww-4b5" userLabel="DateLabel">
                                 <rect key="frame" x="107" y="184" width="198" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DYL-bT-Aay" userLabel="Details">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" id="DYL-bT-Aay" userLabel="Details">
                                 <rect key="frame" x="17" y="189" width="298" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -201,7 +201,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="EditPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="Jph-UF-Jx6"/>
+                                    <segue destination="MC7-Ts-idv" kind="push" identifier="Edit" id="671-bN-Ayx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TTf-eW-xsp" userLabel="DeleteButton">
@@ -212,7 +212,6 @@
                                 </state>
                                 <connections>
                                     <action selector="DeletePressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="vy5-z7-IsW"/>
-                                    <action selector="EditPressed:" destination="bNx-Gs-2FH" eventType="touchUpInside" id="99e-aw-hVt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -256,7 +255,7 @@
                                             <rect key="frame" x="9" y="13" width="51" height="51"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iOg-p8-Jug">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="iOg-p8-Jug">
                                             <rect key="frame" x="68" y="11" width="216" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -270,14 +269,14 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o91-Hv-gbt">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" id="o91-Hv-gbt">
                                             <rect key="frame" x="68" y="28" width="238" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fNL-2w-fJo">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="fNL-2w-fJo">
                                             <rect key="frame" x="68" y="49" width="216" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -310,7 +309,8 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="EditPressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="YZp-Oq-BxL"/>
+                                                <action selector="editPressed:" destination="bYJ-XE-jRs" eventType="touchUpInside" id="LqO-1m-LdF"/>
+                                                <segue destination="MC7-Ts-idv" kind="push" identifier="Edit" id="X8f-0l-WAg"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hSd-jf-iWb" userLabel="Delete Button">
@@ -590,6 +590,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="pTe-1B-jly"/>
                     <connections>
+                        <outlet property="CreateButton" destination="jSa-fm-5ft" id="Gmd-pX-UNY"/>
                         <outlet property="ampm" destination="N1d-HP-gdR" id="AyD-9w-evc"/>
                         <outlet property="citytxt" destination="Rl3-b8-Tiy" id="Png-60-nS5"/>
                         <outlet property="contentview" destination="RD9-Mt-Sy2" id="1H8-7F-sjj"/>
@@ -604,6 +605,7 @@
                         <outlet property="scroller" destination="Nbn-qk-iH6" id="uaW-IX-8xB"/>
                         <outlet property="statetxt" destination="sw3-5d-62Q" id="4dk-Nu-LKB"/>
                         <outlet property="streettxt" destination="UFh-Xf-GgQ" id="ppS-SA-gIM"/>
+                        <outlet property="swicher" destination="3Mv-sx-trt" id="7jF-uR-o3K"/>
                         <outlet property="year" destination="5b0-kI-Axy" id="RnQ-02-UL2"/>
                         <outlet property="ziptxt" destination="okB-5n-MNo" id="8Ui-n8-ui7"/>
                     </connections>
@@ -1277,9 +1279,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rph-1h-Ach"/>
-        <segue reference="Jnm-CY-hwf"/>
+        <segue reference="X8f-0l-WAg"/>
         <segue reference="Hex-OU-VN6"/>
+        <segue reference="Jnm-CY-hwf"/>
         <segue reference="08c-CH-pMZ"/>
+        <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

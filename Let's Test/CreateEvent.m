@@ -23,7 +23,7 @@
 
 
 @implementation CreateEvent
-@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata,dettext;
+@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata,dettext,swicher;
 
 
 
@@ -112,6 +112,101 @@
         }
     }
     self.daydata = self.day31;
+    if(self.event !=NULL){
+        //self.CreateButton.titleLabel.text = @"Update";
+        
+        [self.CreateButton setTitle:@"Update" forState:UIControlStateNormal];
+        PFGeoPoint *point = [self.event objectForKey:@"Coordinates"];
+        
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:point.latitude longitude:point.longitude];
+        CLGeocoder *coder = [[CLGeocoder alloc] init];
+        [coder reverseGeocodeLocation:loc
+                    completionHandler: ^(NSArray *placemarks, NSError *error){
+                        if (error){
+                            //  self.loglatlabel.text = @"error";
+                            return;
+                        }
+                        
+                        if(placemarks && placemarks>0){
+                            CLPlacemark *placemark = placemarks[0];
+                            NSDictionary *dic = placemark.addressDictionary;
+                            NSString *address = [dic objectForKey:(NSString *) kABPersonAddressStreetKey];
+                            NSString *city = [dic objectForKey:(NSString *) kABPersonAddressCityKey];
+                            NSString *state = [dic objectForKey:(NSString *) kABPersonAddressStateKey];
+                            NSString *zip = [dic objectForKey:(NSString *) kABPersonAddressZIPKey];
+                            
+                            
+                            streettxt.text = address;
+                            citytxt.text = city;
+                            statetxt.text = state;
+                            ziptxt.text = zip;
+                            
+                        }
+                    }];
+        
+        eventtxt.text = [self.event objectForKey:@"EventName"];
+        dettext.text = [self.event objectForKey:@"Details"];
+        nametxt.text = [self.event objectForKey:@"LocationName"];
+        
+        if([[self.event objectForKey:@"public"] isEqual:(@"yes")]){
+            puborpri.text = @"Public";
+            swicher.on=YES;
+        }else{
+            puborpri.text = @"Private";
+            swicher.on = NO;
+        }
+        
+        NSString *date = [self.event objectForKey:@"DateTime"];
+        
+        self.monthlabel = [date substringToIndex:2];
+        self.daylabel = [date substringWithRange:NSMakeRange(3, 2)];
+        self.yearlabel = [date substringWithRange:NSMakeRange(6, 4)];
+        
+        NSString *time = [date substringFromIndex:13];
+        NSArray *myWords = [time componentsSeparatedByString:@":"];
+        self.hourlabel = myWords[0];
+        NSString *mt = myWords[1];
+        NSArray *mWords = [mt componentsSeparatedByString:@" "];
+        self.minlabel = mWords[0];
+        self.ampmlabel = mWords[1];
+        
+        
+        
+        int monthvalue = [[date substringToIndex:2] intValue];
+        NSLog(@"month: %d",monthvalue);
+        int dayvalue = [[date substringWithRange:NSMakeRange(3, 2)] intValue];
+        int yearvalue = [[date substringWithRange:NSMakeRange(6, 4)] intValue]-2013;
+        int hourvalue = [myWords[0] intValue];
+        int minvalue = [mWords[0] intValue]+1;
+        
+        [month selectRow:(60-(61-monthvalue)) inComponent:0 animated:YES];
+        
+        if(monthvalue==2){
+            if(yearvalue==3||yearvalue==7){
+                self.daydata = self.day29;
+                [day selectRow:(60-(61-dayvalue)) inComponent:0 animated:YES];
+            }else{
+                self.daydata = self.day28;
+                [day selectRow:(60-(61-dayvalue)) inComponent:0 animated:YES];
+            }
+        }else if(monthvalue==4||monthvalue==6||monthvalue==9||monthvalue==11){
+            self.daydata = self.day30;
+            [day selectRow:(60-(61-dayvalue)) inComponent:0 animated:YES];
+        }else{
+            self.daydata = self.day31;
+            [day selectRow:(60-(61-dayvalue)) inComponent:0 animated:YES];
+        }
+        NSLog(@"min: %d",minvalue);
+        [hour selectRow:(60-(61-hourvalue)) inComponent:0 animated:YES];
+        [min selectRow:(80-(81-minvalue)) inComponent:0 animated:YES];
+        [year selectRow:(60-(61-yearvalue)) inComponent:0 animated:YES];
+        if([self.ampmlabel isEqualToString:@"AM"]){
+            [ampm selectRow:0 inComponent:0 animated:YES];
+        }else{
+            [ampm selectRow:1 inComponent:0 animated:YES];
+        }
+        
+    }
     
     [self MakeInfinite:NULL pickerView:month pickerData:monthdata];
     [self MakeInfinite:NULL pickerView:day pickerData:daydata];
@@ -119,6 +214,10 @@
     [self MakeInfinite:NULL pickerView:hour pickerData:hourdata];
     [self MakeInfinite:NULL pickerView:min pickerData:mindata];
     // [self MakeInfinite:NULL pickerView:ampm pickerData:ampmdata];
+    
+    
+
+    
     [self registerForKeyboardNotifications];
 }
 
@@ -287,6 +386,7 @@
     _loglatlabel = [[NSString alloc] init];
     _date = [NSString localizedStringWithFormat:@"%@/%@/%@ at %@:%@ %@",
              _monthlabel,_daylabel,_yearlabel,_hourlabel,_minlabel,_ampmlabel];
+
     
     CLGeocoder *coder = [[CLGeocoder alloc] init];
     [coder geocodeAddressString:x
@@ -337,6 +437,7 @@
 
 -(void)sendtodatabase{
     NSLog(@"WHATT");
+    if(self.event==NULL){
     PFObject *Event = [PFObject objectWithClassName:@"EventList"];
     Event[@"EventName"]=eventtxt.text;
     Event[@"Details"]=dettext.text;
@@ -355,6 +456,22 @@
     attend[@"Attendee"]=[PFUser currentUser];
     attend[@"Event"]= Event;
     [attend save];
+    }else{
+        self.event[@"EventName"]=eventtxt.text;
+        self.event[@"Details"]=dettext.text;
+        self.event[@"LocationName"]=nametxt.text;
+        self.event[@"Address"]=_cleanaddress;
+        self.event[@"DateTime"]=_date;
+        self.event[@"CreatedBy"] = [PFUser currentUser];
+        self.event[@"Coordinates"] = _point;
+        if ([puborpri.text isEqual:(@"Public")]) {
+            self.event[@"public"]=@"yes";
+        }else{
+            self.event[@"public"]=@"no";
+        }
+        [self.event saveInBackground];
+
+    }
 }
 
 //                              HANDLING KEYBOARD

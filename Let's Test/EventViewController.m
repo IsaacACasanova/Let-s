@@ -12,6 +12,7 @@
 #import "CustomAnnotationView.h"
 #import "AttendingController.h"
 #import "ProfileController3.h"
+#import "CreateEvent.h"
 
 
 @interface EventViewController ()
@@ -135,6 +136,10 @@ CLLocationCoordinate2D pincoordinate;
         NSString *username = [self.creator objectForKey:@"username"];
         [vc grabOtherUserInfo:username];
         
+    }
+    if([[segue identifier] isEqualToString:@"Edit"]){
+        CreateEvent *vc =  [segue destinationViewController];
+        vc.event = self.object;
     }
 }
 
@@ -307,8 +312,7 @@ CLLocationCoordinate2D pincoordinate;
     self.PassButton.enabled =NO;
 }
 
-- (IBAction)EditPressed:(id)sender {
-}
+
 
 - (IBAction)DeletePressed:(id)sender {
     NSLog(@"%@",self.object);

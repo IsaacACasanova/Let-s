@@ -7,6 +7,7 @@
 //
 
 #import "NewsFeedCell.h"
+#import "CreateEvent.h"
 
 @implementation NewsFeedCell
 
@@ -123,8 +124,6 @@
     self.PassButton.enabled =NO;
 }
 
-- (IBAction)EditPressed:(id)sender {
-}
 
 - (IBAction)DeletePressed:(id)sender {
     PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
@@ -166,6 +165,12 @@
     [self.event deleteInBackground];
 }
 
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if([[segue identifier] isEqualToString:@"Edit"]){
+//        CreateEvent *vc =  [segue destinationViewController];
+//        vc.event = self.event;
+//    }
+//}
 
 
 

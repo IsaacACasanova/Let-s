@@ -10,6 +10,7 @@
 #import "NewsFeedCell.h"
 #import "EventViewController.h"
 #import "ProfileController3.h"
+#import "CreateEvent.h"
 
 @interface NewsFeed ()
 
@@ -138,6 +139,7 @@
         cell.PassButton.enabled = NO;
     }
     cell.event = object;
+    cell.EditButton.tag = indexPath.row;
     
     return cell;
 }
@@ -173,7 +175,16 @@
         
         
         
+    } if([[segue identifier] isEqualToString:@"Edit"]){
+        CreateEvent *vc =  [segue destinationViewController];
+        vc.event = self.event;
     }
+
+}
+- (IBAction)editPressed:(UIButton *)sender {
+    NSLog(@"TAG: %d",sender.tag);
+    PFObject *object = [self.objects objectAtIndex:sender.tag];
+    self.event = object;
 }
 
 - (void)viewDidLoad

@@ -32,6 +32,10 @@
     
 }
 
+@property (strong, nonatomic) IBOutlet UIButton *CreateButton;
+
+@property (strong, nonatomic) IBOutlet UISwitch *swicher;
+
 @property (strong, nonatomic) IBOutlet UITextView *dettext;
 
 @property (strong, nonatomic) IBOutlet UILabel *puborpri;
@@ -49,6 +53,8 @@
 @property (retain, nonatomic) NSMutableArray *hourdata;
 @property (retain, nonatomic) NSMutableArray *mindata;
 @property (retain, nonatomic) NSMutableArray *ampmdata;
+
+@property (strong,nonatomic) PFObject *event;
 
 - (IBAction)exit:(id)sender;
 

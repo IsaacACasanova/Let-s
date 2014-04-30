@@ -19,9 +19,10 @@
 @property (nonatomic,strong) NSArray *timeStamp;
 
 @property NSString *userinfo;
-@property(nonatomic, strong) PFObject *person;
+@property(nonatomic, strong) PFObject *person,*event;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *Proback;
+
 
 
 
