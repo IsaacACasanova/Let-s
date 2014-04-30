@@ -21,6 +21,7 @@
 
 MKRoute *currentRoute;
 MKPolyline *routeOverlay;
+NSString *daddr;
 
 - (void)viewDidLoad
 {
@@ -55,6 +56,8 @@ MKPolyline *routeOverlay;
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
                 NSLog(@"WANT: %@", want[@"Address"]);
                 
+                daddr = want[@"Address"];
+                
                 NSString *eventName = want[@"EventName"];
                 PFGeoPoint *eventAddress = want[@"Coordinates"];
                 
@@ -65,7 +68,7 @@ MKPolyline *routeOverlay;
                 
                 // Set the region to display and have it zoom in
                 MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pincoordinate, 800, 800);
-                [self.mapView setRegion:[self.mapView regionThatFits:region] animated: YES];
+                [self.mapView setRegion:[self.mapView regionThatFits:region] animated: NO];
                 
                 // Add annotation
                 MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
@@ -133,7 +136,7 @@ MKPolyline *routeOverlay;
     }];
     
     
-    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?q=%@", @"Lafayette Park"];
+    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?daddr=%@", daddr];
     NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
     
@@ -170,4 +173,10 @@ MKPolyline *routeOverlay;
 //    return self;
 //}
 
+- (IBAction)changeMapType:(id)sender {
+    if (mapView.mapType == MKMapTypeStandard)
+        mapView.mapType = MKMapTypeHybrid;
+    else
+        mapView.mapType = MKMapTypeStandard;
+}
 @end
