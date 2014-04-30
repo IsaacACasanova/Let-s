@@ -1279,10 +1279,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="X8f-0l-WAg"/>
-        <segue reference="Hex-OU-VN6"/>
-        <segue reference="Jnm-CY-hwf"/>
         <segue reference="08c-CH-pMZ"/>
+        <segue reference="Jnm-CY-hwf"/>
+        <segue reference="y1x-8g-Jcx"/>
+        <segue reference="X8f-0l-WAg"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

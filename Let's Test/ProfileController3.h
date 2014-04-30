@@ -60,6 +60,8 @@
 @property (nonatomic, strong) NSArray *postArray;
 
 
+
+
 @property (nonatomic, strong) UIImage *image;
 - (IBAction)logout:(id)sender;
 

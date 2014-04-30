@@ -22,6 +22,7 @@
 @synthesize isFiltered;
 @synthesize follower;
 
+
 - (id)initWithCoder:(NSCoder *)aCoder
 {
     self = [super initWithCoder:aCoder];
@@ -47,15 +48,15 @@
 - (PFQuery *)queryForTable {
     
     
-    PFUser *current = [PFUser currentUser];
-    NSString *username = current[@"username"];
+    //    PFUser *current = [PFUser currentUser];
+    //    NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
-    [query2 whereKey:@"username" equalTo:username];
+    [query2 whereKey:@"username" equalTo:self.username];
     PFQuery *userQuery = [PFUser query];
     if(follower==1){
-    [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
-    [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
+        [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
+        [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
     }
     else if(follower==2){
         [query whereKey:@"Following" matchesKey:@"username" inQuery:query2];
@@ -79,6 +80,9 @@
 {
     [super viewDidLoad];
     
+        //[self.SearchView removeFromSuperview];
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -96,7 +100,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     // Return the number of sections.
     return 1;
 }
@@ -155,23 +159,23 @@
         NSLog(@"%@",username);
         
         
-//        PFObject *obd = [object objectForKey:@"Following"];
-//        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-//        NSLog(@"%@",obd);
-//        [query whereKey:@"objectId" equalTo:obd.objectId];
-//        PFObject *userobj = query.getFirstObject;
-//        NSString *username = [userobj objectForKey:@"username"];
-//        NSLog(@"%@",username);
+        //        PFObject *obd = [object objectForKey:@"Following"];
+        //        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+        //        NSLog(@"%@",obd);
+        //        [query whereKey:@"objectId" equalTo:obd.objectId];
+        //        PFObject *userobj = query.getFirstObject;
+        //        NSString *username = [userobj objectForKey:@"username"];
+        //        NSLog(@"%@",username);
         //[ProfileController grabOtherUserInfo:username];
         [vc grabOtherUserInfo:username];
-       
+        
     }
     if([[segue identifier] isEqualToString:@"FindAFriend"]){
         NSString *username = self.usernamesearchbar.text;
         ProfileController3 *vc = [segue destinationViewController];
         [vc grabOtherUserInfo:username];
     }
-
+    
 }
 
 

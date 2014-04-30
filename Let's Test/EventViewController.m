@@ -318,7 +318,7 @@ CLLocationCoordinate2D pincoordinate;
     NSLog(@"%@",self.object);
     
     PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
-    [attend whereKey:@"Event" equalTo:self.object];
+    [attend whereKey:@"Event" equalTo:self.object.objectId];
     [attend getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!object) {
             NSLog(@"The getFirstObject request failed.");
@@ -329,8 +329,8 @@ CLLocationCoordinate2D pincoordinate;
         }
     }];
     
-    PFQuery *pass = [PFQuery queryWithClassName:@"Attending"];
-    [pass whereKey:@"Event" equalTo:self.object];
+    PFQuery *pass = [PFQuery queryWithClassName:@"Pass"];
+    [pass whereKey:@"Event" equalTo:self.object.objectId];
     [pass getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!object) {
             NSLog(@"The getFirstObject request failed.");
