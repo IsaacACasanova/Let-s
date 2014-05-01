@@ -21,6 +21,8 @@
 
 MKRoute *currentRoute;
 MKPolyline *routeOverlay;
+CLLocationCoordinate2D pincoordinate;
+NSString *daddr;
 
 - (void)viewDidLoad
 {
@@ -55,17 +57,17 @@ MKPolyline *routeOverlay;
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
                 NSLog(@"WANT: %@", want[@"Address"]);
                 
+                daddr = want[@"Address"];
+                
                 NSString *eventName = want[@"EventName"];
                 PFGeoPoint *eventAddress = want[@"Coordinates"];
-                
-                CLLocationCoordinate2D pincoordinate;
                 
                 pincoordinate.latitude  = eventAddress.latitude;
                 pincoordinate.longitude = eventAddress.longitude;
                 
                 // Set the region to display and have it zoom in
                 MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(pincoordinate, 800, 800);
-                [self.mapView setRegion:[self.mapView regionThatFits:region] animated: YES];
+                [self.mapView setRegion:[self.mapView regionThatFits:region] animated: NO];
                 
                 // Add annotation
                 MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
@@ -97,6 +99,7 @@ MKPolyline *routeOverlay;
     imageView.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
     
     customAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    customAnnotationView.rightCalloutAccessoryView.backgroundColor = [UIColor blueColor];
     customAnnotationView.leftCalloutAccessoryView = imageView;
     
     return customAnnotationView;
@@ -114,7 +117,7 @@ MKPolyline *routeOverlay;
     MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
     [directionsRequest setSource:source];
     // Make the destination
-    CLLocationCoordinate2D destinationCoords = CLLocationCoordinate2DMake(37.7916, -122.4276);
+    CLLocationCoordinate2D destinationCoords = pincoordinate;
     MKPlacemark *destinationPlacemark = [[MKPlacemark alloc] initWithCoordinate:destinationCoords addressDictionary:nil];
     MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:destinationPlacemark];
     [directionsRequest setDestination:destination];
@@ -133,7 +136,7 @@ MKPolyline *routeOverlay;
     }];
     
     
-    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?q=%@", @"Lafayette Park"];
+    NSString *url = [NSString stringWithFormat:@"http://maps.google.com/?daddr=%@", daddr];
     NSString *escaped = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
     
@@ -170,4 +173,10 @@ MKPolyline *routeOverlay;
 //    return self;
 //}
 
+- (IBAction)changeMapType:(id)sender {
+    if (mapView.mapType == MKMapTypeStandard)
+        mapView.mapType = MKMapTypeHybrid;
+    else
+        mapView.mapType = MKMapTypeStandard;
+}
 @end

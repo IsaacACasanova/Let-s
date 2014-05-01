@@ -19,4 +19,7 @@
 
 @property (strong,nonatomic) PFObject *object;
 
+
+- (IBAction)changeMapType:(id)sender;
+
 @end

@@ -135,18 +135,7 @@
     return cell;
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    
-    
-    NSString *searchingForThisUsername = searchBar.text;
-    NSLog(@"%@", searchingForThisUsername);
-    
-    
-    // DO what ever you want
-    
-    
-}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"ShowAFriend"]){
@@ -157,16 +146,6 @@
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         NSString *username = object[@"username"];
         NSLog(@"%@",username);
-        
-        
-        //        PFObject *obd = [object objectForKey:@"Following"];
-        //        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-        //        NSLog(@"%@",obd);
-        //        [query whereKey:@"objectId" equalTo:obd.objectId];
-        //        PFObject *userobj = query.getFirstObject;
-        //        NSString *username = [userobj objectForKey:@"username"];
-        //        NSLog(@"%@",username);
-        //[ProfileController grabOtherUserInfo:username];
         [vc grabOtherUserInfo:username];
         
     }

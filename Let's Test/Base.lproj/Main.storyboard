@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Map View Controller - Event Location-->
@@ -16,6 +16,13 @@
                                 <rect key="frame" x="0.0" y="61" width="320" height="507"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="0rb-Ja-mmq">
+                                <rect key="frame" x="251" y="529" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeMapType:" destination="LUd-Vu-E9N" eventType="valueChanged" id="Wmp-pm-huD"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -197,7 +204,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
                                 <rect key="frame" x="163" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="deselectedpass.png">
+                                <state key="normal" image="edit.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -207,7 +214,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TTf-eW-xsp" userLabel="DeleteButton">
                                 <rect key="frame" x="238" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="deselectedpass.png">
+                                <state key="normal" image="delete.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1207,32 +1214,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="OFV-5t-vxo">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a username" minimumFontSize="17" id="sju-nc-zAi">
-                                    <rect key="frame" x="20" y="7" width="215" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ncO-Zw-67Q">
-                                    <rect key="frame" x="243" y="7" width="57" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Search">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="mIQ-gR-wQL" kind="push" identifier="FindAFriend" id="mZo-kH-tRf"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendsListCell" rowHeight="79" id="8yn-kE-wA8" customClass="FriendsListCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8yn-kE-wA8" id="jCe-L4-t3s">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -1271,14 +1255,54 @@
                             <outlet property="delegate" destination="97K-tY-2fH" id="Rth-8B-GOb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="7om-sn-B5l"/>
-                    <connections>
-                        <outlet property="usernamesearchbar" destination="sju-nc-zAi" id="Nw7-47-Tk5"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Friends" id="7om-sn-B5l">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="hSN-RW-W7K">
+                            <connections>
+                                <segue destination="Vjv-SW-wAT" kind="push" id="7sG-du-jAu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvX-4B-TI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2389" y="-2009"/>
+        </scene>
+        <!--FindA Friend - FindFriendController-->
+        <scene sceneID="raO-pz-6OU">
+            <objects>
+                <viewController storyboardIdentifier="FindAFriend" title="FindFriendController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vjv-SW-wAT" customClass="FindAFriend" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LxD-iS-bgO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RjZ-zc-xWG">
+                                <rect key="frame" x="254" y="94" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mIQ-gR-wQL" kind="push" identifier="FindAFriend" id="7K2-ao-rFW"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="yyY-3L-syZ">
+                                <rect key="frame" x="20" y="94" width="226" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BBd-r8-Vrt"/>
+                    <connections>
+                        <outlet property="SearchButton" destination="RjZ-zc-xWG" id="7YG-CK-ehR"/>
+                        <outlet property="SearchTextBar" destination="yyY-3L-syZ" id="Vdp-sp-R4l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QqA-4B-KnC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2928" y="-2012"/>
         </scene>
     </scenes>
     <resources>
@@ -1286,8 +1310,10 @@
         <image name="backbutton.png" width="100" height="24"/>
         <image name="camerabutton.png" width="149" height="81"/>
         <image name="comments.png" width="587" height="88"/>
+        <image name="delete.png" width="113" height="51"/>
         <image name="deselectedlets.png" width="113" height="51"/>
         <image name="deselectedpass.png" width="113" height="51"/>
+        <image name="edit.png" width="113" height="51"/>
         <image name="eventphoto.png" width="640" height="183"/>
         <image name="initialbackgroundtwo.png" width="640" height="1136"/>
         <image name="joinbutton.png" width="561" height="79"/>
@@ -1310,6 +1336,5 @@
         <segue reference="Jnm-CY-hwf"/>
         <segue reference="Ywl-oV-YNS"/>
         <segue reference="X8f-0l-WAg"/>
-        <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>
