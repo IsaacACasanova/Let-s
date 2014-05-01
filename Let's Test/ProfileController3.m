@@ -254,6 +254,7 @@
         FL.follower=2;
         FL.username = self.username;
         FL.FollowerTitleNavItem.title=@"Followers";
+        FL.navigationItem.rightBarButtonItem = NULL;
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
@@ -262,6 +263,12 @@
         FL.follower=1;
         FL.username = self.username;
         FL.FollowerTitleNavItem.title=@"Following";
+        PFUser *user = [PFUser currentUser];
+        NSString *usern = [user objectForKey:@"username"];
+        if(self.username!=usern){
+            FL.navigationItem.rightBarButtonItem = NULL;
+        }
+        
         
         
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){

@@ -22,6 +22,11 @@
 @property NSString *userinfo;
 @property(nonatomic, strong) PFObject *person,*event;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *Proback;
+@property int state,alloff,prioff;
+
+@property (strong, nonatomic) IBOutlet UIButton *all;
+@property (strong, nonatomic) IBOutlet UIButton *pub;
+@property (strong, nonatomic) IBOutlet UIButton *pri;
 
 
 
