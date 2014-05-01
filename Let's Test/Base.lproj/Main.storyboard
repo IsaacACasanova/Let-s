@@ -204,7 +204,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5WC-Z7-VwJ" userLabel="EditButton">
                                 <rect key="frame" x="163" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="deselectedpass.png">
+                                <state key="normal" image="edit.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -214,7 +214,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TTf-eW-xsp" userLabel="DeleteButton">
                                 <rect key="frame" x="238" y="243" width="67" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="deselectedpass.png">
+                                <state key="normal" image="delete.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1283,8 +1283,10 @@
         <image name="backbutton.png" width="100" height="24"/>
         <image name="camerabutton.png" width="149" height="81"/>
         <image name="comments.png" width="587" height="88"/>
+        <image name="delete.png" width="113" height="51"/>
         <image name="deselectedlets.png" width="113" height="51"/>
         <image name="deselectedpass.png" width="113" height="51"/>
+        <image name="edit.png" width="113" height="51"/>
         <image name="eventphoto.png" width="640" height="183"/>
         <image name="initialbackgroundtwo.png" width="640" height="1136"/>
         <image name="joinbutton.png" width="561" height="79"/>
