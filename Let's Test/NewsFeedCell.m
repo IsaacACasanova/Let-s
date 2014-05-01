@@ -104,6 +104,7 @@
     attend[@"Event"]= self.event;
     [attend save];
     self.LetsButton.Enabled = NO;
+    self.LetsButton.imageView.image = [UIImage imageNamed:@"selectedlets.png"];
     self.PassButton.enabled = YES;
 }
 
@@ -122,6 +123,7 @@
     
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
+    self.PassButton.imageView.image = [UIImage imageNamed:@"selectedpass.png"];
 }
 
 
