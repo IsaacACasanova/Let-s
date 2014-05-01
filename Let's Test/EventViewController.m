@@ -248,36 +248,42 @@ CLLocationCoordinate2D pincoordinate;
     
     PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
     [attend whereKey:@"Event" equalTo:self.object.objectId];
-    [attend getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!object) {
+    [attend findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!objects) {
             NSLog(@"The getFirstObject request failed.");
         } else {
             // The find succeeded.
-            [object deleteInBackground];
+            for(PFObject *object in objects){
+                [object deleteInBackground];
+            }
             NSLog(@"Successfully retrieved the object.");
         }
     }];
     
     PFQuery *pass = [PFQuery queryWithClassName:@"Pass"];
     [pass whereKey:@"Event" equalTo:self.object.objectId];
-    [pass getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!object) {
+    [pass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!objects) {
             NSLog(@"The getFirstObject request failed.");
         } else {
             // The find succeeded.
-            [object deleteInBackground];
+            for(PFObject *object in objects){
+                [object deleteInBackground];
+            }
             NSLog(@"Successfully retrieved the object.");
         }
     }];
     
     PFQuery *comments = [PFQuery queryWithClassName:@"LetsComments"];
     [comments whereKey:@"EventID" equalTo:self.object.objectId];
-    [comments getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!object) {
+    [comments findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!objects) {
             NSLog(@"The getFirstObject request failed.");
         } else {
             // The find succeeded.
-            [object deleteInBackground];
+            for(PFObject *object in objects){
+                [object deleteInBackground];
+            }
             NSLog(@"Successfully retrieved the object.");
         }
     }];

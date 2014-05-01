@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04411D3B19119849002A3941 /* FindAFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411D3A19119849002A3941 /* FindAFriend.m */; };
 		04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AC1907F2FE00D056E6 /* FriendsList.m */; };
 		04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AE1907F2FE00D056E6 /* FriendsListCell.m */; };
 		1245ACC0190B4A4400AB4236 /* attending.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245ACBD190B4A4400AB4236 /* attending.png */; };
@@ -80,6 +81,8 @@
 		12AD929318E779B40030C547 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12AD928E18E779B40030C547 /* SignUpViewController.m */; };
 		12AD929418E779B40030C547 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12AD929018E779B40030C547 /* InitialViewController.m */; };
 		12AD929518E779B40030C547 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12AD929218E779B40030C547 /* LogInViewController.m */; };
+		12B362B31911CA81004CC107 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 12B362B11911CA81004CC107 /* delete.png */; };
+		12B362B41911CA82004CC107 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 12B362B21911CA81004CC107 /* edit.png */; };
 		12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5418B152AD00730E7B /* NewsFeed.m */; };
 		12F93D5818B1556800730E7B /* NewsFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5718B1556800730E7B /* NewsFeedCell.m */; };
 		12F93D5B18B15CCE00730E7B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5A18B15CCE00730E7B /* EventViewController.m */; };
@@ -134,6 +137,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04411D3919119849002A3941 /* FindAFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindAFriend.h; path = ../FindAFriend.h; sourceTree = "<group>"; };
+		04411D3A19119849002A3941 /* FindAFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FindAFriend.m; path = ../FindAFriend.m; sourceTree = "<group>"; };
 		04A690AB1907F2FE00D056E6 /* FriendsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsList.h; sourceTree = "<group>"; };
 		04A690AC1907F2FE00D056E6 /* FriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
 		04A690AD1907F2FE00D056E6 /* FriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListCell.h; sourceTree = "<group>"; };
@@ -227,6 +232,8 @@
 		12AD929018E779B40030C547 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		12AD929118E779B40030C547 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		12AD929218E779B40030C547 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		12B362B11911CA81004CC107 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		12B362B21911CA81004CC107 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		12F93D5318B152AD00730E7B /* NewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeed.h; sourceTree = "<group>"; };
 		12F93D5418B152AD00730E7B /* NewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeed.m; sourceTree = "<group>"; };
 		12F93D5618B1556800730E7B /* NewsFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCell.h; sourceTree = "<group>"; };
@@ -329,6 +336,8 @@
 		1245ACB4190B49AE00AB4236 /* Event Page Components */ = {
 			isa = PBXGroup;
 			children = (
+				12B362B11911CA81004CC107 /* delete.png */,
+				12B362B21911CA81004CC107 /* edit.png */,
 				1245ACBD190B4A4400AB4236 /* attending.png */,
 				1245ACBE190B4A4400AB4236 /* comments.png */,
 				1245ACBF190B4A4400AB4236 /* eventphoto.png */,
@@ -416,6 +425,8 @@
 				04A690AC1907F2FE00D056E6 /* FriendsList.m */,
 				04A690AD1907F2FE00D056E6 /* FriendsListCell.h */,
 				04A690AE1907F2FE00D056E6 /* FriendsListCell.m */,
+				04411D3919119849002A3941 /* FindAFriend.h */,
+				04411D3A19119849002A3941 /* FindAFriend.m */,
 				12F93D5918B15CCE00730E7B /* EventViewController.h */,
 				12F93D5A18B15CCE00730E7B /* EventViewController.m */,
 				1247A65E18B6D2DE00A7547E /* ProfileController3.h */,
@@ -729,8 +740,10 @@
 				ED520FF1190C5B4900A641E2 /* librarybutton.png in Resources */,
 				ED520FE4190C5B4900A641E2 /* comments.png in Resources */,
 				ED520FF0190C5B4900A641E2 /* joinbutton.png in Resources */,
+				12B362B31911CA81004CC107 /* delete.png in Resources */,
 				1247A66218B6D5C400A7547E /* jack.jpg in Resources */,
 				ED520FEA190C5B4900A641E2 /* followers.png in Resources */,
+				12B362B41911CA82004CC107 /* edit.png in Resources */,
 				ED520FE0190C5B4900A641E2 /* deselectedpass.png in Resources */,
 				1295079418B1507600B0AB7B /* arrow@2x.png in Resources */,
 				1245ACCB190B615800AB4236 /* selectedpass.png in Resources */,
@@ -799,6 +812,7 @@
 				1295076B18B1479600B0AB7B /* FeedController4.m in Sources */,
 				1CF966D8190C205B0044E570 /* AttendingCell.m in Sources */,
 				1CF966CF190C189C0044E570 /* AttendingController.m in Sources */,
+				04411D3B19119849002A3941 /* FindAFriend.m in Sources */,
 				12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */,
 				04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */,
 				04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */,

@@ -52,11 +52,13 @@
     //    NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
+    NSLog(@"Looking at:%@",self.username);
     [query2 whereKey:@"username" equalTo:self.username];
     PFQuery *userQuery = [PFUser query];
     if(follower==1){
         [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
         [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
+        
     }
     else if(follower==2){
         [query whereKey:@"Following" matchesKey:@"username" inQuery:query2];
@@ -135,18 +137,7 @@
     return cell;
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    
-    
-    NSString *searchingForThisUsername = searchBar.text;
-    NSLog(@"%@", searchingForThisUsername);
-    
-    
-    // DO what ever you want
-    
-    
-}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"ShowAFriend"]){
@@ -156,17 +147,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         NSString *username = object[@"username"];
-        NSLog(@"%@",username);
-        
-        
-        //        PFObject *obd = [object objectForKey:@"Following"];
-        //        PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-        //        NSLog(@"%@",obd);
-        //        [query whereKey:@"objectId" equalTo:obd.objectId];
-        //        PFObject *userobj = query.getFirstObject;
-        //        NSString *username = [userobj objectForKey:@"username"];
-        //        NSLog(@"%@",username);
-        //[ProfileController grabOtherUserInfo:username];
+        NSLog(@"Showing friend: %@",username);
         [vc grabOtherUserInfo:username];
         
     }

@@ -59,6 +59,7 @@
 
 @property (nonatomic, strong) NSArray *postArray;
 
+@property (nonatomic,strong) NSString *whosInfo;
 
 
 

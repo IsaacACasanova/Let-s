@@ -32,51 +32,30 @@
 
 
 
-- (void)grabUserInfo:(PFUser *)userop{
-    
-    
-    //if(userop.username == [[PFUser currentUser]username]){
-    //    self.editButton.hidden=NO;
-    //}
-    //else{
-    //    self.editButton.hidden=YES;
-    //}
-    PFQuery *query = [PFUser query];
-    
-    [query whereKey:@"username" containsString:userop.username];
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
-        
-        //Get the user
-        PFUser *theUser = [query findObjects].firstObject;
-        //Set the user's name field
-        self.nameLabel.text = theUser[@"name"];
-        //Set the user's username field
-        self.usernameLabel.text = theUser[@"username"];
-        //Prepare the user's profile picture
-        PFFile *imageFile = theUser[@"image"];
-        [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            if (!error) {
-                //Set the user's profile picture
-                self.profileImageView.image = [UIImage imageWithData:imageData];
-                _image = [UIImage imageWithData:imageData];
-            }}];
-        
-        
-    }];
-    
-}
 
 
 - (void)grabOtherUserInfo:(NSString *)username{
+    //test if current user follows displayed user
+    PFUser *current = [PFUser currentUser];
+    NSString *currentUsername = current.username;
+    //test if profile is current user to hide follow button
+    if([username isEqualToString: currentUsername]){
+        self.followButton.enabled=NO;
+        self.navigationItem.rightBarButtonItem = nil;
+    }else{
+        PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
+        [iAmFollowingQuery whereKey:@"Follower" equalTo:currentUsername];
+        [iAmFollowingQuery whereKey:@"Following" equalTo:username];
+        PFObject *x = iAmFollowingQuery.getFirstObject;
+        if(x==NULL){
+            self.followButton.title =@"Follow";
+            self.followButton.enabled=YES;
+        }else{
+            self.followButton.title =@"Unfollow";
+            self.followButton.enabled=YES;
+        }
+    }
     
-    
-    //if(username == [[PFUser currentUser]username]){
-    //    self.editButton.hidden=NO;
-    //}
-    //else{
-    //    self.editButton.hidden=YES;
-    //}
     PFQuery *query = [PFUser query];
     
     [query whereKey:@"username" containsString:username];
@@ -89,6 +68,31 @@
         self.nameLabel.text = theUser[@"name"];
         //Set the user's username field
         self.usernameLabel.text = theUser[@"username"];
+        
+        PFQuery *followers = [PFQuery queryWithClassName:@"Follow"];
+        [followers whereKey:@"Following" equalTo:username];
+        NSInteger numfollowers = followers.countObjects;
+        self.followerCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowers];
+        
+        PFQuery *followering = [PFQuery queryWithClassName:@"Follow"];
+        [followering whereKey:@"Follower" equalTo:username];
+        NSInteger numfollowering = followering.countObjects;
+        self.followingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowering];
+        
+        PFQuery *events= [PFQuery queryWithClassName:@"EventList"];
+        PFQuery *user = [PFQuery queryWithClassName:@"_User"];
+        [user whereKey:@"username" equalTo:username];
+        PFObject *userinfo = user.getFirstObject;
+        NSLog(@"%@",userinfo);
+        [events whereKey:@"CreatedBy" equalTo:userinfo];
+        NSInteger numevents = events.countObjects;
+        self.eventCountLabel.text = [NSString stringWithFormat: @"%d", (int)numevents];
+        
+        
+        PFQuery *attendance= [PFQuery queryWithClassName:@"Attending"];
+        [attendance whereKey:@"Attendee" equalTo:userinfo];
+        NSInteger numattend = attendance.countObjects;
+        self.attendingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numattend];
         //Prepare the user's profile picture
         PFFile *imageFile = theUser[@"image"];
         [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
@@ -102,14 +106,7 @@
     
     
     
-    //test if current user follows displayed user
-    PFUser *current = [PFUser currentUser];
-    NSString *currentUsername = current.username;
-    //test if profile is current user to hide follow button
-    if(username == currentUsername){
-        self.followButton.enabled=NO;
-        self.navigationItem.rightBarButtonItem = nil;
-    }
+
     //Returns people I follow
     PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
     [iAmFollowingQuery whereKey:@"Follower" equalTo:currentUsername];
@@ -122,9 +119,7 @@
     [amIFollowingQuery whereKey:@"Following" matchesKey:@"username" inQuery:themQuery];
     
     
-    if(amIFollowingQuery.countObjects>0){
-        self.followButton.title = @"Unfollow";
-    }
+
     
     _username = username;
 }
@@ -135,30 +130,7 @@
 {
     [super viewDidLoad];
     
-    PFQuery *followers = [PFQuery queryWithClassName:@"Follow"];
-    [followers whereKey:@"Following" equalTo:self.username];
-    NSInteger numfollowers = followers.countObjects;
-    self.followerCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowers];
     
-    PFQuery *followering = [PFQuery queryWithClassName:@"Follow"];
-    [followering whereKey:@"Follower" equalTo:self.username];
-    NSInteger numfollowering = followering.countObjects;
-    self.followingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numfollowering];
-    
-    PFQuery *events= [PFQuery queryWithClassName:@"EventList"];
-    PFQuery *user = [PFQuery queryWithClassName:@"_User"];
-    [user whereKey:@"username" equalTo:self.username];
-    PFObject *userinfo = user.getFirstObject;
-    NSLog(@"%@",userinfo);
-    [events whereKey:@"CreatedBy" equalTo:userinfo];
-    NSInteger numevents = events.countObjects;
-    self.eventCountLabel.text = [NSString stringWithFormat: @"%d", (int)numevents];
-    
-    
-    PFQuery *attendance= [PFQuery queryWithClassName:@"Attending"];
-    [attendance whereKey:@"Attendee" equalTo:userinfo];
-    NSInteger numattend = attendance.countObjects;
-    self.attendingCountLabel.text = [NSString stringWithFormat: @"%d", (int)numattend];
     
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* imageBorderColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
@@ -177,22 +149,22 @@
     self.friendButton.titleLabel.font = [UIFont fontWithName:boldItalicFontName size:18.0f];
     self.friendButton.titleLabel.textColor = mainColor;
     
-    self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
-    self.usernameLabel.text = @"username";
+    //self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
+    //self.usernameLabel.text = @"username";
     
     
     UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
     UIColor* countColor = mainColor;
     
     self.followerCountLabel.textColor =  countColor;
-    self.followerCountLabel.font =  countLabelFont;
+    //self.followerCountLabel.font =  countLabelFont;
     
     self.followingCountLabel.textColor =  countColor;
-    self.followingCountLabel.font =  countLabelFont;
+    //self.followingCountLabel.font =  countLabelFont;
     
     
     self.eventCountLabel.textColor =  countColor;
-    self.eventCountLabel.font =  countLabelFont;
+    //self.eventCountLabel.font =  countLabelFont;
     
     self.attendingCountLabel.textColor =  countColor;
     self.attendingCountLabel.font =  countLabelFont;
@@ -207,9 +179,6 @@
     self.followingLabel.font =  socialFont;
     self.followingLabel.text = @"ATTENDING";
     
-    self.updateLabel.textColor =  mainColor;
-    self.updateLabel.font =  socialFont;
-    self.updateLabel.text = @"MAYBE";
     
     
     self.bioLabel.textColor =  mainColor;
@@ -259,6 +228,7 @@
     NSString *followerUsername = current[@"username"];
     PFObject *newFollow = [PFObject objectWithClassName:@"Follow"];
     NSString *followingUsername = self.usernameLabel.text;
+    NSLog(@"Looking at:%@",followerUsername);
     if([self.followButton.title isEqual:@"Follow"]){
         
         
@@ -268,18 +238,19 @@
             if (!error) {
                 [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the viewController upon success
             }
-        }];}
-    else{
+        }];
+        self.followButton.title = @"Unfollow";
+    }else{
+        PFUser *current = [PFUser currentUser];
+        NSString *followerUsername = current[@"username"];
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:followerUsername];
-        
-        PFQuery *themQuery = [PFUser query];
-        [themQuery whereKey:@"username" equalTo:followingUsername];
-        
-        
-        PFQuery *amIFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
-        [amIFollowingQuery whereKey:@"Following" matchesKey:@"username" inQuery:themQuery];
-        amIFollowingQuery.getFirstObject.deleteInBackground;
+        [iAmFollowingQuery whereKey:@"Following" equalTo:self.username];
+        PFObject *x = iAmFollowingQuery.getFirstObject;
+        if(x!=NULL){
+            [x deleteInBackground];
+        }
+        self.followButton.title = @"Follow";
     }
     
     
@@ -304,16 +275,13 @@
         
         
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
-        NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
-        NSLog(@"HEYYYYYYY: %@",_username);
         
     }else if([[segue identifier] isEqualToString:@"Attend"]){
         PFQuery *user = [PFQuery queryWithClassName:@"_User"];
         [user whereKey:@"username" equalTo:self.username];
         PFObject *person = user.getFirstObject;
-        NSLog(@"YOOOOO %@",person);
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.person = person;
         
@@ -338,7 +306,6 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     PFUser *currentUser = [PFUser currentUser];
-    
 }
 
 - (IBAction)unwindToProfile:(UIStoryboardSegue *)unwindSegue
