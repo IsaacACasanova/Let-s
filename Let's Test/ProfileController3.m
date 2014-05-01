@@ -153,7 +153,7 @@
     //self.usernameLabel.text = @"username";
     
     
-    UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
+    //UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
     UIColor* countColor = mainColor;
     
     self.followerCountLabel.textColor =  countColor;
@@ -169,7 +169,7 @@
     self.attendingCountLabel.textColor =  countColor;
     //self.attendingCountLabel.font =  countLabelFont;
     
-    UIFont* socialFont = [UIFont fontWithName:fontName size:10.0f];
+    //UIFont* socialFont = [UIFont fontWithName:fontName size:10.0f];
     
     
     self.bioLabel.textColor =  mainColor;
@@ -195,10 +195,6 @@
     self.friendContainer.layer.borderWidth = 4.0f;
     self.friendContainer.clipsToBounds = YES;
     self.friendContainer.layer.cornerRadius = 5.0f;
-    
-    [self styleFriendProfileImage:self.friendImageView1 withImageNamed:@"profile-1.jpg" andColor:imageBorderColor];
-    [self styleFriendProfileImage:self.friendImageView2 withImageNamed:@"profile-2.jpg" andColor:imageBorderColor];
-    [self styleFriendProfileImage:self.friendImageView3 withImageNamed:@"profile-3.jpg" andColor:imageBorderColor];
     
     self.scrollView.contentSize = CGSizeMake(320, 590);
     self.scrollView.backgroundColor = [UIColor whiteColor];
