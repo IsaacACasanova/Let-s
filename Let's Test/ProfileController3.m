@@ -141,7 +141,7 @@
     
     
     self.nameLabel.textColor =  mainColor;
-    self.nameLabel.font =  [UIFont fontWithName:boldItalicFontName size:18.0f];
+    //self.nameLabel.font =  [UIFont fontWithName:boldItalicFontName size:18.0f];
     
     
     self.usernameLabel.textColor =  mainColor;
@@ -149,7 +149,7 @@
     self.friendButton.titleLabel.font = [UIFont fontWithName:boldItalicFontName size:18.0f];
     self.friendButton.titleLabel.textColor = mainColor;
     
-    self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
+    //self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
     //self.usernameLabel.text = @"username";
     
     
@@ -157,17 +157,17 @@
     UIColor* countColor = mainColor;
     
     self.followerCountLabel.textColor =  countColor;
-    self.followerCountLabel.font =  countLabelFont;
+    //self.followerCountLabel.font =  countLabelFont;
     
     self.followingCountLabel.textColor =  countColor;
-    self.followingCountLabel.font =  countLabelFont;
+    //self.followingCountLabel.font =  countLabelFont;
     
     
     self.eventCountLabel.textColor =  countColor;
-    self.eventCountLabel.font =  countLabelFont;
+    //self.eventCountLabel.font =  countLabelFont;
     
     self.attendingCountLabel.textColor =  countColor;
-    self.attendingCountLabel.font =  countLabelFont;
+    //self.attendingCountLabel.font =  countLabelFont;
     
     
     
