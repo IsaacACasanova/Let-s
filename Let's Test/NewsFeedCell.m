@@ -31,7 +31,11 @@
     // Configure the view for the selected state
 }
 
+
+
 -(void)awakeFromNib{
+    
+    
     
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* neutralColor = [UIColor colorWithWhite:0.4 alpha:1.0];
@@ -86,10 +90,26 @@
     self.profileImageView.layer.borderColor = mainColorLight.CGColor;
     
      */
-    
+
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+
+
+
+
+
+- (IBAction)bs:(id)sender {
+    NSLog(@"THFUCK: %d",self.thefuck);
+    //    if(self.thefuck==1){
+    //       [self.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+    //        [self.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+    //    }else{
+    //        [self.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+    //        [self.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
+    //    }
+}
+
 
 - (IBAction)LetsPressed:(id)sender {
     PFUser *user = [PFUser currentUser];
@@ -103,8 +123,12 @@
     attend[@"Attendee"]=[PFUser currentUser];
     attend[@"Event"]= self.event;
     [attend save];
+   
+    [self.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+
     self.LetsButton.Enabled = NO;
-    self.LetsButton.imageView.image = [UIImage imageNamed:@"selectedlets.png"];
+    
+[self.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
     self.PassButton.enabled = YES;
 }
 
@@ -121,9 +145,10 @@
     pass[@"Event"]= self.event;
     [pass save];
     
+    [self.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+    [self.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
-    self.PassButton.imageView.image = [UIImage imageNamed:@"selectedpass.png"];
 }
 
 
@@ -167,12 +192,7 @@
     [self.event deleteInBackground];
 }
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if([[segue identifier] isEqualToString:@"Edit"]){
-//        CreateEvent *vc =  [segue destinationViewController];
-//        vc.event = self.event;
-//    }
-//}
+
 
 
 

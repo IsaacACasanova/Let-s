@@ -45,25 +45,30 @@
         PFQuery *events = [PFQuery queryWithClassName:@"Attending"];
         [events whereKey:@"Attendee" equalTo:self.person];
         NSArray *eventarray = events.findObjects;
+        if(eventarray.count>0){
         NSMutableArray *myarray = [[NSMutableArray alloc] init];
         for(PFObject *object in eventarray){
             PFObject *event = [object objectForKey:@"Event"];
             [myarray addObject:event.objectId];
         }
-        NSLog(@"ARRAY %@",myarray);
+        
+     //   NSLog(@"ARRAY %@",myarray);
         [query whereKey:@"objectId" containedIn:myarray];
+        }
         
     }else{
         PFUser *user = [PFUser currentUser];
         PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
         [findifIntable whereKey:@"Attendee" equalTo:user];
-        if(findifIntable.getFirstObject!=NULL){
-            NSArray *objects = findifIntable.findObjects;
+        NSArray *objects = findifIntable.findObjects;
+        if(objects.count>0){
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 PFObject *event = [object objectForKey:@"Event"];
+                NSLog(@"ARRAY %@",event);
                 [myarray addObject:event.objectId];
             }
+           // NSLog(@"ARRAY %@",myarray);
             [query whereKey:@"objectId" notContainedIn:myarray];
         }
     }
@@ -132,11 +137,20 @@
         cell.DeleteButton.hidden =YES;
     }
     
+    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+     [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+    
     if(findifIntable.getFirstObject!=NULL){
+        cell.thefuck =1;
+        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
         cell.LetsButton.enabled = NO;
     }
     
     if(findifIntable2.getFirstObject!=NULL){
+        cell.thefuck =0;
+        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
         cell.PassButton.enabled = NO;
     }
     cell.event = object;

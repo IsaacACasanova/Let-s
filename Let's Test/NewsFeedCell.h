@@ -24,4 +24,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
 @property (strong,nonatomic) PFObject *event;
 
+@property int thefuck;
 @end

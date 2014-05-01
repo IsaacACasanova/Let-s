@@ -333,6 +333,16 @@
                                                 <action selector="DeletePressed:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="vmb-1J-f2g"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tpo-uy-dBM">
+                                            <rect key="frame" x="219" y="77" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="BS">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="bs:" destination="JBV-i9-l8Y" eventType="touchUpInside" id="vSU-lj-06t"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1343,10 +1353,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="08c-CH-pMZ"/>
-        <segue reference="Jnm-CY-hwf"/>
         <segue reference="y1x-8g-Jcx"/>
-        <segue reference="671-bN-Ayx"/>
+        <segue reference="ezy-lg-dHa"/>
+        <segue reference="08c-CH-pMZ"/>
         <segue reference="rph-1h-Ach"/>
+        <segue reference="XTV-gf-v4l"/>
     </inferredMetricsTieBreakers>
 </document>

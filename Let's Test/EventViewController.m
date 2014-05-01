@@ -59,6 +59,7 @@ CLLocationCoordinate2D pincoordinate;
     [findifIntable whereKey:@"Attendee" equalTo:user];
     [findifIntable whereKey:@"Event" equalTo:self.object];
     if(findifIntable.getFirstObject!=NULL){
+        [self.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
         _LetsButton.enabled = NO;
     }
     
@@ -66,6 +67,7 @@ CLLocationCoordinate2D pincoordinate;
     [findifIntable2 whereKey:@"Attendee" equalTo:user];
     [findifIntable2 whereKey:@"Event" equalTo:self.object];
     if(findifIntable2.getFirstObject!=NULL){
+        [self.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
         _PassButton.enabled = NO;
     }
     
@@ -220,8 +222,10 @@ CLLocationCoordinate2D pincoordinate;
     attend[@"Attendee"]=[PFUser currentUser];
     attend[@"Event"]= self.object;
     [attend save];
+    [self.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
     self.LetsButton.Enabled = NO;
     /* self.LetsButton.imageView.image = */
+    [self.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
     self.PassButton.enabled = YES;
 }
 
@@ -237,7 +241,8 @@ CLLocationCoordinate2D pincoordinate;
     pass[@"Attendee"]=[PFUser currentUser];
     pass[@"Event"]= self.object;
     [pass save];
-    
+    [self.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+    [self.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
 }
