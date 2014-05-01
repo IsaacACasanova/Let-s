@@ -28,8 +28,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *LetsButton;
 @property (strong, nonatomic) IBOutlet UIButton *PassButton;
 @property (strong, nonatomic) IBOutlet UIButton *DeleteButton;
-
 @property (strong,nonatomic) NSArray *DetailModal;
+
 
 - (IBAction)LetsPressed:(id)sender;
 - (IBAction)PassPressed:(id)sender;

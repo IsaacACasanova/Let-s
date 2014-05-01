@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -19,6 +19,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="0rb-Ja-mmq">
                                 <rect key="frame" x="251" y="529" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="0.26666666666666666" green="0.41568627450980389" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeMapType:" destination="LUd-Vu-E9N" eventType="valueChanged" id="Wmp-pm-huD"/>
                                 </connections>
@@ -45,7 +46,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AttendingCell" rowHeight="79" id="0gB-cF-iaZ" customClass="AttendingCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gB-cF-iaZ" id="dFj-iv-VyC">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
@@ -224,7 +225,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Event Details" id="vGI-5z-ZS0"/>
+                    <navigationItem key="navigationItem" title="Event Details" id="vGI-5z-ZS0">
+                        <barButtonItem key="backBarButtonItem" title="Details" id="HWN-b6-Lym"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="DeleteButton" destination="TTf-eW-xsp" id="jTQ-7y-UPC"/>
                         <outlet property="Edit" destination="5WC-Z7-VwJ" id="8AJ-wn-7PE"/>
@@ -252,7 +255,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsFeedCell" rowHeight="122" id="JBV-i9-l8Y" customClass="NewsFeedCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="122"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JBV-i9-l8Y" id="nty-Gm-81p">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="121"/>
@@ -352,6 +355,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="XFX-IZ-4DX">
+                        <barButtonItem key="backBarButtonItem" title="Feed" id="3TG-1k-pSR"/>
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="1Vd-F7-glO">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -719,7 +723,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12009" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xja-f1-lxr">
-                                                <rect key="frame" x="216" y="11" width="65" height="27"/>
+                                                <rect key="frame" x="216" y="9" width="65" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -823,7 +827,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LetsCommentsCell" rowHeight="79" id="wps-bb-u5b" customClass="LetsCommentsCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wps-bb-u5b" id="15u-Wx-3KF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
@@ -1279,7 +1283,7 @@
         <image name="signupfieldstwo.png" width="562" height="584"/>
         <image name="skipbutton.png" width="149" height="81"/>
     </resources>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" white="0.99856457078313254" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1289,7 +1293,7 @@
         <segue reference="08c-CH-pMZ"/>
         <segue reference="Jnm-CY-hwf"/>
         <segue reference="y1x-8g-Jcx"/>
-        <segue reference="X8f-0l-WAg"/>
+        <segue reference="671-bN-Ayx"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

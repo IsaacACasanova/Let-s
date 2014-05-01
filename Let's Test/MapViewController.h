@@ -19,6 +19,7 @@
 
 @property (strong,nonatomic) PFObject *object;
 
+@property (strong, nonatomic) UIImageView *profileMapImage;
 
 - (IBAction)changeMapType:(id)sender;
 

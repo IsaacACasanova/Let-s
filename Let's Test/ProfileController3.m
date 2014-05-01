@@ -169,7 +169,7 @@
     
     
     self.nameLabel.textColor =  mainColor;
-    self.nameLabel.font =  [UIFont fontWithName:boldItalicFontName size:18.0f];
+    self.nameLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];
     
     
     self.usernameLabel.textColor =  mainColor;
@@ -181,7 +181,7 @@
     self.usernameLabel.text = @"username";
     
     
-    UIFont* countLabelFont = [UIFont fontWithName:boldItalicFontName size:20.0f];
+    UIFont* countLabelFont = [UIFont fontWithName:boldFontName size:20.0f];
     UIColor* countColor = mainColor;
     
     self.followerCountLabel.textColor =  countColor;
@@ -197,7 +197,7 @@
     self.attendingCountLabel.textColor =  countColor;
     self.attendingCountLabel.font =  countLabelFont;
     
-    UIFont* socialFont = [UIFont fontWithName:boldItalicFontName size:10.0f];
+    UIFont* socialFont = [UIFont fontWithName:fontName size:10.0f];
     
     self.followerLabel.textColor =  mainColor;
     self.followerLabel.font =  socialFont;
@@ -217,7 +217,7 @@
     self.bioLabel.text = @"I like making music and scubadiving. I enjoy long walks on the beach!";
     
     self.friendLabel.textColor =  mainColor;
-    self.friendLabel.font =  [UIFont fontWithName:boldFontName size:18.0f];;
+    self.friendLabel.font =  [UIFont fontWithName:fontName size:18.0f];;
     self.friendLabel.text = @"Friends";
     
     //IMPORTNAT PICTURE STUFF
@@ -240,10 +240,6 @@
     [self styleFriendProfileImage:self.friendImageView2 withImageNamed:@"profile-2.jpg" andColor:imageBorderColor];
     [self styleFriendProfileImage:self.friendImageView3 withImageNamed:@"profile-3.jpg" andColor:imageBorderColor];
     
-    //    [self addDividerToView:self.scrollView atLocation:230];
-    //    [self addDividerToView:self.scrollView atLocation:300];
-    //    [self addDividerToView:self.scrollView atLocation:370];
-    
     self.scrollView.contentSize = CGSizeMake(320, 590);
     self.scrollView.backgroundColor = [UIColor whiteColor];
 }
@@ -257,32 +253,6 @@
     imageView.layer.borderColor = color.CGColor;
     imageView.layer.cornerRadius = 35.0f;
 }
-
-/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
- if([[segue identifier] isEqualToString:@"ShowFriends"]){
- ProfileController3 *ProfileController = [segue destinationViewController];
- 
- PFQuery *friendsQuery = [PFQuery queryWithClassName:@"Follow"];
- [friendsQuery whereKey:@"Following" equalTo:[PFUser currentUser]];
- [friendsQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
- PFObject *firstFollow = [friendsQuery findObjects].firstObject;
- PFQuery *query = [PFUser query];
- 
- [query whereKey:@"objectId" containsString:firstFollow[@"Following"]];
- [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
- PFUser *firstFriend = [query findObjects].firstObject;
- 
- 
- }];
- 
- 
- }];
- 
- 
- 
- }
- }*/
-
 
 - (IBAction)followAction:(id)sender {
     PFUser *current = [PFUser currentUser];

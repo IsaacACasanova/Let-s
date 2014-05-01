@@ -121,7 +121,6 @@
     PFFile *blah = [o objectForKey:@"image"];
     NSData *imageData = [blah getData];
     
-
     cell.thumbNailImage.image = [UIImage imageWithData:imageData];
 
 

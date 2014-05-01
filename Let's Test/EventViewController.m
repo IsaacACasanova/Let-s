@@ -80,7 +80,6 @@ CLLocationCoordinate2D pincoordinate;
     _eventDescription.text = _DetailModal[3];
     _timeStamp.text = _DetailModal[4];
     
-    
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     UIColor* neutralColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     
@@ -117,12 +116,13 @@ CLLocationCoordinate2D pincoordinate;
     if([[segue identifier] isEqualToString:@"Comments"]){
         
         LetsCommentsTableViewController *commentsViewController = [segue destinationViewController];
-        
-        
         commentsViewController.object = self.object;
     }
     if([[segue identifier] isEqualToString:@"Map"]){
         MapViewController *mapControll = [segue destinationViewController];
+        //mapControll.profileMapImage.image =  self.profilePicture.image;
+        
+        mapControll.profileMapImage = self.profilePicture;
         
         mapControll.object = self.object;
         
@@ -158,13 +158,10 @@ CLLocationCoordinate2D pincoordinate;
     // Run the query
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // NSLog(@"%@", objects[0]);
-            
+
             PFObject *object = objects[0];
             [query getObjectInBackgroundWithId:object.objectId block:^(PFObject *want, NSError *err) {
                 NSLog(@"WANT: %@", want[@"Address"]);
-                
-                //destAddress = want[@"Address"];
                 
                 NSString *eventName = want[@"EventName"];
                 PFGeoPoint *eventAddress = want[@"Coordinates"];
@@ -183,7 +180,6 @@ CLLocationCoordinate2D pincoordinate;
                 point.subtitle   = want[@"Address"];
                 
                 [self.miniMap addAnnotation:point];
-                //[self.miniMap selectAnnotation:point animated:YES];
             }];
         }
     }];
@@ -197,7 +193,7 @@ CLLocationCoordinate2D pincoordinate;
     CustomAnnotationView *customAnnotationView = (CustomAnnotationView *) [self.miniMap dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     
     if (!customAnnotationView) {
-        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
+        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
         
         customAnnotationView.canShowCallout = YES;
     }
@@ -225,6 +221,7 @@ CLLocationCoordinate2D pincoordinate;
     attend[@"Event"]= self.object;
     [attend save];
     self.LetsButton.Enabled = NO;
+    /* self.LetsButton.imageView.image = */
     self.PassButton.enabled = YES;
 }
 
@@ -244,7 +241,6 @@ CLLocationCoordinate2D pincoordinate;
     self.LetsButton.Enabled = YES;
     self.PassButton.enabled =NO;
 }
-
 
 
 - (IBAction)DeletePressed:(id)sender {
@@ -287,10 +283,6 @@ CLLocationCoordinate2D pincoordinate;
     }];
     
     [self.object deleteInBackground];
-    
-    
 }
-
-
 
 @end

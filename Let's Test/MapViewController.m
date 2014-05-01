@@ -18,6 +18,7 @@
 
 @synthesize locationManager;
 @synthesize mapView;
+@synthesize profileMapImage;
 
 MKRoute *currentRoute;
 MKPolyline *routeOverlay;
@@ -91,16 +92,25 @@ NSString *daddr;
     CustomAnnotationView *customAnnotationView = (CustomAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     
     if (!customAnnotationView) {
-        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier /*annotationViewImage:[UIImage imageNamed:@"maifi.png"]*/];
+        customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
         
         customAnnotationView.canShowCallout = YES;
     }
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jack.jpg"]];
-    imageView.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
     
+    CGRect nframe = self.profileMapImage.frame;
+    nframe.size.width = (self.profileMapImage.frame.size.width)/2.5;
+    nframe.size.height = (self.profileMapImage.frame.size.height/2.5);
+    self.profileMapImage.frame = nframe;
+    
+    self.profileMapImage.layer.cornerRadius = 17;
+    
+   // self.profileMapImage.frame = CGRectMake(0,0,31,31); // Change the size of the image to fit the callout
+    
+    UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
     customAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    customAnnotationView.leftCalloutAccessoryView = imageView;
+    customAnnotationView.rightCalloutAccessoryView.tintColor = mainColor;
+    customAnnotationView.leftCalloutAccessoryView = self.profileMapImage;
     
     return customAnnotationView;
     

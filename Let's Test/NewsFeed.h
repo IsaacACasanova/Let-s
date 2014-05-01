@@ -20,8 +20,8 @@
 
 @property NSString *userinfo;
 @property(nonatomic, strong) PFObject *person,*event;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *Proback;
+
 
 
 

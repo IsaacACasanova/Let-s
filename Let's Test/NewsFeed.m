@@ -18,6 +18,7 @@
 
 @implementation NewsFeed
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -76,7 +77,7 @@
     }
     
     [query orderByDescending:@"createdAt"];
-    
+        
     return query;
 }
 
@@ -161,7 +162,7 @@
         eventViewController.DetailModal = @[[UIImage imageWithData:imageData],[object objectForKey:@"EventName"],[object objectForKey:@"DateTime"],[object objectForKey:@"Details"], @"2 min ago"];
         eventViewController.object = object;
         eventViewController.creator = o;
-        
+        eventViewController.profilePicture.image = [UIImage imageWithData:imageData];
     }
     else if([[segue identifier] isEqualToString:@"SelfProfileSegue"]){
         
