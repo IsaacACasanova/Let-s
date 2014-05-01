@@ -130,6 +130,9 @@
         NSArray *userobj = iAmFollowingQuery.findObjects;
         
         if(userobj.count>0){
+            NSArray *queryobjs = query.findObjects;
+            NSLog(@"COUNTQ %d",queryobjs.count);
+            
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in userobj) {
                 NSString *follower = [object objectForKey:@"Following"];
@@ -143,13 +146,35 @@
             
             if(follower1.count>0){
                 NSMutableArray *myarray2 = [[NSMutableArray alloc] init];
+                 NSMutableArray *queryarray = [[NSMutableArray alloc] init];
                 for (PFObject *object in follower1) {
                      NSLog(@"Fuck %@",object);
                     [myarray2 addObject:object];
                 }
+                 NSLog(@"COUNTD %d",queryobjs.count);
+                if(queryobjs.count>0){
+                   // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in queryobjs) {
+                        NSString *public = [object objectForKey:@"public"];
+                        NSLog(@"PUB %@",public);
+                        if([public isEqualToString:@"yes"]){
+                            NSLog(@"THEFUCK");
+                            [queryarray addObject:object];
+                        }
+                    }
+                    
+                }
+                for (PFObject *object in queryarray) {
+                    PFUser *user = [object objectForKey:@"CreatedBy"];
+                    [myarray2 addObject:user];
+                }
                 [query whereKey:@"CreatedBy" containedIn:myarray2];
+                [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
             }
             
+        }else{
+            [query whereKey:@"public" equalTo:@"yes"];
+            [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
         }
         
         
