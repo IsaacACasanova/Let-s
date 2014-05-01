@@ -40,7 +40,7 @@
     NSString *currentUsername = current.username;
     //test if profile is current user to hide follow button
     if([username isEqualToString: currentUsername]){
-        self.followButton.title = @"Logout";
+        self.followButton.title = @"Sign Out";
        // self.followButton.enabled=NO;
        // self.navigationItem.rightBarButtonItem = nil;
     }else{
@@ -278,6 +278,11 @@
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
+        PFUser *user = [PFUser currentUser];
+        NSString *usern = [user objectForKey:@"username"];
+        if(![usern isEqualToString:_username]){
+            newsfeed.navigationItem.rightBarButtonItem = NULL;
+        }
         
     }else if([[segue identifier] isEqualToString:@"Attend"]){
         PFQuery *user = [PFQuery queryWithClassName:@"_User"];
@@ -285,6 +290,12 @@
         PFObject *person = user.getFirstObject;
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.person = person;
+        
+        PFUser *curuser = [PFUser currentUser];
+        
+        if(curuser.objectId != person.objectId){
+            newsfeed.navigationItem.rightBarButtonItem = NULL;
+        }
         
         
     }
