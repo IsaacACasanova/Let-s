@@ -58,6 +58,7 @@
     if(follower==1){
         [query whereKey:@"Follower" matchesKey:@"username" inQuery:query2];
         [userQuery whereKey:@"username" matchesKey:@"Following" inQuery:query];
+        
     }
     else if(follower==2){
         [query whereKey:@"Following" matchesKey:@"username" inQuery:query2];

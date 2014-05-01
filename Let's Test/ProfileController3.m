@@ -36,12 +36,10 @@
 
 - (void)grabOtherUserInfo:(NSString *)username{
     //test if current user follows displayed user
-    NSLog(@"grabbingOther: %@",username);
     PFUser *current = [PFUser currentUser];
     NSString *currentUsername = current.username;
-    NSLog(@"grabbingOther current: %@",currentUsername);
     //test if profile is current user to hide follow button
-    if(username == currentUsername){
+    if([username isEqualToString: currentUsername]){
         self.followButton.enabled=NO;
         self.navigationItem.rightBarButtonItem = nil;
     }else{
@@ -58,12 +56,6 @@
         }
     }
     
-    //if(username == [[PFUser currentUser]username]){
-    //    self.editButton.hidden=NO;
-    //}
-    //else{
-    //    self.editButton.hidden=YES;
-    //}
     PFQuery *query = [PFUser query];
     
     [query whereKey:@"username" containsString:username];
@@ -127,9 +119,7 @@
     [amIFollowingQuery whereKey:@"Following" matchesKey:@"username" inQuery:themQuery];
     
     
-//    if(amIFollowingQuery.countObjects>0){
-//        self.followButton.title = @"Unfollow";
-//    }
+
     
     _username = username;
 }
@@ -160,7 +150,7 @@
     self.friendButton.titleLabel.textColor = mainColor;
     
     self.usernameLabel.font =  [UIFont fontWithName:fontName size:14.0f];
-    self.usernameLabel.text = @"username";
+    //self.usernameLabel.text = @"username";
     
     
     UIFont* countLabelFont = [UIFont fontWithName:boldItalicFontName size:20.0f];
@@ -179,19 +169,6 @@
     self.attendingCountLabel.textColor =  countColor;
     self.attendingCountLabel.font =  countLabelFont;
     
-    UIFont* socialFont = [UIFont fontWithName:boldItalicFontName size:10.0f];
-    
-    self.followerLabel.textColor =  mainColor;
-    self.followerLabel.font =  socialFont;
-    self.followerLabel.text = @"EVENTS";
-    
-    self.followingLabel.textColor =  mainColor;
-    self.followingLabel.font =  socialFont;
-    self.followingLabel.text = @"ATTENDING";
-    
-    self.updateLabel.textColor =  mainColor;
-    self.updateLabel.font =  socialFont;
-    self.updateLabel.text = @"MAYBE";
     
     
     self.bioLabel.textColor =  mainColor;
@@ -218,14 +195,6 @@
     self.friendContainer.clipsToBounds = YES;
     self.friendContainer.layer.cornerRadius = 5.0f;
     
-    [self styleFriendProfileImage:self.friendImageView1 withImageNamed:@"profile-1.jpg" andColor:imageBorderColor];
-    [self styleFriendProfileImage:self.friendImageView2 withImageNamed:@"profile-2.jpg" andColor:imageBorderColor];
-    [self styleFriendProfileImage:self.friendImageView3 withImageNamed:@"profile-3.jpg" andColor:imageBorderColor];
-    
-    //    [self addDividerToView:self.scrollView atLocation:230];
-    //    [self addDividerToView:self.scrollView atLocation:300];
-    //    [self addDividerToView:self.scrollView atLocation:370];
-    
     self.scrollView.contentSize = CGSizeMake(320, 590);
     self.scrollView.backgroundColor = [UIColor whiteColor];
 }
@@ -240,30 +209,7 @@
     imageView.layer.cornerRadius = 35.0f;
 }
 
-/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
- if([[segue identifier] isEqualToString:@"ShowFriends"]){
- ProfileController3 *ProfileController = [segue destinationViewController];
- 
- PFQuery *friendsQuery = [PFQuery queryWithClassName:@"Follow"];
- [friendsQuery whereKey:@"Following" equalTo:[PFUser currentUser]];
- [friendsQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
- PFObject *firstFollow = [friendsQuery findObjects].firstObject;
- PFQuery *query = [PFUser query];
- 
- [query whereKey:@"objectId" containsString:firstFollow[@"Following"]];
- [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error){
- PFUser *firstFriend = [query findObjects].firstObject;
- 
- 
- }];
- 
- 
- }];
- 
- 
- 
- }
- }*/
+
 
 
 - (IBAction)followAction:(id)sender {
@@ -289,9 +235,6 @@
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:followerUsername];
         [iAmFollowingQuery whereKey:@"Following" equalTo:self.username];
-      //  NSString *followingUsername = self.usernameLabel.text;
-        //PFQuery *themQuery = [PFUser query];
-      //  [themQuery whereKey:@"username" equalTo:followingUsername];
         PFObject *x = iAmFollowingQuery.getFirstObject;
         if(x!=NULL){
             [x deleteInBackground];
@@ -321,16 +264,13 @@
         
         
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
-        NSLog(@"ASSSSS");
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
-        NSLog(@"HEYYYYYYY: %@",_username);
         
     }else if([[segue identifier] isEqualToString:@"Attend"]){
         PFQuery *user = [PFQuery queryWithClassName:@"_User"];
         [user whereKey:@"username" equalTo:self.username];
         PFObject *person = user.getFirstObject;
-        NSLog(@"YOOOOO %@",person);
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.person = person;
         
@@ -355,7 +295,6 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     PFUser *currentUser = [PFUser currentUser];
-    
 }
 
 - (IBAction)unwindToProfile:(UIStoryboardSegue *)unwindSegue
