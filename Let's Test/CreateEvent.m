@@ -9,6 +9,7 @@
 #import "CreateEvent.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AddressBook/AddressBook.h>
+#import "EventViewController.h"
 
 @interface CreateEvent ()
 
@@ -23,7 +24,7 @@
 
 
 @implementation CreateEvent
-@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata,dettext,swicher;
+@synthesize puborpri,ampm,month,day,year,hour,min,monthdata,daydata,yeardata,hourdata,mindata,ampmdata,dettext,swicher,eventtxt,nametxt;
 
 
 
@@ -41,10 +42,31 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.maxeventAndname = 30;
+    self.maxdetail = 200;
+    self.shouldseg =0;
+    
+    eventLength.text = [NSString stringWithFormat:@"%d",self.maxeventAndname];
+    
+    locLength.text = [NSString stringWithFormat:@"%d",self.maxeventAndname];
+    
+    detLength.text = [NSString stringWithFormat:@"%d",self.maxdetail];
+    
+    
     [self.dettext.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.25] CGColor]];
     [self.dettext.layer setBorderWidth:1.0];
     self.dettext.layer.cornerRadius = 5;
     self.dettext.clipsToBounds = YES;
+    
+    [self.eventtxt.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.25] CGColor]];
+    [self.eventtxt.layer setBorderWidth:1.0];
+    self.eventtxt.layer.cornerRadius = 5;
+    self.eventtxt.clipsToBounds = YES;
+    
+    [self.nametxt.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.25] CGColor]];
+    [self.nametxt.layer setBorderWidth:1.0];
+    self.nametxt.layer.cornerRadius = 5;
+    self.nametxt.clipsToBounds = YES;
     
     
     self.scroller.scrollEnabled = YES;
@@ -145,8 +167,46 @@
                     }];
         
         eventtxt.text = [self.event objectForKey:@"EventName"];
+        
+        int x = self.maxeventAndname-eventtxt.text.length;
+        if(x<=30&&x>20){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor blackColor];
+        }else if(x>10&&x<21){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor orangeColor];
+        }else if(x>=0){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor redColor];
+        }
+        
         dettext.text = [self.event objectForKey:@"Details"];
+        
+        int xd = self.maxdetail-detLength.text.length;
+        if(xd<=200&&xd>20){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor blackColor];
+        }else if(xd>10&&xd<21){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor orangeColor];
+        }else if(xd>=0){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor redColor];
+        }
+        
+        
         nametxt.text = [self.event objectForKey:@"LocationName"];
+        int xn = self.maxeventAndname-nametxt.text.length;
+        if(xn<=30&&xn>20){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor blackColor];
+        }else if(xn>10&&xn<21){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor orangeColor];
+        }else if(xn>=0){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor redColor];
+        }
         
         if([[self.event objectForKey:@"public"] isEqual:(@"yes")]){
             puborpri.text = @"Public";
@@ -225,6 +285,65 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)textViewDidChange:(UITextView *)textView{
+    if(textView.tag == 1){
+        int x = self.maxeventAndname-textView.text.length;
+        if(x<=30&&x>20){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor blackColor];
+        }else if(x>10&&x<21){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor orangeColor];
+        }else if(x>=0){
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor redColor];
+        }else{
+            eventLength.text = [NSString stringWithFormat:@"%d",x];
+            eventLength.textColor = [UIColor redColor];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Event Name cannot be longer than 30 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    if(textView.tag == 2){
+        int x = self.maxdetail-textView.text.length;
+        if(x<=200&&x>20){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor blackColor];
+        }else if(x>10&&x<21){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor orangeColor];
+        }else if(x>=0){
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor redColor];
+        }else{
+            detLength.text = [NSString stringWithFormat:@"%d",x];
+            detLength.textColor = [UIColor redColor];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Detials cannot be longer than 200 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+
+    }
+    if(textView.tag == 3){
+        int x = self.maxeventAndname-textView.text.length;
+        if(x<=30&&x>20){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor blackColor];
+        }else if(x>10&&x<21){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor orangeColor];
+        }else if(x>=0){
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor redColor];
+        }else{
+            locLength.text = [NSString stringWithFormat:@"%d",x];
+            locLength.textColor = [UIColor redColor];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Location Name cannot be longer than 30 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 //                          PICKERVIEW CONSTRUCTION
@@ -357,6 +476,18 @@
     [nametxt resignFirstResponder];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if(textView.tag==1||textView.tag==3){
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    }
+    
+    return YES;
+}
+
 //                                  DATABASE PREP
 - (IBAction)CreateEvent:(id)sender {
     if(_monthlabel==NULL){
@@ -377,12 +508,33 @@
     if(_ampmlabel==NULL){
         _ampmlabel = ampmdata[0];
     }
-    NSString *x;
-    //    if(streettxt.text!=NULL && citytxt.text!=NULL && statetxt.text!=NULL && ziptxt.text!=NULL){
-    x = [NSString localizedStringWithFormat:@"%@ %@ %@ %@",streettxt.text,citytxt.text,statetxt.text,ziptxt.text];
-    //    }else{
+    if(eventtxt.text.length>self.maxeventAndname){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Event Name cannot be longer than 30 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+        
+    }
+    if(nametxt.text.length>self.maxeventAndname){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Location Name cannot be longer than 30 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    if(dettext.text.length>self.maxdetail){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Details cannot be longer than 200 charactors" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     
-    //    }
+    NSString *x;
+    if(streettxt.text.length!=0&&citytxt.text.length!=0&&statetxt.text.length!=0&&ziptxt.text.length!=0){
+    x = [NSString localizedStringWithFormat:@"%@ %@ %@ %@",streettxt.text,citytxt.text,statetxt.text,ziptxt.text];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Something is wrong with your address, please check if all entries are filled" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        x = NULL;
+    }
+
+    
     _loglatlabel = [[NSString alloc] init];
     _date = [NSString localizedStringWithFormat:@"%@/%@/%@ at %@:%@ %@",
              _monthlabel,_daylabel,_yearlabel,_hourlabel,_minlabel,_ampmlabel];
@@ -416,7 +568,8 @@
     [coder reverseGeocodeLocation:loc
                 completionHandler: ^(NSArray *placemarks, NSError *error){
                     if (error){
-                        //  self.loglatlabel.text = @"error";
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Something is wrong with your address, please check if everything is correct" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
                         return;
                     }
                     
@@ -429,11 +582,13 @@
                         NSString *zip = [dic objectForKey:(NSString *) kABPersonAddressZIPKey];
                         
                         _cleanaddress = [NSString localizedStringWithFormat:@"%@ %@, %@ %@",address,city,state, zip];
+                        [self performSegueWithIdentifier:@"create" sender:self];
                         [self sendtodatabase];
                     }
                 }];
     
 }
+
 
 -(void)sendtodatabase{
     NSLog(@"WHATT");
@@ -513,6 +668,10 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+    
 }
+
+// segue
+
 
 @end

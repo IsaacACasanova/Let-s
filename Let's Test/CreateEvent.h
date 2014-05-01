@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface CreateEvent : UIViewController<UITextFieldDelegate>{
-    IBOutlet UITextField *eventtxt;
+@interface CreateEvent : UIViewController <UITextFieldDelegate,UITextViewDelegate>{
+    
+    IBOutlet UITextView *eventtxt;
     IBOutlet UITextView *dettext;
-    IBOutlet UITextField *nametxt;
+    IBOutlet UITextView *nametxt;
     IBOutlet UITextField *streettxt;
     IBOutlet UITextField *citytxt;
     IBOutlet UITextField *statetxt;
@@ -29,14 +30,22 @@
     NSMutableArray *hourdata;
     NSMutableArray *mindata;
     NSMutableArray *ampmdata;
-    
+    IBOutlet UILabel *eventLength;
+    IBOutlet UILabel *locLength;
+    IBOutlet UILabel *detLength;
 }
+
+@property int maxeventAndname,maxdetail,shouldseg;
 
 @property (strong, nonatomic) IBOutlet UIButton *CreateButton;
 
 @property (strong, nonatomic) IBOutlet UISwitch *swicher;
 
 @property (strong, nonatomic) IBOutlet UITextView *dettext;
+
+@property (strong, nonatomic) IBOutlet UITextView *eventtxt;
+@property (strong, nonatomic) IBOutlet UITextView *nametxt;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *puborpri;
 @property (strong, nonatomic) IBOutlet UIScrollView *scroller;
