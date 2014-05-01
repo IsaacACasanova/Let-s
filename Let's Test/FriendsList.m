@@ -52,6 +52,7 @@
     //    NSString *username = current[@"username"];
     PFQuery *query = [PFQuery queryWithClassName:@"Follow"];
     PFQuery *query2 = [PFUser query];
+    NSLog(@"Looking at:%@",self.username);
     [query2 whereKey:@"username" equalTo:self.username];
     PFQuery *userQuery = [PFUser query];
     if(follower==1){
@@ -145,7 +146,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         NSString *username = object[@"username"];
-        NSLog(@"%@",username);
+        NSLog(@"Showing friend: %@",username);
         [vc grabOtherUserInfo:username];
         
     }
