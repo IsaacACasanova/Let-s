@@ -40,8 +40,9 @@
     NSString *currentUsername = current.username;
     //test if profile is current user to hide follow button
     if([username isEqualToString: currentUsername]){
-        self.followButton.enabled=NO;
-        self.navigationItem.rightBarButtonItem = nil;
+        self.followButton.title = @"Logout";
+       // self.followButton.enabled=NO;
+       // self.navigationItem.rightBarButtonItem = nil;
     }else{
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:currentUsername];
@@ -230,7 +231,7 @@
             }
         }];
         self.followButton.title = @"Unfollow";
-    }else{
+    }else if([self.followButton.title isEqual:@"Unfollow"]){
         PFUser *current = [PFUser currentUser];
         NSString *followerUsername = current[@"username"];
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
@@ -241,6 +242,9 @@
             [x deleteInBackground];
         }
         self.followButton.title = @"Follow";
+    }else{
+        [PFUser logOut];
+        [self performSegueWithIdentifier:@"logout" sender:sender];
     }
     
     

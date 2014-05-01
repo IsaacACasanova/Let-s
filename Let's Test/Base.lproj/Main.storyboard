@@ -887,7 +887,7 @@
                         <outlet property="nameLabel" destination="pI5-fB-1Pv" id="h9e-NR-SI3"/>
                         <outlet property="profileImageView" destination="9nq-cA-aeE" id="ROh-NX-0WR"/>
                         <outlet property="usernameLabel" destination="7NO-rY-upr" id="M5J-qS-Fy5"/>
-                        <segue destination="p1H-RM-vmO" kind="push" identifier="logOut" id="08c-CH-pMZ"/>
+                        <segue destination="p1H-RM-vmO" kind="push" identifier="logout" id="AmC-gt-K7V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfH-a3-LeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1386,10 +1386,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="XTV-gf-v4l"/>
         <segue reference="y1x-8g-Jcx"/>
         <segue reference="ezy-lg-dHa"/>
-        <segue reference="08c-CH-pMZ"/>
         <segue reference="rph-1h-Ach"/>
-        <segue reference="XTV-gf-v4l"/>
+        <segue reference="AmC-gt-K7V"/>
     </inferredMetricsTieBreakers>
 </document>
