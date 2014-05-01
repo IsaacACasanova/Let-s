@@ -167,18 +167,9 @@
     //self.eventCountLabel.font =  countLabelFont;
     
     self.attendingCountLabel.textColor =  countColor;
-    self.attendingCountLabel.font =  countLabelFont;
+    //self.attendingCountLabel.font =  countLabelFont;
     
     UIFont* socialFont = [UIFont fontWithName:fontName size:10.0f];
-    
-    self.followerLabel.textColor =  mainColor;
-    self.followerLabel.font =  socialFont;
-    self.followerLabel.text = @"EVENTS";
-    
-    self.followingLabel.textColor =  mainColor;
-    self.followingLabel.font =  socialFont;
-    self.followingLabel.text = @"ATTENDING";
-    
     
     
     self.bioLabel.textColor =  mainColor;
@@ -222,6 +213,9 @@
     imageView.layer.borderColor = color.CGColor;
     imageView.layer.cornerRadius = 35.0f;
 }
+
+
+
 
 - (IBAction)followAction:(id)sender {
     PFUser *current = [PFUser currentUser];
