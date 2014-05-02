@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) IBOutlet UITextView *textField;
 @property (strong,nonatomic) PFObject *object;
+@property (strong, nonatomic) UIImageView *imageView;
 
 -(void) registerforKeyboardNotifications;
 -(void) freeKeyboardNotifications;
