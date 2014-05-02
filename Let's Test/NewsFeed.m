@@ -56,6 +56,9 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
+//             [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+//             [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+//             [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
@@ -64,12 +67,21 @@
         
         if(self.state==0)/*all*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+            [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }else if(self.state==1)/*public*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
             [query whereKey:@"public" equalTo:@"yes"];
+            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }else/*private*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
             [query whereKey:@"public" equalTo:@"no"];
+            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
         }
     }else if(self.person!=NULL){
         _Proback.title = @"Back";
@@ -92,6 +104,9 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
+//            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+//            [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+//            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
@@ -103,12 +118,21 @@
             }
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" containedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" containedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" containedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
         }
         
@@ -198,12 +222,21 @@
             
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -218,12 +251,21 @@
             
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -241,15 +283,23 @@
                 [myarray addObject:event.objectId];
             }
             
-            
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
         }
