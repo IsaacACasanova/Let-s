@@ -103,6 +103,7 @@
 		1CF966CF190C189C0044E570 /* AttendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF966CE190C189C0044E570 /* AttendingController.m */; };
 		1CF966D8190C205B0044E570 /* AttendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF966D7190C205B0044E570 /* AttendingCell.m */; };
 		ED09E50218F59C21000BFCBB /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */; };
+		ED23536519133ADC006B5B10 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = ED23536419133ADC006B5B10 /* default_avatar.png */; };
 		ED520FDF190C5B4900A641E2 /* deselectedlets.png in Resources */ = {isa = PBXBuildFile; fileRef = ED520FC5190C5B4900A641E2 /* deselectedlets.png */; };
 		ED520FE0190C5B4900A641E2 /* deselectedpass.png in Resources */ = {isa = PBXBuildFile; fileRef = ED520FC6190C5B4900A641E2 /* deselectedpass.png */; };
 		ED520FE1190C5B4900A641E2 /* selectedlets.png in Resources */ = {isa = PBXBuildFile; fileRef = ED520FC7190C5B4900A641E2 /* selectedlets.png */; };
@@ -267,6 +268,7 @@
 		1CF966D7190C205B0044E570 /* AttendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendingCell.m; sourceTree = "<group>"; };
 		ED09E50018F59C21000BFCBB /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
 		ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		ED23536419133ADC006B5B10 /* default_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_avatar.png; path = ../default_avatar.png; sourceTree = "<group>"; };
 		ED520FC5190C5B4900A641E2 /* deselectedlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectedlets.png; sourceTree = "<group>"; };
 		ED520FC6190C5B4900A641E2 /* deselectedpass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deselectedpass.png; sourceTree = "<group>"; };
 		ED520FC7190C5B4900A641E2 /* selectedlets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectedlets.png; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 		1295076E18B1507600B0AB7B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED23536419133ADC006B5B10 /* default_avatar.png */,
 				1247A66118B6D5C400A7547E /* jack.jpg */,
 				1295076F18B1507600B0AB7B /* account.png */,
 				1295077018B1507600B0AB7B /* account@2x.png */,
@@ -777,6 +780,7 @@
 				1245ACC1190B4A4400AB4236 /* comments.png in Resources */,
 				129507A018B1507600B0AB7B /* heart.png in Resources */,
 				1295079D18B1507600B0AB7B /* envelope@2x.png in Resources */,
+				ED23536519133ADC006B5B10 /* default_avatar.png in Resources */,
 				1295079B18B1507600B0AB7B /* compose@2x.png in Resources */,
 				1295079918B1507600B0AB7B /* comment@2x.png in Resources */,
 				1236A4721913265A00645BE2 /* letsgif.gif in Resources */,

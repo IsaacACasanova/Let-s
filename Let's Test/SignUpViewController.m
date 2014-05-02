@@ -47,6 +47,7 @@
     /* Styling the profile Picture imageView */
     
     UIColor* mainColor = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:1.0f];
+    self.profilePicture.image = [UIImage imageNamed:@"default_avatar.png"];
     self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
     self.profilePicture.clipsToBounds = YES;
     self.profilePicture.layer.cornerRadius = 21.0f;
@@ -74,7 +75,11 @@
     [self checkFieldsComplete];
     [self uploadImage:self];
     
+}
 
+- (IBAction)skipAction:(id)sender
+{
+    self.profilePicture.image = [UIImage imageNamed:@"default_avatar.png"];
 }
 
 -(void) checkFieldsComplete {
