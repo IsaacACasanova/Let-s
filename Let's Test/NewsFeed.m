@@ -145,7 +145,6 @@
             NSArray *follower1 =jibs.findObjects;
             
             if(follower1.count>0){
-                NSMutableArray *myarray2 = [[NSMutableArray alloc] init];
                  NSMutableArray *queryarray = [[NSMutableArray alloc] init];
                 for (PFObject *object in follower1) {
                      NSLog(@"Fuck %@",object);
@@ -185,7 +184,18 @@
             [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
         }
         
-        
+        if(objects.count==0&&objects2.count==0){
+            if(self.state==0)/*all*/{
+                
+            }else if(self.state==1)/*public*/{
+                
+                [query whereKey:@"public" equalTo:@"yes"];
+            }else/*private*/{
+                
+                [query whereKey:@"public" equalTo:@"no"];
+            }
+ 
+        }
         
         
         if(objects.count>0&&objects2.count==0){

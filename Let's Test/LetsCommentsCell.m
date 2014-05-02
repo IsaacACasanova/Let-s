@@ -42,6 +42,7 @@
     self.comment.textColor = commentColor;
     self.comment.font = [UIFont fontWithName:fontName size:14.0f];
     
+    self.thumbNailImage.contentMode = UIViewContentModeScaleAspectFill;
     self.thumbNailImage.clipsToBounds = YES;
     self.thumbNailImage.layer.cornerRadius = 25.0f;
     self.thumbNailImage.layer.borderWidth = 2.0f;
