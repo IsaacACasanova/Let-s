@@ -136,7 +136,7 @@
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in userobj) {
                 NSString *follower = [object objectForKey:@"Following"];
-               // NSLog(@"ARRAY %@",event);
+                NSLog(@"USERARRAY %@",follower);
                 [myarray addObject:follower];
             }
             
@@ -149,7 +149,18 @@
                  NSMutableArray *queryarray = [[NSMutableArray alloc] init];
                 for (PFObject *object in follower1) {
                      NSLog(@"Fuck %@",object);
-                    [myarray2 addObject:object];
+                    
+                    PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                    [eventq whereKey:@"CreatedBy" equalTo:object];
+                    NSArray *objectev = eventq.findObjects;
+                    
+                    if(objectev.count>0){
+                        for(PFObject *object in objectev){
+                            [queryarray addObject:object.objectId];
+                        }
+                    }
+                    
+                    
                 }
                  NSLog(@"COUNTD %d",queryobjs.count);
                 if(queryobjs.count>0){
@@ -159,16 +170,13 @@
                         NSLog(@"PUB %@",public);
                         if([public isEqualToString:@"yes"]){
                             NSLog(@"THEFUCK");
-                            [queryarray addObject:object];
+                            [queryarray addObject:object.objectId];
                         }
                     }
                     
                 }
-                for (PFObject *object in queryarray) {
-                    PFUser *user = [object objectForKey:@"CreatedBy"];
-                    [myarray2 addObject:user];
-                }
-                [query whereKey:@"CreatedBy" containedIn:myarray2];
+
+                [query whereKey:@"objectId" containedIn:queryarray];
                 [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
             }
             
