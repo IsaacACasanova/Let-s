@@ -40,8 +40,9 @@
     NSString *currentUsername = current.username;
     //test if profile is current user to hide follow button
     if([username isEqualToString: currentUsername]){
-        self.followButton.enabled=NO;
-        self.navigationItem.rightBarButtonItem = nil;
+        self.followButton.title = @"Sign Out";
+       // self.followButton.enabled=NO;
+       // self.navigationItem.rightBarButtonItem = nil;
     }else{
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:currentUsername];
@@ -231,7 +232,7 @@
             }
         }];
         self.followButton.title = @"Unfollow";
-    }else{
+    }else if([self.followButton.title isEqual:@"Unfollow"]){
         PFUser *current = [PFUser currentUser];
         NSString *followerUsername = current[@"username"];
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
@@ -242,6 +243,9 @@
             [x deleteInBackground];
         }
         self.followButton.title = @"Follow";
+    }else{
+        [PFUser logOut];
+        [self performSegueWithIdentifier:@"logout" sender:sender];
     }
     
     
@@ -255,6 +259,7 @@
         FL.follower=2;
         FL.username = self.username;
         FL.FollowerTitleNavItem.title=@"Followers";
+        FL.navigationItem.rightBarButtonItem = NULL;
         
     }
     else if([[segue identifier] isEqualToString:@"ShowFollowing"]){
@@ -263,11 +268,22 @@
         FL.follower=1;
         FL.username = self.username;
         FL.FollowerTitleNavItem.title=@"Following";
+        PFUser *user = [PFUser currentUser];
+        NSString *usern = [user objectForKey:@"username"];
+        if(self.username!=usern){
+            FL.navigationItem.rightBarButtonItem = NULL;
+        }
+        
         
         
     }else if([[segue identifier] isEqualToString:@"MyEvents"]){
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.userinfo = _username;
+        PFUser *user = [PFUser currentUser];
+        NSString *usern = [user objectForKey:@"username"];
+        if(![usern isEqualToString:_username]){
+            newsfeed.navigationItem.rightBarButtonItem = NULL;
+        }
         
     }else if([[segue identifier] isEqualToString:@"Attend"]){
         PFQuery *user = [PFQuery queryWithClassName:@"_User"];
@@ -275,6 +291,12 @@
         PFObject *person = user.getFirstObject;
         NewsFeed *newsfeed = [segue destinationViewController];
         newsfeed.person = person;
+        
+        PFUser *curuser = [PFUser currentUser];
+        
+        if(curuser.objectId != person.objectId){
+            newsfeed.navigationItem.rightBarButtonItem = NULL;
+        }
         
         
     }

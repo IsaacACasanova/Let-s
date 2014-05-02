@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "OLImageView.h"
 
 @interface InitialViewController : UIViewController
+@property (strong, nonatomic) IBOutlet OLImageView *gif;
 
 @end

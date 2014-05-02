@@ -8,12 +8,16 @@
 
 #import "InitialViewController.h"
 #import <Parse/Parse.h>
+#import "OLImageView.h"
+#import "OLImage.h"
 
 @interface InitialViewController ()
 
 @end
 
 @implementation InitialViewController
+
+@synthesize gif;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +32,19 @@
 {
     
        self.navigationController.navigationBar.hidden = YES;
+    
+    
+    OLImageView *view = [[OLImageView alloc] initWithImage:[OLImage imageNamed:@"letsgif.gif"]];
+    
+    
+    [gif addSubview:view];
+    
+    
+    
     [super viewDidLoad];
+    
+    
+    
     
    
     

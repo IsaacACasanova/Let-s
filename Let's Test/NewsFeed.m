@@ -17,6 +17,7 @@
 @end
 
 @implementation NewsFeed
+@synthesize all,pub,pri;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -32,46 +33,230 @@
 
 - (PFQuery *)queryForTable {
     
+    
+
+    
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
     if (self.userinfo!=NULL) {
         _Proback.title = @"Back";
         PFQuery *person = [PFQuery queryWithClassName:@"_User"];
         [person whereKey:@"username" equalTo:_userinfo];
-        NSObject *o = person.getFirstObject;
-        NSLog(@"check: %@",o);
-        [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+        //need to know if i follow
+        PFUser *curuser = [PFUser currentUser];
+        NSString *cp = [curuser objectForKey:@"username"];
+        
+        
+        PFQuery *amIFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
+        
+        [amIFollowingQuery whereKey:@"Follower" equalTo:cp];
+        [amIFollowingQuery whereKey:@"Following" equalTo:_userinfo];
+        PFObject *yes = amIFollowingQuery.getFirstObject;
+        if(yes==NULL&& ![cp isEqualToString: _userinfo]){
+            self.state=1;
+            self.all.enabled = NO;
+            self.pri.enabled = NO;
+            self.pub.enabled = NO;
+        }
+        
+        
+        
+        
+        
+        if(self.state==0)/*all*/{
+            [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+        }else if(self.state==1)/*public*/{
+            [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+            [query whereKey:@"public" equalTo:@"yes"];
+        }else/*private*/{
+            [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+            [query whereKey:@"public" equalTo:@"no"];
+        }
     }else if(self.person!=NULL){
         _Proback.title = @"Back";
         PFQuery *events = [PFQuery queryWithClassName:@"Attending"];
         [events whereKey:@"Attendee" equalTo:self.person];
         NSArray *eventarray = events.findObjects;
+        //need to know if I follow
+        
+        PFUser *curuser = [PFUser currentUser];
+        NSString *cp = [curuser objectForKey:@"username"];
+        
+        PFQuery *amIFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
+        NSString *p = [self.person objectForKey:@"username"];
+        NSLog(@"CHECKing: %@",p);
+        [amIFollowingQuery whereKey:@"Follower" equalTo:cp];
+        [amIFollowingQuery whereKey:@"Following" equalTo:p];
+        PFObject *yes = amIFollowingQuery.getFirstObject;
+        if(yes==NULL&&![cp isEqualToString: p]){
+            self.state=1;
+            self.all.enabled = NO;
+            self.pri.enabled = NO;
+            self.pub.enabled = NO;
+        }
+        
+        
         if(eventarray.count>0){
         NSMutableArray *myarray = [[NSMutableArray alloc] init];
         for(PFObject *object in eventarray){
             PFObject *event = [object objectForKey:@"Event"];
             [myarray addObject:event.objectId];
         }
-        
-     //   NSLog(@"ARRAY %@",myarray);
-        [query whereKey:@"objectId" containedIn:myarray];
+            if(self.state==0)/*all*/{
+                [query whereKey:@"objectId" containedIn:myarray];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"objectId" containedIn:myarray];
+                [query whereKey:@"public" equalTo:@"yes"];
+            }else/*private*/{
+                [query whereKey:@"objectId" containedIn:myarray];
+                [query whereKey:@"public" equalTo:@"no"];
+            }
         }
         
     }else{
         PFUser *user = [PFUser currentUser];
         PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
         [findifIntable whereKey:@"Attendee" equalTo:user];
+        PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Attending"];
+        [findifIntable whereKey:@"Attendee" equalTo:user];
+        [findifIntable2 whereKey:@"Attendee" equalTo:user];
         NSArray *objects = findifIntable.findObjects;
-        if(objects.count>0){
+        NSArray *objects2 = findifIntable2.findObjects;
+        //need to know I am following
+        
+        PFUser *curuser = [PFUser currentUser];
+        NSString *username = [curuser objectForKey:@"username"];
+        PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
+        [iAmFollowingQuery whereKey:@"Follower" equalTo:username];
+        NSArray *userobj = iAmFollowingQuery.findObjects;
+        
+        if(userobj.count>0){
+            NSArray *queryobjs = query.findObjects;
+            NSLog(@"COUNTQ %d",queryobjs.count);
+            
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for (PFObject *object in userobj) {
+                NSString *follower = [object objectForKey:@"Following"];
+                NSLog(@"USERARRAY %@",follower);
+                [myarray addObject:follower];
+            }
+            
+            PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
+            [jibs whereKey:@"username" containedIn:myarray];
+            NSArray *follower1 =jibs.findObjects;
+            
+            if(follower1.count>0){
+                NSMutableArray *myarray2 = [[NSMutableArray alloc] init];
+                 NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                for (PFObject *object in follower1) {
+                     NSLog(@"Fuck %@",object);
+                    
+                    PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                    [eventq whereKey:@"CreatedBy" equalTo:object];
+                    NSArray *objectev = eventq.findObjects;
+                    
+                    if(objectev.count>0){
+                        for(PFObject *object in objectev){
+                            [queryarray addObject:object.objectId];
+                        }
+                    }
+                    
+                    
+                }
+                 NSLog(@"COUNTD %d",queryobjs.count);
+                if(queryobjs.count>0){
+                   // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in queryobjs) {
+                        NSString *public = [object objectForKey:@"public"];
+                        NSLog(@"PUB %@",public);
+                        if([public isEqualToString:@"yes"]){
+                            NSLog(@"THEFUCK");
+                            [queryarray addObject:object.objectId];
+                        }
+                    }
+                    
+                }
+
+                [query whereKey:@"objectId" containedIn:queryarray];
+                [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
+            }
+            
+        }else{
+            [query whereKey:@"public" equalTo:@"yes"];
+            [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
+        }
+        
+        
+        
+        
+        if(objects.count>0&&objects2.count==0){
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 PFObject *event = [object objectForKey:@"Event"];
                 NSLog(@"ARRAY %@",event);
                 [myarray addObject:event.objectId];
             }
-           // NSLog(@"ARRAY %@",myarray);
-            [query whereKey:@"objectId" notContainedIn:myarray];
+            
+            if(self.state==0)/*all*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"yes"];
+            }else/*private*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"no"];
+            }
+       
         }
+        
+        if(objects2.count>0&&objects.count==0){
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for (PFObject *object in objects2) {
+                PFObject *event = [object objectForKey:@"Event"];
+                NSLog(@"ARRAY %@",event);
+                [myarray addObject:event.objectId];
+            }
+            
+            if(self.state==0)/*all*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"yes"];
+            }else/*private*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"no"];
+            }
+            
+        }
+        
+        if(objects.count>0&&objects2.count>0){
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for (PFObject *object in objects) {
+                PFObject *event = [object objectForKey:@"Event"];
+                NSLog(@"ARRAY %@",event);
+                [myarray addObject:event.objectId];
+            }
+            for (PFObject *object in objects2) {
+                PFObject *event = [object objectForKey:@"Event"];
+                NSLog(@"ARRAY %@",event);
+                [myarray addObject:event.objectId];
+            }
+            
+            
+            if(self.state==0)/*all*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"yes"];
+            }else/*private*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"no"];
+            }
+            
+        }
+        
+        
     }
+    
     
     // If no objects are loaded in memory, we look to the cache
     // first to fill the table and then subsequently do a query
@@ -190,10 +375,30 @@
         
         
         
-    } if([[segue identifier] isEqualToString:@"Edit"]){
+    }else if([[segue identifier] isEqualToString:@"Edit"]){
         CreateEvent *vc =  [segue destinationViewController];
         vc.event = self.event;
+    }else if([[segue identifier] isEqualToString:@"All"]){
+        NewsFeed *vc =  [segue destinationViewController];
+        vc.event = self.event;
+        vc.userinfo = self.userinfo;
+        vc.person = self.person;
+        vc.state = 0;
+    }else if([[segue identifier] isEqualToString:@"Public"]){
+        NewsFeed *vc =  [segue destinationViewController];
+        vc.event = self.event;
+        vc.userinfo = self.userinfo;
+        vc.person = self.person;
+        vc.state = 1;
+    }else if([[segue identifier] isEqualToString:@"Private"]){
+        NewsFeed *vc =  [segue destinationViewController];
+        vc.event = self.event;
+        vc.userinfo = self.userinfo;
+        vc.person = self.person;
+        vc.state =2;
     }
+
+
 
 }
 - (IBAction)editPressed:(UIButton *)sender {
