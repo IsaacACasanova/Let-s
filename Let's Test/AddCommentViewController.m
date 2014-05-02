@@ -17,6 +17,8 @@
 
 @implementation AddCommentViewController
 @synthesize textField;
+@synthesize maxCommentLength;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,10 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imageView.layer.cornerRadius = 5.0f;
 	textField.delegate = self;
     textField.editable = YES;
-    self.imageView.layer.cornerRadius = 5.0f;
+    textField.text = @"Type Something...";
     [textField becomeFirstResponder];
+    commentLength.text = [NSString stringWithFormat:@"%lu",textField.text.length - 17];
+
     //[self registerforKeyboardNotifications];
     
 }
@@ -49,6 +55,43 @@
 {
     [super viewDidUnload];
     [self freeKeyboardNotifications];
+}
+
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+        NSString *subString = [NSString stringWithString:textField.text];
+        if(subString.length <= 140 && subString.length > 61)
+        {
+            commentLength.text = [NSString stringWithFormat:@"%lu",subString.length];
+            commentLength.textColor = [UIColor redColor];
+        }
+        else if(subString.length > 30 && subString.length <= 61){
+            commentLength.text = [NSString stringWithFormat:@"%lu",subString.length];
+            commentLength.textColor = [UIColor orangeColor];
+        }
+        else if(subString.length == 0 || subString.length <= 30){
+            commentLength.text = [NSString stringWithFormat:@"%lu",subString.length];
+            commentLength.textColor = [UIColor blackColor];
+        }
+        else{
+            commentLength.text = [NSString stringWithFormat:@"%lu", subString.length];
+            commentLength.textColor = [UIColor redColor];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"error" message:@"Event Name cannot be longer than 140 characters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if(textView.tag==1){
+        if([text isEqualToString:@"\n"]) {
+            [textView resignFirstResponder];
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -77,6 +120,24 @@
     if (textField.text.length>0){
     }
     return NO;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Type Something..."]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Type Something...";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
 }
 
 -(void) registerforKeyboardNotifications
