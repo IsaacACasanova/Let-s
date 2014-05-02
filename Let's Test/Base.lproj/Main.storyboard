@@ -265,7 +265,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="bYJ-XE-jRs" kind="push" identifier="All" id="Bjv-Fm-28R"/>
+                                        <action selector="allpressed:" destination="bYJ-XE-jRs" eventType="touchUpInside" id="X4o-Nw-Pm7"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="idx-oE-nYR">
@@ -276,7 +276,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="bYJ-XE-jRs" kind="push" identifier="Public" id="crF-gM-VIZ"/>
+                                        <action selector="publicpressed:" destination="bYJ-XE-jRs" eventType="touchUpInside" id="BAZ-45-T5v"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KSP-9g-LiK">
@@ -287,7 +287,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="bYJ-XE-jRs" kind="push" identifier="Private" id="8wu-sk-06P"/>
+                                        <action selector="privatepressed:" destination="bYJ-XE-jRs" eventType="touchUpInside" id="9CK-xe-eUV"/>
                                     </connections>
                                 </button>
                             </subviews>
