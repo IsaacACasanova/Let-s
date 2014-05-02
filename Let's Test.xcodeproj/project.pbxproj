@@ -10,6 +10,10 @@
 		04411D3B19119849002A3941 /* FindAFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411D3A19119849002A3941 /* FindAFriend.m */; };
 		04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AC1907F2FE00D056E6 /* FriendsList.m */; };
 		04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AE1907F2FE00D056E6 /* FriendsListCell.m */; };
+		1236A46F1913250A00645BE2 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1236A46C1913250A00645BE2 /* OLImage.m */; };
+		1236A4701913250A00645BE2 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1236A46E1913250A00645BE2 /* OLImageView.m */; };
+		1236A4721913265A00645BE2 /* letsgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1236A4711913265A00645BE2 /* letsgif.gif */; };
+		1236A474191326F000645BE2 /* letslogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1236A473191326EF00645BE2 /* letslogo.png */; };
 		1245ACC0190B4A4400AB4236 /* attending.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245ACBD190B4A4400AB4236 /* attending.png */; };
 		1245ACC1190B4A4400AB4236 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245ACBE190B4A4400AB4236 /* comments.png */; };
 		1245ACC2190B4A4400AB4236 /* eventphoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 1245ACBF190B4A4400AB4236 /* eventphoto.png */; };
@@ -143,6 +147,12 @@
 		04A690AC1907F2FE00D056E6 /* FriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
 		04A690AD1907F2FE00D056E6 /* FriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListCell.h; sourceTree = "<group>"; };
 		04A690AE1907F2FE00D056E6 /* FriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListCell.m; sourceTree = "<group>"; };
+		1236A46B1913250A00645BE2 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
+		1236A46C1913250A00645BE2 /* OLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImage.m; sourceTree = "<group>"; };
+		1236A46D1913250A00645BE2 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
+		1236A46E1913250A00645BE2 /* OLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImageView.m; sourceTree = "<group>"; };
+		1236A4711913265A00645BE2 /* letsgif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = letsgif.gif; path = ../letsgif.gif; sourceTree = "<group>"; };
+		1236A473191326EF00645BE2 /* letslogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = letslogo.png; sourceTree = "<group>"; };
 		1245ACBD190B4A4400AB4236 /* attending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attending.png; sourceTree = "<group>"; };
 		1245ACBE190B4A4400AB4236 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
 		1245ACBF190B4A4400AB4236 /* eventphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventphoto.png; sourceTree = "<group>"; };
@@ -323,6 +333,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1236A46A191324F200645BE2 /* OLImage Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1236A46B1913250A00645BE2 /* OLImage.h */,
+				1236A46C1913250A00645BE2 /* OLImage.m */,
+				1236A46D1913250A00645BE2 /* OLImageView.h */,
+				1236A46E1913250A00645BE2 /* OLImageView.m */,
+			);
+			name = "OLImage Framework";
+			sourceTree = "<group>";
+		};
 		1245ACB3190B49A500AB4236 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +421,7 @@
 		1295072218B1467300B0AB7B /* Let's Test */ = {
 			isa = PBXGroup;
 			children = (
+				1236A46A191324F200645BE2 /* OLImage Framework */,
 				1245ACB3190B49A500AB4236 /* UI Components */,
 				1295072B18B1467300B0AB7B /* AppDelegate.h */,
 				1295072C18B1467300B0AB7B /* AppDelegate.m */,
@@ -599,6 +621,8 @@
 		ED520FCD190C5B4900A641E2 /* Initial Screen */ = {
 			isa = PBXGroup;
 			children = (
+				1236A473191326EF00645BE2 /* letslogo.png */,
+				1236A4711913265A00645BE2 /* letsgif.gif */,
 				ED520FCE190C5B4900A641E2 /* initialbackground.png */,
 				ED520FCF190C5B4900A641E2 /* initialbackgroundtwo.png */,
 				ED520FD0190C5B4900A641E2 /* joinlets.png */,
@@ -755,10 +779,12 @@
 				1295079D18B1507600B0AB7B /* envelope@2x.png in Resources */,
 				1295079B18B1507600B0AB7B /* compose@2x.png in Resources */,
 				1295079918B1507600B0AB7B /* comment@2x.png in Resources */,
+				1236A4721913265A00645BE2 /* letsgif.gif in Resources */,
 				129507B118B1507600B0AB7B /* settings@2x.png in Resources */,
 				ED520FEF190C5B4900A641E2 /* camerabutton.png in Resources */,
 				129507A618B1507600B0AB7B /* mail@2x.png in Resources */,
 				ED520FE8190C5B4900A641E2 /* joinlets.png in Resources */,
+				1236A474191326F000645BE2 /* letslogo.png in Resources */,
 				129507B018B1507600B0AB7B /* settings.png in Resources */,
 				ED520FE2190C5B4900A641E2 /* selectedpass.png in Resources */,
 				129507AB18B1507600B0AB7B /* profile-3.jpg in Resources */,
@@ -801,6 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED70EF5418EC653C00C29850 /* LetsCommentsTableViewController.m in Sources */,
+				1236A4701913250A00645BE2 /* OLImageView.m in Sources */,
 				1247A66918B6DE2D00A7547E /* AddCommentViewController.m in Sources */,
 				ED09E50218F59C21000BFCBB /* CustomAnnotationView.m in Sources */,
 				1295076718B1479600B0AB7B /* FeedCell4.m in Sources */,
@@ -827,6 +854,7 @@
 				ED70EF5718EC656100C29850 /* LetsCommentsCell.m in Sources */,
 				1247A66018B6D2DE00A7547E /* ProfileController3.m in Sources */,
 				12AD929518E779B40030C547 /* LogInViewController.m in Sources */,
+				1236A46F1913250A00645BE2 /* OLImage.m in Sources */,
 				1247A66518B6DB6400A7547E /* MapViewController.m in Sources */,
 				1295076418B1479600B0AB7B /* FeedCell1.m in Sources */,
 				1295076518B1479600B0AB7B /* FeedCell2.m in Sources */,

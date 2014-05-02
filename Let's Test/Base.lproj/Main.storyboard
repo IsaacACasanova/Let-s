@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Map View Controller - Event Location-->
@@ -1006,9 +1006,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialbackgroundtwo.png" id="uo8-Fb-chG">
+                            <view contentMode="scaleToFill" id="uja-kq-2hg" customClass="OLImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="letslogo.png" id="Jqp-UC-5eo">
+                                <rect key="frame" x="64" y="158" width="191" height="165"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VOz-OK-T21">
                                 <rect key="frame" x="10" y="502" width="144" height="46"/>
@@ -1035,6 +1040,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Egr-Aw-AWh"/>
                     <connections>
+                        <outlet property="gif" destination="uja-kq-2hg" id="3wu-1u-7tE"/>
                         <segue destination="bYJ-XE-jRs" kind="push" identifier="alreadysignedin" id="5gH-Uk-IOd"/>
                     </connections>
                 </viewController>
@@ -1369,9 +1375,9 @@
         <image name="deselectedpass.png" width="113" height="51"/>
         <image name="edit.png" width="113" height="51"/>
         <image name="eventphoto.png" width="640" height="183"/>
-        <image name="initialbackgroundtwo.png" width="640" height="1136"/>
         <image name="joinbutton.png" width="561" height="79"/>
         <image name="joinlets.png" width="278" height="93"/>
+        <image name="letslogo.png" width="344" height="297"/>
         <image name="librarybutton.png" width="149" height="81"/>
         <image name="signin.png" width="280" height="94"/>
         <image name="signinbutton.png" width="562" height="79"/>
@@ -1386,10 +1392,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XTV-gf-v4l"/>
-        <segue reference="y1x-8g-Jcx"/>
         <segue reference="ezy-lg-dHa"/>
-        <segue reference="rph-1h-Ach"/>
+        <segue reference="5gH-Uk-IOd"/>
         <segue reference="AmC-gt-K7V"/>
+        <segue reference="XTV-gf-v4l"/>
+        <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>
