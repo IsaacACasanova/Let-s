@@ -31,8 +31,9 @@
 {
     [super viewDidLoad];
 	textField.delegate = self;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [self registerforKeyboardNotifications];
+    textField.editable = YES;
+    [textField becomeFirstResponder];
+    //[self registerforKeyboardNotifications];
     
 }
 
