@@ -32,6 +32,7 @@
     [super viewDidLoad];
 	textField.delegate = self;
     textField.editable = YES;
+    self.imageView.layer.cornerRadius = 5.0f;
     [textField becomeFirstResponder];
     //[self registerforKeyboardNotifications];
     
