@@ -320,7 +320,7 @@
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
     cell.ProfileImage.image = [UIImage imageWithData:imageData];
     //cell.commentLabel.text = @"comment";
-    cell.timeStamp.text = @"2 min ago";
+    //cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
     if([obd.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");

@@ -254,13 +254,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="LDz-2D-Sv1">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SLg-5U-Uac">
-                                    <rect key="frame" x="34" y="20" width="30" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SLg-5U-Uac">
+                                    <rect key="frame" x="0.0" y="0.0" width="109" height="37"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="ALL">
+                                    <state key="normal" image="allselected.png">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -268,10 +268,10 @@
                                         <segue destination="bYJ-XE-jRs" kind="push" identifier="All" id="Bjv-Fm-28R"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="idx-oE-nYR">
-                                    <rect key="frame" x="126" y="20" width="43" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="idx-oE-nYR">
+                                    <rect key="frame" x="109" y="0.0" width="102" height="37"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Public">
+                                    <state key="normal" image="publicdeselected.png">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -279,10 +279,10 @@
                                         <segue destination="bYJ-XE-jRs" kind="push" identifier="Public" id="crF-gM-VIZ"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KSP-9g-LiK">
-                                    <rect key="frame" x="238" y="20" width="48" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KSP-9g-LiK">
+                                    <rect key="frame" x="209" y="0.0" width="111" height="37"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Private">
+                                    <state key="normal" image="privatedeselected.png">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -295,7 +295,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsFeedCell" rowHeight="122" id="JBV-i9-l8Y" customClass="NewsFeedCell">
-                                <rect key="frame" x="0.0" y="82" width="320" height="122"/>
+                                <rect key="frame" x="0.0" y="59" width="320" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JBV-i9-l8Y" id="nty-Gm-81p">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="121"/>
@@ -1365,6 +1365,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="allselected.png" width="212" height="71"/>
         <image name="attending.png" width="587" height="88"/>
         <image name="backbutton.png" width="100" height="24"/>
         <image name="camerabutton.png" width="149" height="81"/>
@@ -1378,6 +1379,8 @@
         <image name="joinlets.png" width="278" height="93"/>
         <image name="letslogo.png" width="344" height="297"/>
         <image name="librarybutton.png" width="149" height="81"/>
+        <image name="privatedeselected.png" width="213" height="71"/>
+        <image name="publicdeselected.png" width="215" height="71"/>
         <image name="signin.png" width="280" height="94"/>
         <image name="signinbutton.png" width="562" height="79"/>
         <image name="signinfields.png" width="562" height="575"/>
@@ -1390,10 +1393,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="H38-hh-A88"/>
         <segue reference="XDx-60-Qcn"/>
+        <segue reference="H38-hh-A88"/>
+        <segue reference="ezy-lg-dHa"/>
         <segue reference="XTV-gf-v4l"/>
-        <segue reference="7K2-ao-rFW"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
 </document>

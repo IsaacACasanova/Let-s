@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSArray *eventTitle;
 @property (nonatomic, strong) NSArray *eventDescription;
 @property (nonatomic,strong) NSArray *eventDate;
-@property (nonatomic,strong) NSArray *timeStamp;
+//@property (nonatomic,strong) NSArray *timeStamp;
 
 
 @property NSString *userinfo;
