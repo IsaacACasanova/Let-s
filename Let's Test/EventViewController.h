@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AppDelegate.h"
 
-@interface EventViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate> {
+@interface EventViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate,UIAlertViewDelegate> {
     
 }
 

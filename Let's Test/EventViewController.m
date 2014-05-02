@@ -247,53 +247,65 @@ CLLocationCoordinate2D pincoordinate;
     self.PassButton.enabled =NO;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
+        [attend whereKey:@"Event" equalTo:self.object.objectId];
+        [attend findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!objects) {
+                NSLog(@"The getFirstObject request failed.");
+            } else {
+                // The find succeeded.
+                for(PFObject *object in objects){
+                    [object deleteInBackground];
+                }
+                NSLog(@"Successfully retrieved the object.");
+            }
+        }];
+        
+        PFQuery *pass = [PFQuery queryWithClassName:@"Pass"];
+        [pass whereKey:@"Event" equalTo:self.object.objectId];
+        [pass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!objects) {
+                NSLog(@"The getFirstObject request failed.");
+            } else {
+                // The find succeeded.
+                for(PFObject *object in objects){
+                    [object deleteInBackground];
+                }
+                NSLog(@"Successfully retrieved the object.");
+            }
+        }];
+        
+        PFQuery *comments = [PFQuery queryWithClassName:@"LetsComments"];
+        [comments whereKey:@"EventID" equalTo:self.object.objectId];
+        [comments findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!objects) {
+                NSLog(@"The getFirstObject request failed.");
+            } else {
+                // The find succeeded.
+                for(PFObject *object in objects){
+                    [object deleteInBackground];
+                }
+                NSLog(@"Successfully retrieved the object.");
+            }
+        }];
+        
+        [self.object deleteInBackground];
+    }
+    
+    if (buttonIndex == 1)
+    {
+        return;
+    }
+}
 
 - (IBAction)DeletePressed:(id)sender {
-    NSLog(@"%@",self.object);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You are about to delete your event do you with to continue?" delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+    [alert show];
     
-    PFQuery *attend = [PFQuery queryWithClassName:@"Attending"];
-    [attend whereKey:@"Event" equalTo:self.object.objectId];
-    [attend findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!objects) {
-            NSLog(@"The getFirstObject request failed.");
-        } else {
-            // The find succeeded.
-            for(PFObject *object in objects){
-                [object deleteInBackground];
-            }
-            NSLog(@"Successfully retrieved the object.");
-        }
-    }];
-    
-    PFQuery *pass = [PFQuery queryWithClassName:@"Pass"];
-    [pass whereKey:@"Event" equalTo:self.object.objectId];
-    [pass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!objects) {
-            NSLog(@"The getFirstObject request failed.");
-        } else {
-            // The find succeeded.
-            for(PFObject *object in objects){
-                [object deleteInBackground];
-            }
-            NSLog(@"Successfully retrieved the object.");
-        }
-    }];
-    
-    PFQuery *comments = [PFQuery queryWithClassName:@"LetsComments"];
-    [comments whereKey:@"EventID" equalTo:self.object.objectId];
-    [comments findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!objects) {
-            NSLog(@"The getFirstObject request failed.");
-        } else {
-            // The find succeeded.
-            for(PFObject *object in objects){
-                [object deleteInBackground];
-            }
-            NSLog(@"Successfully retrieved the object.");
-        }
-    }];
-    
-    [self.object deleteInBackground];
 }
 
 @end

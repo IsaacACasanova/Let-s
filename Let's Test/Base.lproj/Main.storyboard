@@ -1408,6 +1408,7 @@
         <image name="letslogo.png" width="344" height="297"/>
         <image name="librarybutton.png" width="149" height="81"/>
         <image name="mountains.png" width="151" height="112"/>
+        <image name="mountains2.png" width="587" height="88"/>
         <image name="privatedeselected.png" width="213" height="71"/>
         <image name="publicdeselected.png" width="215" height="71"/>
         <image name="signin.png" width="280" height="94"/>
