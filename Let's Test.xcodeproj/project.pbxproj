@@ -98,6 +98,7 @@
 		12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5418B152AD00730E7B /* NewsFeed.m */; };
 		12F93D5818B1556800730E7B /* NewsFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5718B1556800730E7B /* NewsFeedCell.m */; };
 		12F93D5B18B15CCE00730E7B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5A18B15CCE00730E7B /* EventViewController.m */; };
+		12FE473719139B9200CAF052 /* eventheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 12FE473619139B9200CAF052 /* eventheader.png */; };
 		1C76C0DF18E76A5300FB7DC7 /* CreateEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C76C0DE18E76A5300FB7DC7 /* CreateEvent.m */; };
 		1CC7900218E7726700251C49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900118E7726700251C49 /* AudioToolbox.framework */; };
 		1CC7900B18E7732C00251C49 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900318E7732C00251C49 /* CFNetwork.framework */; };
@@ -270,6 +271,7 @@
 		12F93D5718B1556800730E7B /* NewsFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedCell.m; sourceTree = "<group>"; };
 		12F93D5918B15CCE00730E7B /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
 		12F93D5A18B15CCE00730E7B /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
+		12FE473619139B9200CAF052 /* eventheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventheader.png; sourceTree = "<group>"; };
 		1C76C0DD18E76A5300FB7DC7 /* CreateEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEvent.h; sourceTree = "<group>"; };
 		1C76C0DE18E76A5300FB7DC7 /* CreateEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateEvent.m; sourceTree = "<group>"; };
 		1CC7900118E7726700251C49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -645,6 +647,7 @@
 		ED520FC9190C5B4900A641E2 /* Event Page */ = {
 			isa = PBXGroup;
 			children = (
+				12FE473619139B9200CAF052 /* eventheader.png */,
 				ED520FCA190C5B4900A641E2 /* attending.png */,
 				ED520FCB190C5B4900A641E2 /* comments.png */,
 				ED520FCC190C5B4900A641E2 /* eventphoto.png */,
@@ -846,6 +849,7 @@
 				ED520FE2190C5B4900A641E2 /* selectedpass.png in Resources */,
 				129507AB18B1507600B0AB7B /* profile-3.jpg in Resources */,
 				129507A218B1507600B0AB7B /* lock.png in Resources */,
+				12FE473719139B9200CAF052 /* eventheader.png in Resources */,
 				120D2C5319135390007F559E /* Default-568h@2x.png in Resources */,
 				1295079218B1507600B0AB7B /* account@2x.png in Resources */,
 				1295079C18B1507600B0AB7B /* envelope.png in Resources */,
