@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface AddCommentViewController : UIViewController<UITextFieldDelegate>
+@interface AddCommentViewController : UIViewController<UITextViewDelegate>
 {
-    UITextField *textField;
+    UITextView *textField;
     IBOutlet UIView *commentView;
 }
 
-@property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, strong) IBOutlet UITextView *textField;
 @property (strong,nonatomic) PFObject *object;
 
 -(void) registerforKeyboardNotifications;
