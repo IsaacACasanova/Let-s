@@ -991,7 +991,7 @@
                                 <rect key="frame" x="247" y="295" width="53" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1407,6 +1407,7 @@
         <image name="letslogo.png" width="344" height="297"/>
         <image name="librarybutton.png" width="149" height="81"/>
         <image name="mountains.png" width="151" height="112"/>
+        <image name="mountains2.png" width="151" height="112"/>
         <image name="privatedeselected.png" width="213" height="71"/>
         <image name="publicdeselected.png" width="215" height="71"/>
         <image name="signin.png" width="280" height="94"/>
