@@ -87,21 +87,21 @@ CLLocationCoordinate2D pincoordinate;
     
     UIColor* mainColorLight = [UIColor colorWithRed:68.0/255 green:106.0/255 blue:201.0/255 alpha:0.4f];
     
-    NSString* fontName = @"Avenir-Book";
+   // NSString* fontName = @"Avenir-Book";
     NSString* boldItalicFontName = @"Avenir-BlackOblique";
     NSString* boldFontName = @"Avenir-Black";
     
     self.eventTitle.textColor =  mainColor;
-    self.eventTitle.font =  [UIFont fontWithName:boldFontName size:18.0f];
+    //self.eventTitle.font =  [UIFont fontWithName:boldFontName size:18.0f];
     
     self.eventDate.textColor = neutralColor;
-    self.eventDate.font =  [UIFont fontWithName:boldFontName size:18.0f];
+    //self.eventDate.font =  [UIFont fontWithName:boldFontName size:18.0f];
     
     self.eventDescription.textColor = neutralColor;
-    self.eventDescription.font = [UIFont fontWithName:fontName size:18.0f];
+    //self.eventDescription.font = [UIFont fontWithName:fontName size:18.0f];
     
     self.timeStamp.textColor = mainColorLight;
-    self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
+    //self.timeStamp.font =  [UIFont fontWithName:boldItalicFontName size:10.0f];
     
     self.profilePicture.contentMode = UIViewContentModeScaleAspectFill;
     self.profilePicture.clipsToBounds = YES;
