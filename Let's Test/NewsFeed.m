@@ -34,7 +34,7 @@
 - (PFQuery *)queryForTable {
     
     
-
+    
     
     PFQuery *query = [PFQuery queryWithClassName:@"EventList"];
     if (self.userinfo!=NULL) {
@@ -56,6 +56,9 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
+//             [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+//             [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+//             [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
@@ -64,12 +67,21 @@
         
         if(self.state==0)/*all*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
+            [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }else if(self.state==1)/*public*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
             [query whereKey:@"public" equalTo:@"yes"];
+            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }else/*private*/{
             [query whereKey:@"CreatedBy" equalTo:person.getFirstObject];
             [query whereKey:@"public" equalTo:@"no"];
+            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+            [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+            [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
         }
     }else if(self.person!=NULL){
         _Proback.title = @"Back";
@@ -92,23 +104,35 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
+//            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+//            [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+//            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
         if(eventarray.count>0){
-        NSMutableArray *myarray = [[NSMutableArray alloc] init];
-        for(PFObject *object in eventarray){
-            PFObject *event = [object objectForKey:@"Event"];
-            [myarray addObject:event.objectId];
-        }
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for(PFObject *object in eventarray){
+                PFObject *event = [object objectForKey:@"Event"];
+                [myarray addObject:event.objectId];
+            }
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" containedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" containedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" containedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
         }
         
@@ -145,9 +169,10 @@
             NSArray *follower1 =jibs.findObjects;
             
             if(follower1.count>0){
-                 NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                NSMutableArray *myarray2 = [[NSMutableArray alloc] init];
+                NSMutableArray *queryarray = [[NSMutableArray alloc] init];
                 for (PFObject *object in follower1) {
-                     NSLog(@"Fuck %@",object);
+                    NSLog(@"Fuck %@",object);
                     
                     PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
                     [eventq whereKey:@"CreatedBy" equalTo:object];
@@ -161,9 +186,9 @@
                     
                     
                 }
-                 NSLog(@"COUNTD %d",queryobjs.count);
+                NSLog(@"COUNTD %d",queryobjs.count);
                 if(queryobjs.count>0){
-                   // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                    // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
                     for (PFObject *object in queryobjs) {
                         NSString *public = [object objectForKey:@"public"];
                         NSLog(@"PUB %@",public);
@@ -174,7 +199,7 @@
                     }
                     
                 }
-
+                
                 [query whereKey:@"objectId" containedIn:queryarray];
                 [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
             }
@@ -184,18 +209,7 @@
             [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
         }
         
-        if(objects.count==0&&objects2.count==0){
-            if(self.state==0)/*all*/{
-                
-            }else if(self.state==1)/*public*/{
-                
-                [query whereKey:@"public" equalTo:@"yes"];
-            }else/*private*/{
-                
-                [query whereKey:@"public" equalTo:@"no"];
-            }
- 
-        }
+        
         
         
         if(objects.count>0&&objects2.count==0){
@@ -208,14 +222,23 @@
             
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
-       
+            
         }
         
         if(objects2.count>0&&objects.count==0){
@@ -228,12 +251,21 @@
             
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -251,15 +283,23 @@
                 [myarray addObject:event.objectId];
             }
             
-            
             if(self.state==0)/*all*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else if(self.state==1)/*public*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
                 [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
         }
@@ -277,7 +317,7 @@
     }
     
     [query orderByDescending:@"createdAt"];
-        
+    
     return query;
 }
 
@@ -300,13 +340,13 @@
     PFQuery *findifIntable = [PFQuery queryWithClassName:@"Attending"];
     [findifIntable whereKey:@"Attendee" equalTo:user];
     [findifIntable whereKey:@"Event" equalTo:object];
-
+    
     
     PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Pass"];
     [findifIntable2 whereKey:@"Attendee" equalTo:user];
     [findifIntable2 whereKey:@"Event" equalTo:object];
-
-
+    
+    
     NewsFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     //    if (cell == nil) {
     //        cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -320,7 +360,7 @@
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
     cell.ProfileImage.image = [UIImage imageWithData:imageData];
     //cell.commentLabel.text = @"comment";
-    //cell.timeStamp.text = @"2 min ago";
+    cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
     if([obd.objectId isEqualToString: user.objectId]){
         NSLog(@"WHATTTTTTT");
@@ -333,7 +373,7 @@
     }
     
     [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
-     [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
     
     if(findifIntable.getFirstObject!=NULL){
         cell.thefuck =1;
@@ -407,9 +447,9 @@
         vc.person = self.person;
         vc.state =2;
     }
-
-
-
+    
+    
+    
 }
 - (IBAction)editPressed:(UIButton *)sender {
     NSLog(@"TAG: %d",sender.tag);

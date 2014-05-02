@@ -136,6 +136,9 @@
 		ED70EF5418EC653C00C29850 /* LetsCommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED70EF5318EC653C00C29850 /* LetsCommentsTableViewController.m */; };
 		ED70EF5718EC656100C29850 /* LetsCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED70EF5618EC656100C29850 /* LetsCommentsCell.m */; };
 		EDAA37B918F3036000D5A208 /* ProfilePictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAA37B818F3036000D5A208 /* ProfilePictureViewController.m */; };
+		EDB78EA819136DD8004A2FD9 /* charactercount.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB78EA519136DD8004A2FD9 /* charactercount.png */; };
+		EDB78EA919136DD8004A2FD9 /* commentfield.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB78EA619136DD8004A2FD9 /* commentfield.png */; };
+		EDB78EAA19136DD8004A2FD9 /* mountains.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB78EA719136DD8004A2FD9 /* mountains.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +315,9 @@
 		ED70EF5618EC656100C29850 /* LetsCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetsCommentsCell.m; sourceTree = "<group>"; };
 		EDAA37B718F3036000D5A208 /* ProfilePictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePictureViewController.h; sourceTree = "<group>"; };
 		EDAA37B818F3036000D5A208 /* ProfilePictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePictureViewController.m; sourceTree = "<group>"; };
+		EDB78EA519136DD8004A2FD9 /* charactercount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = charactercount.png; sourceTree = "<group>"; };
+		EDB78EA619136DD8004A2FD9 /* commentfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentfield.png; sourceTree = "<group>"; };
+		EDB78EA719136DD8004A2FD9 /* mountains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountains.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +444,7 @@
 		1295072218B1467300B0AB7B /* Let's Test */ = {
 			isa = PBXGroup;
 			children = (
+				EDB78EA419136DD8004A2FD9 /* comments */,
 				1236A46A191324F200645BE2 /* OLImage Framework */,
 				1245ACB3190B49A500AB4236 /* UI Components */,
 				1295072B18B1467300B0AB7B /* AppDelegate.h */,
@@ -686,6 +693,16 @@
 			path = "Sign Up";
 			sourceTree = "<group>";
 		};
+		EDB78EA419136DD8004A2FD9 /* comments */ = {
+			isa = PBXGroup;
+			children = (
+				EDB78EA519136DD8004A2FD9 /* charactercount.png */,
+				EDB78EA619136DD8004A2FD9 /* commentfield.png */,
+				EDB78EA719136DD8004A2FD9 /* mountains.png */,
+			);
+			path = comments;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -767,6 +784,7 @@
 			files = (
 				1295079518B1507600B0AB7B /* bridge.jpg in Resources */,
 				ED520FE7190C5B4900A641E2 /* initialbackgroundtwo.png in Resources */,
+				EDB78EAA19136DD8004A2FD9 /* mountains.png in Resources */,
 				129507A818B1507600B0AB7B /* menu@2x.png in Resources */,
 				ED520FE3190C5B4900A641E2 /* attending.png in Resources */,
 				ED520FF2190C5B4900A641E2 /* signupfieldstwo.png in Resources */,
@@ -791,6 +809,7 @@
 				129507AC18B1507600B0AB7B /* profile.jpg in Resources */,
 				129507A918B1507600B0AB7B /* profile-1.jpg in Resources */,
 				1245ACC0190B4A4400AB4236 /* attending.png in Resources */,
+				EDB78EA919136DD8004A2FD9 /* commentfield.png in Resources */,
 				120D2C5C19135828007F559E /* privatedeselected.png in Resources */,
 				ED520FF1190C5B4900A641E2 /* librarybutton.png in Resources */,
 				ED520FE4190C5B4900A641E2 /* comments.png in Resources */,
@@ -818,6 +837,7 @@
 				129507A618B1507600B0AB7B /* mail@2x.png in Resources */,
 				ED520FE8190C5B4900A641E2 /* joinlets.png in Resources */,
 				1236A474191326F000645BE2 /* letslogo.png in Resources */,
+				EDB78EA819136DD8004A2FD9 /* charactercount.png in Resources */,
 				129507B018B1507600B0AB7B /* settings.png in Resources */,
 				ED520FE2190C5B4900A641E2 /* selectedpass.png in Resources */,
 				129507AB18B1507600B0AB7B /* profile-3.jpg in Resources */,
