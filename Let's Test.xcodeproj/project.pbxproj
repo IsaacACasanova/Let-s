@@ -10,6 +10,7 @@
 		04411D3B19119849002A3941 /* FindAFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 04411D3A19119849002A3941 /* FindAFriend.m */; };
 		04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AC1907F2FE00D056E6 /* FriendsList.m */; };
 		04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A690AE1907F2FE00D056E6 /* FriendsListCell.m */; };
+		120D2C5319135390007F559E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 120D2C5219135390007F559E /* Default-568h@2x.png */; };
 		1236A46F1913250A00645BE2 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1236A46C1913250A00645BE2 /* OLImage.m */; };
 		1236A4701913250A00645BE2 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1236A46E1913250A00645BE2 /* OLImageView.m */; };
 		1236A4721913265A00645BE2 /* letsgif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1236A4711913265A00645BE2 /* letsgif.gif */; };
@@ -148,6 +149,7 @@
 		04A690AC1907F2FE00D056E6 /* FriendsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsList.m; sourceTree = "<group>"; };
 		04A690AD1907F2FE00D056E6 /* FriendsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListCell.h; sourceTree = "<group>"; };
 		04A690AE1907F2FE00D056E6 /* FriendsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListCell.m; sourceTree = "<group>"; };
+		120D2C5219135390007F559E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1236A46B1913250A00645BE2 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
 		1236A46C1913250A00645BE2 /* OLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImage.m; sourceTree = "<group>"; };
 		1236A46D1913250A00645BE2 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		1245ACB3190B49A500AB4236 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				120D2C5219135390007F559E /* Default-568h@2x.png */,
 				ED520FC3190C5B4900A641E2 /* Lets UI Components */,
 				1245ACC3190B614300AB4236 /* Event Feed Components */,
 				1245ACB4190B49AE00AB4236 /* Event Page Components */,
@@ -796,6 +799,7 @@
 				ED520FE2190C5B4900A641E2 /* selectedpass.png in Resources */,
 				129507AB18B1507600B0AB7B /* profile-3.jpg in Resources */,
 				129507A218B1507600B0AB7B /* lock.png in Resources */,
+				120D2C5319135390007F559E /* Default-568h@2x.png in Resources */,
 				1295079218B1507600B0AB7B /* account@2x.png in Resources */,
 				1295079C18B1507600B0AB7B /* envelope.png in Resources */,
 				1245ACC8190B615800AB4236 /* deselectedlets.png in Resources */,
