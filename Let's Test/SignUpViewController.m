@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <stdlib.h>
 #import "MBProgressHUD.h"
+#import "ProfileController3.h"
 #define TEXTFIELD_HEIGHT 0.0f
 
 @interface SignUpViewController ()
@@ -148,29 +149,34 @@
 
 - (IBAction)uploadImage:(id)sender {
     
-    PFUser *user = [PFUser currentUser];
-    //NSString *username = [user username];
-    //NSString *userImage = [username stringByAppendingString:@".jpg"];
-    NSData *imageData = UIImageJPEGRepresentation(self.profilePicture.image,0.5);
-    PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
-    [user setObject:imageFile forKey:@"image"];
-    [user saveInBackground];
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"Uploading";
-    [hud show:YES];
+  NSData *imageData = UIImageJPEGRepresentation(self.profilePicture.image,0.5);
+  PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
+  MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // Upload image to Parse
     
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
-        [hud hide:YES];
-        
         if(!error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved your image!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [self performSegueWithIdentifier:@"signup" sender:self];
+             [hud hide:YES];
+            PFObject *userPhoto = [PFObject objectWithClassName:@"UserPhoto"];
+            [userPhoto setObject:imageFile forKey:@"imageFile"];
+            
+            PFUser *user = [PFUser currentUser];
+            [userPhoto setObject:user forKey:@"user"];
+            [user setObject:imageFile forKey:@"image"];
+            
+            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    hud.mode = MBProgressHUDModeIndeterminate;
+                    hud.labelText = @"Uploading";
+                    [hud show:YES];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved your image!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                    [self performSegueWithIdentifier:@"signup" sender:self];
+        
+                }
+            }];
+
         }
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failure" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -180,7 +180,8 @@
     self.friendLabel.font =  [UIFont fontWithName:fontName size:18.0f];;
     self.friendLabel.text = @"Friends";
     
-    //IMPORTNAT PICTURE STUFF
+    //IMPORTANT PICTURE STUFF
+    
     self.profileImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
