@@ -12,11 +12,14 @@
 @interface AddCommentViewController : UIViewController<UITextViewDelegate>
 {
     UITextView *textField;
+    IBOutlet UILabel *commentLength;
     IBOutlet UIView *commentView;
 }
 
 @property (nonatomic, strong) IBOutlet UITextView *textField;
 @property (strong,nonatomic) PFObject *object;
+@property (strong, nonatomic) UIImageView *imageView;
+@property int maxCommentLength;
 
 -(void) registerforKeyboardNotifications;
 -(void) freeKeyboardNotifications;

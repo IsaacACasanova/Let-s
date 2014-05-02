@@ -29,7 +29,6 @@
     //UIColor* lightColor = [UIColor colorWithWhite:0.7 alpha:1.0];
     
     NSString* fontName = @"Avenir-Book";
-    NSString* boldItalicFontName = @"Avenir-BlackOblique";
     NSString* boldFontName = @"Avenir-Black";
     
     
@@ -37,7 +36,7 @@
     self.userName.font = [UIFont fontWithName:boldFontName size:14.0f];
     
     self.time.textColor = mainColorLight;
-    self.time.font = [UIFont fontWithName:boldItalicFontName size:12.0f];
+    self.time.font = [UIFont fontWithName:boldFontName size:12.0f];
     
     self.comment.textColor = commentColor;
     self.comment.font = [UIFont fontWithName:fontName size:14.0f];
