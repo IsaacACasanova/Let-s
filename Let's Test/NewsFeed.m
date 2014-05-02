@@ -428,29 +428,30 @@
     }else if([[segue identifier] isEqualToString:@"Edit"]){
         CreateEvent *vc =  [segue destinationViewController];
         vc.event = self.event;
-    }else if([[segue identifier] isEqualToString:@"All"]){
-        NewsFeed *vc =  [segue destinationViewController];
-        vc.event = self.event;
-        vc.userinfo = self.userinfo;
-        vc.person = self.person;
-        vc.state = 0;
-    }else if([[segue identifier] isEqualToString:@"Public"]){
-        NewsFeed *vc =  [segue destinationViewController];
-        vc.event = self.event;
-        vc.userinfo = self.userinfo;
-        vc.person = self.person;
-        vc.state = 1;
-    }else if([[segue identifier] isEqualToString:@"Private"]){
-        NewsFeed *vc =  [segue destinationViewController];
-        vc.event = self.event;
-        vc.userinfo = self.userinfo;
-        vc.person = self.person;
-        vc.state =2;
     }
     
     
     
 }
+
+
+
+- (IBAction)allpressed:(id)sender {
+    self.state = 0;
+    [self viewDidLoad];
+}
+
+- (IBAction)publicpressed:(id)sender {
+    self.state  = 1;
+    [self viewDidLoad];
+}
+- (IBAction)privatepressed:(id)sender {
+    self.state = 2;
+    [self viewDidLoad];
+}
+
+
+
 - (IBAction)editPressed:(UIButton *)sender {
     NSLog(@"TAG: %d",sender.tag);
     PFObject *object = [self.objects objectAtIndex:sender.tag];
