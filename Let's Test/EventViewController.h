@@ -11,12 +11,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AppDelegate.h"
 
-@interface EventViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate> {
+@interface EventViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate,UIAlertViewDelegate> {
     
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *eventTitle;
-@property (strong, nonatomic) IBOutlet UILabel *eventDescription;
+//@property (strong, nonatomic) IBOutlet UITextView *eventDescription;
+@property (strong, nonatomic) IBOutlet UITextView *eventDescription;
+
 @property (strong, nonatomic) IBOutlet UILabel *timeStamp;
 @property (strong, nonatomic) IBOutlet UILabel *eventDate;
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface NewsFeedCell : UITableViewCell
+@interface NewsFeedCell : UITableViewCell<UIAlertViewDelegate> 
 
 @property (strong, nonatomic) IBOutlet UILabel *EventLabel;
 @property (strong, nonatomic) IBOutlet UILabel *DecriptionLabel;
