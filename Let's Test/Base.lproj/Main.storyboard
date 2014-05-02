@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bt6-pQ-ytm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Map View Controller - Event Location-->
@@ -1393,8 +1393,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ezy-lg-dHa"/>
-        <segue reference="5gH-Uk-IOd"/>
-        <segue reference="AmC-gt-K7V"/>
+        <segue reference="DWn-gy-fqD"/>
+        <segue reference="J77-zp-csf"/>
         <segue reference="XTV-gf-v4l"/>
         <segue reference="rph-1h-Ach"/>
     </inferredMetricsTieBreakers>
