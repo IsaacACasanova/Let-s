@@ -56,9 +56,6 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
-//             [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
-//             [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
-//             [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
@@ -152,6 +149,9 @@
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:username];
         NSArray *userobj = iAmFollowingQuery.findObjects;
+        
+        
+        
         
         if(userobj.count>0){
             NSArray *queryobjs = query.findObjects;
@@ -304,6 +304,24 @@
             
         }
         
+        if(objects.count==0&&objects2.count==0){
+            if(self.state==0)/*all*/{
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
+            }else/*private*/{
+                [query whereKey:@"public" equalTo:@"no"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
+            }
+        }
+        
         
     }
     
@@ -428,7 +446,25 @@
     }else if([[segue identifier] isEqualToString:@"Edit"]){
         CreateEvent *vc =  [segue destinationViewController];
         vc.event = self.event;
-    }
+    }else if([[segue identifier] isEqualToString:@"All"]){
+               NewsFeed *vc =  [segue destinationViewController];
+                vc.event = self.event;
+                vc.userinfo = self.userinfo;
+                vc.person = self.person;
+                vc.state = 0;
+           }else if([[segue identifier] isEqualToString:@"Public"]){
+                    NewsFeed *vc =  [segue destinationViewController];
+                    vc.event = self.event;
+                    vc.userinfo = self.userinfo;
+                   vc.person = self.person;
+                    vc.state = 1;
+                }else if([[segue identifier] isEqualToString:@"Private"]){
+                        NewsFeed *vc =  [segue destinationViewController];
+                        vc.event = self.event;
+                        vc.userinfo = self.userinfo;
+                        vc.person = self.person;
+                        vc.state =2;
+            }
     
     
     

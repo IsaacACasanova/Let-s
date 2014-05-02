@@ -99,6 +99,7 @@
 		12F93D5818B1556800730E7B /* NewsFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5718B1556800730E7B /* NewsFeedCell.m */; };
 		12F93D5B18B15CCE00730E7B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12F93D5A18B15CCE00730E7B /* EventViewController.m */; };
 		12FE473719139B9200CAF052 /* eventheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 12FE473619139B9200CAF052 /* eventheader.png */; };
+		1C349B8A1913DAD100F5A827 /* FoundFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C349B891913DAD100F5A827 /* FoundFriends.m */; };
 		1C76C0DF18E76A5300FB7DC7 /* CreateEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C76C0DE18E76A5300FB7DC7 /* CreateEvent.m */; };
 		1CC7900218E7726700251C49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900118E7726700251C49 /* AudioToolbox.framework */; };
 		1CC7900B18E7732C00251C49 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC7900318E7732C00251C49 /* CFNetwork.framework */; };
@@ -272,6 +273,8 @@
 		12F93D5918B15CCE00730E7B /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
 		12F93D5A18B15CCE00730E7B /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
 		12FE473619139B9200CAF052 /* eventheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventheader.png; sourceTree = "<group>"; };
+		1C349B881913DAD100F5A827 /* FoundFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoundFriends.h; sourceTree = "<group>"; };
+		1C349B891913DAD100F5A827 /* FoundFriends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoundFriends.m; sourceTree = "<group>"; };
 		1C76C0DD18E76A5300FB7DC7 /* CreateEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEvent.h; sourceTree = "<group>"; };
 		1C76C0DE18E76A5300FB7DC7 /* CreateEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateEvent.m; sourceTree = "<group>"; };
 		1CC7900118E7726700251C49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -495,6 +498,8 @@
 				ED09E50018F59C21000BFCBB /* CustomAnnotationView.h */,
 				ED09E50118F59C21000BFCBB /* CustomAnnotationView.m */,
 				1295072E18B1467300B0AB7B /* Main.storyboard */,
+				1C349B881913DAD100F5A827 /* FoundFriends.h */,
+				1C349B891913DAD100F5A827 /* FoundFriends.m */,
 				1295073418B1467300B0AB7B /* Images.xcassets */,
 				1295076E18B1507600B0AB7B /* Resources */,
 				1295075118B1479600B0AB7B /* FeedControllers */,
@@ -904,6 +909,7 @@
 				1CF966CF190C189C0044E570 /* AttendingController.m in Sources */,
 				04411D3B19119849002A3941 /* FindAFriend.m in Sources */,
 				12F93D5518B152AD00730E7B /* NewsFeed.m in Sources */,
+				1C349B8A1913DAD100F5A827 /* FoundFriends.m in Sources */,
 				04A690B01907F2FE00D056E6 /* FriendsListCell.m in Sources */,
 				04A690AF1907F2FE00D056E6 /* FriendsList.m in Sources */,
 				1295072918B1467300B0AB7B /* main.m in Sources */,
