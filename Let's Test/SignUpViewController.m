@@ -153,7 +153,6 @@
 }
 
 - (IBAction)uploadImage:(id)sender {
-    
   NSData *imageData = UIImageJPEGRepresentation(self.profilePicture.image,0.5);
   PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -162,7 +161,7 @@
     
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(!error){
-             [hud hide:YES];
+            [hud hide:YES];
             PFObject *userPhoto = [PFObject objectWithClassName:@"UserPhoto"];
             [userPhoto setObject:imageFile forKey:@"imageFile"];
             

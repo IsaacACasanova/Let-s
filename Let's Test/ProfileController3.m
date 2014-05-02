@@ -30,10 +30,6 @@
     return self;
 }
 
-
-
-
-
 - (void)grabOtherUserInfo:(NSString *)username{
     //test if current user follows displayed user
     PFUser *current = [PFUser currentUser];
