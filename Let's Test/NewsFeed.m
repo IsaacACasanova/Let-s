@@ -502,7 +502,7 @@
     [q whereKey:@"objectId" equalTo:obd.objectId];
     PFObject *o = q.getFirstObject;
     PFFile *blah = [o objectForKey:@"image"];
-    NSData *imageData = [blah getData];
+  
     
     PFUser *user = [PFUser currentUser];
     
@@ -517,46 +517,99 @@
     
     
     NewsFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //    if (cell == nil) {
-    //        cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-    //                                   reuseIdentifier:CellIdentifier];
-    //    }
+        if (cell == nil) {
+            cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                       reuseIdentifier:CellIdentifier];
+        }
     
-    
-    // Configure the cell to show todo item with a priority at the bottom
-    // cell.textLabel.text = [object objectForKey:@"Address"];
     cell.EventLabel.text = [object objectForKey:@"EventName"];
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
-    cell.ProfileImage.image = [UIImage imageWithData:imageData];
-    //cell.commentLabel.text = @"comment";
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^{
+        NSData *imageData = [blah getData];
+        UIImage *image = [UIImage imageWithData:imageData];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.ProfileImage.image = image;
+            [cell setNeedsLayout];
+        });
+    });
+    
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
-    if([obd.objectId isEqualToString: user.objectId]){
-        NSLog(@"WHATTTTTTT");
-        cell.LetsButton.hidden = YES;
-        cell.PassButton.hidden = YES;
-    }
-    else{
-        cell.EditButton.hidden = YES;
-        cell.DeleteButton.hidden =YES;
-    }
+//    if([obd.objectId isEqualToString: user.objectId]){
+//        cell.LetsButton.hidden = YES;
+//        cell.PassButton.hidden = YES;
+//    }
+//    else{
+//        cell.EditButton.hidden = YES;
+//        cell.DeleteButton.hidden =YES;
+//    }
     
-    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
-    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue2, ^{
+            if([obd.objectId isEqualToString: user.objectId]){
+                cell.LetsButton.hidden = YES;
+                cell.PassButton.hidden = YES;
+            }else{
+                cell.EditButton.hidden = YES;
+                cell.DeleteButton.hidden =YES;
+            }
+        UIImage *nolets = [UIImage imageNamed:@"deselectedlets.png"];
+        UIImage *yeslets = [UIImage imageNamed:@"selectedlets.png"];
+        UIImage *nopass = [UIImage imageNamed:@"deselectedpass.png"];
+         UIImage *yespass = [UIImage imageNamed:@"deselectedpass.png"];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.LetsButton.imageView.image = nolets;
+            cell.PassButton.imageView.image = nopass;
+            
+            //    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+            //    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+            
+            if(findifIntable.getFirstObject!=NULL){
+                cell.thefuck =1;
+                cell.LetsButton.imageView.image = yeslets;
+                cell.PassButton.imageView.image = nopass;
+                //        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+                //        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+                cell.LetsButton.enabled = NO;
+            }
+            
+            if(findifIntable2.getFirstObject!=NULL){
+                cell.thefuck =0;
+                cell.LetsButton.imageView.image = nolets;
+                cell.PassButton.imageView.image = yespass;
+                //        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+                //        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
+                cell.PassButton.enabled = NO;
+            }
+
+            [cell setNeedsLayout];
+        });
+    });
     
-    if(findifIntable.getFirstObject!=NULL){
-        cell.thefuck =1;
-        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
-        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
-        cell.LetsButton.enabled = NO;
-    }
-    
-    if(findifIntable2.getFirstObject!=NULL){
-        cell.thefuck =0;
-        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
-        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
-        cell.PassButton.enabled = NO;
-    }
+//    cell.LetsButton.imageView.image = [UIImage imageNamed:@"deselectedlets.png"];
+//    cell.PassButton.imageView.image = [UIImage imageNamed:@"deselectedpass.png"];
+//    
+////    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+////    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+//    
+//    if(findifIntable.getFirstObject!=NULL){
+//        cell.thefuck =1;
+//        cell.LetsButton.imageView.image = [UIImage imageNamed:@"selectedlets.png"];
+//        cell.PassButton.imageView.image = [UIImage imageNamed:@"deselectedpass.png"];
+////        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+////        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+//        cell.LetsButton.enabled = NO;
+//    }
+//    
+//    if(findifIntable2.getFirstObject!=NULL){
+//        cell.thefuck =0;
+//        cell.LetsButton.imageView.image = [UIImage imageNamed:@"deselectedlets.png"];
+//        cell.PassButton.imageView.image = [UIImage imageNamed:@"selectedpass.png"];
+////        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+////        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
+//        cell.PassButton.enabled = NO;
+//    }
     cell.event = object;
     cell.EditButton.tag = indexPath.row;
     
