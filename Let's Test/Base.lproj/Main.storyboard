@@ -1478,10 +1478,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5gH-Uk-IOd"/>
-        <segue reference="SYZ-gK-7Cg"/>
+        <segue reference="y1x-8g-Jcx"/>
         <segue reference="ezy-lg-dHa"/>
-        <segue reference="XTV-gf-v4l"/>
         <segue reference="rph-1h-Ach"/>
+        <segue reference="AmC-gt-K7V"/>
+        <segue reference="XTV-gf-v4l"/>
     </inferredMetricsTieBreakers>
 </document>
