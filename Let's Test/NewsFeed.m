@@ -101,9 +101,6 @@
             self.all.enabled = NO;
             self.pri.enabled = NO;
             self.pub.enabled = NO;
-//            [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
-//            [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
-//            [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
         }
         
         
@@ -135,6 +132,8 @@
         
     }else{
         PFUser *user = [PFUser currentUser];
+        [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
+        
         PFQuery *findifIntable = [PFQuery queryWithClassName:@"Pass"];
         [findifIntable whereKey:@"Attendee" equalTo:user];
         PFQuery *findifIntable2 = [PFQuery queryWithClassName:@"Attending"];
@@ -144,8 +143,7 @@
         NSArray *objects2 = findifIntable2.findObjects;
         //need to know I am following
         
-        PFUser *curuser = [PFUser currentUser];
-        NSString *username = [curuser objectForKey:@"username"];
+        NSString *username = [user objectForKey:@"username"];
         PFQuery *iAmFollowingQuery = [PFQuery queryWithClassName:@"Follow"];
         [iAmFollowingQuery whereKey:@"Follower" equalTo:username];
         NSArray *userobj = iAmFollowingQuery.findObjects;
@@ -153,95 +151,78 @@
         
         
         
-        if(userobj.count>0){
-            NSArray *queryobjs = query.findObjects;
-            NSLog(@"COUNTQ %d",queryobjs.count);
-            
-            NSMutableArray *myarray = [[NSMutableArray alloc] init];
-            for (PFObject *object in userobj) {
-                NSString *follower = [object objectForKey:@"Following"];
-                NSLog(@"USERARRAY %@",follower);
-                [myarray addObject:follower];
-            }
-            
-            PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
-            [jibs whereKey:@"username" containedIn:myarray];
-            NSArray *follower1 =jibs.findObjects;
-            
-            if(follower1.count>0){
-                NSMutableArray *myarray2 = [[NSMutableArray alloc] init];
-                NSMutableArray *queryarray = [[NSMutableArray alloc] init];
-                for (PFObject *object in follower1) {
-                    NSLog(@"Fuck %@",object);
-                    
-                    PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
-                    [eventq whereKey:@"CreatedBy" equalTo:object];
-                    NSArray *objectev = eventq.findObjects;
-                    
-                    if(objectev.count>0){
-                        for(PFObject *object in objectev){
-                            [queryarray addObject:object.objectId];
-                        }
-                    }
-                    
-                    
-                }
-                NSLog(@"COUNTD %d",queryobjs.count);
-                if(queryobjs.count>0){
-                    // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
-                    for (PFObject *object in queryobjs) {
-                        NSString *public = [object objectForKey:@"public"];
-                        NSLog(@"PUB %@",public);
-                        if([public isEqualToString:@"yes"]){
-                            NSLog(@"THEFUCK");
-                            [queryarray addObject:object.objectId];
-                        }
-                    }
-                    
-                }
-                
-                [query whereKey:@"objectId" containedIn:queryarray];
-                [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
-            }
-            
-        }else{
-            [query whereKey:@"public" equalTo:@"yes"];
-            [query whereKey:@"CreatedBy" notEqualTo:[PFUser currentUser]];
-        }
         
-        
-        
-        
-        if(objects.count>0&&objects2.count==0){
-            NSMutableArray *myarray = [[NSMutableArray alloc] init];
-            for (PFObject *object in objects) {
-                PFObject *event = [object objectForKey:@"Event"];
-                NSLog(@"ARRAY %@",event);
-                [myarray addObject:event.objectId];
-            }
-            
-            if(self.state==0)/*all*/{
-                [query whereKey:@"objectId" notContainedIn:myarray];
+        if(objects2.count==0&&objects.count==0){
+            if(self.state==0){
                 [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
                 [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
                 [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
-            }else if(self.state==1)/*public*/{
-                [query whereKey:@"objectId" notContainedIn:myarray];
+            }else if(self.state==1){
                 [query whereKey:@"public" equalTo:@"yes"];
                 [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
                 [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
                 [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
-            }else/*private*/{
-                [query whereKey:@"objectId" notContainedIn:myarray];
-                [query whereKey:@"public" equalTo:@"no"];
+            }else{
+                if(userobj.count>0){
+                    NSArray *queryobjs = query.findObjects;
+                    NSLog(@"COUNTQ %d",queryobjs.count);
+                    
+                    NSMutableArray *myarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in userobj) {
+                        NSString *follower = [object objectForKey:@"Following"];
+                        NSLog(@"USERARRAY %@",follower);
+                        [myarray addObject:follower];
+                    }
+                    
+                    PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
+                    [jibs whereKey:@"username" containedIn:myarray];
+                    NSArray *follower1 =jibs.findObjects;
+                    
+                    if(follower1.count>0){
+                        NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                        for (PFObject *object in follower1) {
+                            NSLog(@"Fuck %@",object);
+                            
+                            PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                            [eventq whereKey:@"CreatedBy" equalTo:object];
+                            NSArray *objectev = eventq.findObjects;
+                            
+                            if(objectev.count>0){
+                                for(PFObject *object in objectev){
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                            
+                        }
+                        NSLog(@"COUNTD %d",queryobjs.count);
+                        if(queryobjs.count>0){
+                            // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                            for (PFObject *object in queryobjs) {
+                                NSString *public = [object objectForKey:@"public"];
+                                NSLog(@"PUB %@",public);
+                                if([public isEqualToString:@"yes"]){
+                                    NSLog(@"THEFUCK");
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                        }
+                        
+                        [query whereKey:@"objectId" containedIn:queryarray];
+                         [query whereKey:@"public" equalTo:@"no"];
+                    }
+                    
+                }else{
+                    [query whereKey:@"objectId" equalTo:@""];
+                }
                 [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
                 [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
                 [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
-        }
-        
-        if(objects2.count>0&&objects.count==0){
+            
+        }else if(objects2.count>0&&objects.count==0){
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in objects2) {
                 PFObject *event = [object objectForKey:@"Event"];
@@ -262,15 +243,65 @@
                 [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
-                [query whereKey:@"public" equalTo:@"no"];
+                if(userobj.count>0){
+                    NSArray *queryobjs = query.findObjects;
+                    NSLog(@"COUNTQ %d",queryobjs.count);
+                    
+                    NSMutableArray *myarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in userobj) {
+                        NSString *follower = [object objectForKey:@"Following"];
+                        NSLog(@"USERARRAY %@",follower);
+                        [myarray addObject:follower];
+                    }
+                    
+                    PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
+                    [jibs whereKey:@"username" containedIn:myarray];
+                    NSArray *follower1 =jibs.findObjects;
+                    
+                    if(follower1.count>0){
+                        NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                        for (PFObject *object in follower1) {
+                            NSLog(@"Fuck %@",object);
+                            
+                            PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                            [eventq whereKey:@"CreatedBy" equalTo:object];
+                            NSArray *objectev = eventq.findObjects;
+                            
+                            if(objectev.count>0){
+                                for(PFObject *object in objectev){
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                            
+                        }
+                        NSLog(@"COUNTD %d",queryobjs.count);
+                        if(queryobjs.count>0){
+                            // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                            for (PFObject *object in queryobjs) {
+                                NSString *public = [object objectForKey:@"public"];
+                                NSLog(@"PUB %@",public);
+                                if([public isEqualToString:@"yes"]){
+                                    NSLog(@"THEFUCK");
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                        }
+                        
+                        [query whereKey:@"objectId" containedIn:queryarray];
+                         [query whereKey:@"public" equalTo:@"no"];
+                    }
+                    
+                }else{
+                    [query whereKey:@"objectId" equalTo:@""];
+                }
                 [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
                 [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
                 [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
             }
             
-        }
-        
-        if(objects.count>0&&objects2.count>0){
+        }else if(objects.count>0&&objects2.count>0){
             NSMutableArray *myarray = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 PFObject *event = [object objectForKey:@"Event"];
@@ -296,7 +327,138 @@
                 [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
             }else/*private*/{
                 [query whereKey:@"objectId" notContainedIn:myarray];
-                [query whereKey:@"public" equalTo:@"no"];
+                if(userobj.count>0){
+                    NSArray *queryobjs = query.findObjects;
+                    NSLog(@"COUNTQ %d",queryobjs.count);
+                    
+                    NSMutableArray *myarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in userobj) {
+                        NSString *follower = [object objectForKey:@"Following"];
+                        NSLog(@"USERARRAY %@",follower);
+                        [myarray addObject:follower];
+                    }
+                    
+                    PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
+                    [jibs whereKey:@"username" containedIn:myarray];
+                    NSArray *follower1 =jibs.findObjects;
+                    
+                    if(follower1.count>0){
+                        NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                        for (PFObject *object in follower1) {
+                            NSLog(@"Fuck %@",object);
+                            
+                            PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                            [eventq whereKey:@"CreatedBy" equalTo:object];
+                            NSArray *objectev = eventq.findObjects;
+                            
+                            if(objectev.count>0){
+                                for(PFObject *object in objectev){
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                            
+                        }
+                        NSLog(@"COUNTD %d",queryobjs.count);
+                        if(queryobjs.count>0){
+                            // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                            for (PFObject *object in queryobjs) {
+                                NSString *public = [object objectForKey:@"public"];
+                                NSLog(@"PUB %@",public);
+                                if([public isEqualToString:@"yes"]){
+                                    NSLog(@"THEFUCK");
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                        }
+                        
+                        [query whereKey:@"objectId" containedIn:queryarray];
+                         [query whereKey:@"public" equalTo:@"no"];
+                    }
+                    
+                }else{
+                    [query whereKey:@"objectId" equalTo:@""];
+                }
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
+            }
+            
+        }else if(objects.count>0&&objects2.count==0){
+            NSMutableArray *myarray = [[NSMutableArray alloc] init];
+            for (PFObject *object in objects) {
+                PFObject *event = [object objectForKey:@"Event"];
+                NSLog(@"ARRAY %@",event);
+                [myarray addObject:event.objectId];
+            }
+            
+            if(self.state==0)/*all*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
+            }else if(self.state==1)/*public*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                [query whereKey:@"public" equalTo:@"yes"];
+                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
+                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
+                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
+            }else/*private*/{
+                [query whereKey:@"objectId" notContainedIn:myarray];
+                if(userobj.count>0){
+                    NSArray *queryobjs = query.findObjects;
+                    NSLog(@"COUNTQ %d",queryobjs.count);
+                    
+                    NSMutableArray *myarray = [[NSMutableArray alloc] init];
+                    for (PFObject *object in userobj) {
+                        NSString *follower = [object objectForKey:@"Following"];
+                        NSLog(@"USERARRAY %@",follower);
+                        [myarray addObject:follower];
+                    }
+                    
+                    PFQuery *jibs = [PFQuery queryWithClassName:@"_User"];
+                    [jibs whereKey:@"username" containedIn:myarray];
+                    NSArray *follower1 =jibs.findObjects;
+                    
+                    if(follower1.count>0){
+                        NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                        for (PFObject *object in follower1) {
+                            NSLog(@"Fuck %@",object);
+                            
+                            PFQuery *eventq = [PFQuery queryWithClassName:@"EventList"];
+                            [eventq whereKey:@"CreatedBy" equalTo:object];
+                            NSArray *objectev = eventq.findObjects;
+                            
+                            if(objectev.count>0){
+                                for(PFObject *object in objectev){
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                            
+                        }
+                        NSLog(@"COUNTD %d",queryobjs.count);
+                        if(queryobjs.count>0){
+                            // NSMutableArray *queryarray = [[NSMutableArray alloc] init];
+                            for (PFObject *object in queryobjs) {
+                                NSString *public = [object objectForKey:@"public"];
+                                NSLog(@"PUB %@",public);
+                                if([public isEqualToString:@"yes"]){
+                                    NSLog(@"THEFUCK");
+                                    [queryarray addObject:object.objectId];
+                                }
+                            }
+                            
+                        }
+                        
+                        [query whereKey:@"objectId" containedIn:queryarray];
+                        [query whereKey:@"public" equalTo:@"no"];
+                    }
+                    
+                }else{
+                    [query whereKey:@"objectId" equalTo:@""];
+                }
                 [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
                 [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
                 [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
@@ -304,23 +466,12 @@
             
         }
         
-        if(objects.count==0&&objects2.count==0){
-            if(self.state==0)/*all*/{
-                [self.all setImage:[UIImage imageNamed:@"allselected.png"] forState:UIControlStateNormal];
-                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
-                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
-            }else if(self.state==1)/*public*/{
-                [query whereKey:@"public" equalTo:@"yes"];
-                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
-                [self.pub setImage:[UIImage imageNamed:@"selectedpublic.png"] forState:UIControlStateNormal];
-                [self.pri setImage:[UIImage imageNamed:@"privatedeselected.png"] forState:UIControlStateNormal];
-            }else/*private*/{
-                [query whereKey:@"public" equalTo:@"no"];
-                [self.all setImage:[UIImage imageNamed:@"alldeselected.png"] forState:UIControlStateNormal];
-                [self.pub setImage:[UIImage imageNamed:@"publicdeselected.png"] forState:UIControlStateNormal];
-                [self.pri setImage:[UIImage imageNamed:@"privateselected.png"] forState:UIControlStateNormal];
-            }
-        }
+       
+
+
+
+        
+        
         
         
     }
@@ -351,7 +502,7 @@
     [q whereKey:@"objectId" equalTo:obd.objectId];
     PFObject *o = q.getFirstObject;
     PFFile *blah = [o objectForKey:@"image"];
-    NSData *imageData = [blah getData];
+  
     
     PFUser *user = [PFUser currentUser];
     
@@ -366,46 +517,99 @@
     
     
     NewsFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //    if (cell == nil) {
-    //        cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-    //                                   reuseIdentifier:CellIdentifier];
-    //    }
+        if (cell == nil) {
+            cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                       reuseIdentifier:CellIdentifier];
+        }
     
-    
-    // Configure the cell to show todo item with a priority at the bottom
-    // cell.textLabel.text = [object objectForKey:@"Address"];
     cell.EventLabel.text = [object objectForKey:@"EventName"];
     cell.DecriptionLabel.text = [object objectForKey:@"Details"];
-    cell.ProfileImage.image = [UIImage imageWithData:imageData];
-    //cell.commentLabel.text = @"comment";
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^{
+        NSData *imageData = [blah getData];
+        UIImage *image = [UIImage imageWithData:imageData];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.ProfileImage.image = image;
+            [cell setNeedsLayout];
+        });
+    });
+    
     cell.timeStamp.text = @"2 min ago";
     cell.dateLabel.text = [object objectForKey:@"DateTime"];
-    if([obd.objectId isEqualToString: user.objectId]){
-        NSLog(@"WHATTTTTTT");
-        cell.LetsButton.hidden = YES;
-        cell.PassButton.hidden = YES;
-    }
-    else{
-        cell.EditButton.hidden = YES;
-        cell.DeleteButton.hidden =YES;
-    }
+//    if([obd.objectId isEqualToString: user.objectId]){
+//        cell.LetsButton.hidden = YES;
+//        cell.PassButton.hidden = YES;
+//    }
+//    else{
+//        cell.EditButton.hidden = YES;
+//        cell.DeleteButton.hidden =YES;
+//    }
     
-    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
-    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+    dispatch_queue_t queue2 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue2, ^{
+            if([obd.objectId isEqualToString: user.objectId]){
+                cell.LetsButton.hidden = YES;
+                cell.PassButton.hidden = YES;
+            }else{
+                cell.EditButton.hidden = YES;
+                cell.DeleteButton.hidden =YES;
+            }
+        UIImage *nolets = [UIImage imageNamed:@"deselectedlets.png"];
+        UIImage *yeslets = [UIImage imageNamed:@"selectedlets.png"];
+        UIImage *nopass = [UIImage imageNamed:@"deselectedpass.png"];
+         UIImage *yespass = [UIImage imageNamed:@"deselectedpass.png"];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            cell.LetsButton.imageView.image = nolets;
+            cell.PassButton.imageView.image = nopass;
+            
+            //    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+            //    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+            
+            if(findifIntable.getFirstObject!=NULL){
+                cell.thefuck =1;
+                cell.LetsButton.imageView.image = yeslets;
+                cell.PassButton.imageView.image = nopass;
+                //        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+                //        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+                cell.LetsButton.enabled = NO;
+            }
+            
+            if(findifIntable2.getFirstObject!=NULL){
+                cell.thefuck =0;
+                cell.LetsButton.imageView.image = nolets;
+                cell.PassButton.imageView.image = yespass;
+                //        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+                //        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
+                cell.PassButton.enabled = NO;
+            }
+
+            [cell setNeedsLayout];
+        });
+    });
     
-    if(findifIntable.getFirstObject!=NULL){
-        cell.thefuck =1;
-        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
-        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
-        cell.LetsButton.enabled = NO;
-    }
-    
-    if(findifIntable2.getFirstObject!=NULL){
-        cell.thefuck =0;
-        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
-        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
-        cell.PassButton.enabled = NO;
-    }
+//    cell.LetsButton.imageView.image = [UIImage imageNamed:@"deselectedlets.png"];
+//    cell.PassButton.imageView.image = [UIImage imageNamed:@"deselectedpass.png"];
+//    
+////    [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+////    [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+//    
+//    if(findifIntable.getFirstObject!=NULL){
+//        cell.thefuck =1;
+//        cell.LetsButton.imageView.image = [UIImage imageNamed:@"selectedlets.png"];
+//        cell.PassButton.imageView.image = [UIImage imageNamed:@"deselectedpass.png"];
+////        [cell.LetsButton setImage:[UIImage imageNamed:@"selectedlets.png"] forState:UIControlStateNormal];
+////        [cell.PassButton setImage:[UIImage imageNamed:@"deselectedpass.png"] forState:UIControlStateNormal];
+//        cell.LetsButton.enabled = NO;
+//    }
+//    
+//    if(findifIntable2.getFirstObject!=NULL){
+//        cell.thefuck =0;
+//        cell.LetsButton.imageView.image = [UIImage imageNamed:@"deselectedlets.png"];
+//        cell.PassButton.imageView.image = [UIImage imageNamed:@"selectedpass.png"];
+////        [cell.LetsButton setImage:[UIImage imageNamed:@"deselectedlets.png"] forState:UIControlStateNormal];
+////        [cell.PassButton setImage:[UIImage imageNamed:@"selectedpass.png"] forState:UIControlStateNormal];
+//        cell.PassButton.enabled = NO;
+//    }
     cell.event = object;
     cell.EditButton.tag = indexPath.row;
     

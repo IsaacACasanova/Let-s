@@ -312,10 +312,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)logout:(id)sender {
-    [PFUser logOut];
-    PFUser *currentUser = [PFUser currentUser];
-}
 
 - (IBAction)unwindToProfile:(UIStoryboardSegue *)unwindSegue
 {
