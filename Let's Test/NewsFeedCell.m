@@ -203,7 +203,7 @@
 
 
 - (IBAction)DeletePressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You are about to delete your event do you with to continue?" delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING" message:@"You are about to delete your event do you wish to continue?" delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
     [alert show];
 }
 
